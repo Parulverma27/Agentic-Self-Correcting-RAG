@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+data/*/raw/*.txt
+data/*/processed/*
+data/*/qa_pairs.json
+data/*/gold_labels.jsonl
+data/results/*.json
+!data/*/raw/.gitkeep
+!data/*/processed/.gitkeep
+!data/results/.gitkeep
+.env

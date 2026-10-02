@@ -1,0 +1,9 @@
+sentence-transformers>=2.7.0
+faiss-cpu>=1.8.0
+numpy>=1.26.0
+datasets>=2.19.0
+langgraph>=0.2.0
+streamlit>=1.36.0
+requests>=2.31.0
+tqdm>=4.66.0
+pandas>=2.2.0
