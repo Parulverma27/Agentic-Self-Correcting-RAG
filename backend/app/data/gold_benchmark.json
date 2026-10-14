@@ -1,0 +1,202 @@
+[
+  {
+    "pair_id": "gold_hp_001",
+    "query_id": "q_hp_01",
+    "query": "Who commissioned the Roman Colosseum and when was it completed?",
+    "chunk_id": "hp_chunk_001",
+    "chunk_text": "The Roman Colosseum, originally named the Flavian Amphitheatre, was commissioned by Emperor Vespasian in AD 72 and completed under Titus in AD 80. It could hold an estimated 50,000 to 80,000 spectators.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Commissioned by Emperor Vespasian in AD 72 and completed under Titus in AD 80."
+  },
+  {
+    "pair_id": "gold_hp_002",
+    "query_id": "q_hp_01",
+    "query": "Who commissioned the Roman Colosseum and when was it completed?",
+    "chunk_id": "hp_chunk_005",
+    "chunk_text": "Mount Everest is Earth's highest mountain above sea level, located in the Mahalangur Himal sub-range of the Himalayas. The international border between China and Nepal runs across its summit point.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Commissioned by Emperor Vespasian in AD 72 and completed under Titus in AD 80."
+  },
+  {
+    "pair_id": "gold_hp_003",
+    "query_id": "q_hp_02",
+    "query": "Where did Alan Turing work during World War II to crack coded messages?",
+    "chunk_id": "hp_chunk_003",
+    "chunk_text": "Alan Turing was an English mathematician, computer scientist, logician, and theoretical biologist. During the Second World War, Turing worked at Bletchley Park where he played a pivotal role in cracking intercepted coded messages.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Bletchley Park."
+  },
+  {
+    "pair_id": "gold_hp_004",
+    "query_id": "q_hp_02",
+    "query": "Where did Alan Turing work during World War II to crack coded messages?",
+    "chunk_id": "hp_chunk_004",
+    "chunk_text": "Bletchley Park is an English country house and estate in Milton Keynes, Buckinghamshire, that became the principal centre of Allied code-breaking during the Second World War.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Bletchley Park."
+  },
+  {
+    "pair_id": "gold_hp_005",
+    "query_id": "q_hp_02",
+    "query": "Where did Alan Turing work during World War II to crack coded messages?",
+    "chunk_id": "hp_chunk_010",
+    "chunk_text": "The RMS Titanic was a British passenger liner operated by the White Star Line that sank in the North Atlantic Ocean on 15 April 1912 after striking an iceberg during her maiden voyage.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Bletchley Park."
+  },
+  {
+    "pair_id": "gold_hp_006",
+    "query_id": "q_hp_03",
+    "query": "Who were the first climbers to officially reach the summit of Mount Everest?",
+    "chunk_id": "hp_chunk_006",
+    "chunk_text": "Sir Edmund Hillary of New Zealand and Tenzing Norgay, a Sherpa of Nepal, were the first climbers confirmed to have reached the summit of Mount Everest on 29 May 1953.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Sir Edmund Hillary and Tenzing Norgay on 29 May 1953."
+  },
+  {
+    "pair_id": "gold_hp_007",
+    "query_id": "q_hp_03",
+    "query": "Who were the first climbers to officially reach the summit of Mount Everest?",
+    "chunk_id": "hp_chunk_009",
+    "chunk_text": "James Cameron is a Canadian filmmaker known for directing Titanic (1997), which won eleven Academy Awards including Best Picture and Best Director, and Avatar (2009).",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Sir Edmund Hillary and Tenzing Norgay on 29 May 1953."
+  },
+  {
+    "pair_id": "gold_hp_008",
+    "query_id": "q_hp_04",
+    "query": "Which organelle in plant cells is responsible for conducting photosynthesis?",
+    "chunk_id": "hp_chunk_008",
+    "chunk_text": "Chloroplasts are plant cell organelles that conduct photosynthesis, where the photosynthetic pigment chlorophyll captures the energy from sunlight, converts it, and stores it in ATP and NADPH.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Chloroplasts."
+  },
+  {
+    "pair_id": "gold_hp_009",
+    "query_id": "q_hp_04",
+    "query": "Which organelle in plant cells is responsible for conducting photosynthesis?",
+    "chunk_id": "hp_chunk_002",
+    "chunk_text": "Vespasian was Roman emperor from AD 69 to 79. The fourth and last emperor in the Year of the Four Emperors, he founded the Flavian dynasty that ruled the Empire for 27 years.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Chloroplasts."
+  },
+  {
+    "pair_id": "gold_hp_010",
+    "query_id": "q_hp_05",
+    "query": "What award-winning film did James Cameron direct about a 1912 maritime disaster?",
+    "chunk_id": "hp_chunk_009",
+    "chunk_text": "James Cameron is a Canadian filmmaker known for directing Titanic (1997), which won eleven Academy Awards including Best Picture and Best Director, and Avatar (2009).",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Titanic (1997)."
+  },
+  {
+    "pair_id": "gold_leg_001",
+    "query_id": "q_leg_01",
+    "query": "What is the monetary cap specified in the limitation of liability clause?",
+    "chunk_id": "leg_chunk_001",
+    "chunk_text": "Section 8.1 (Limitation of Liability): In no event shall either party's aggregate liability arising out of or related to this Agreement exceed the total fees paid by Customer hereunder in the twelve (12) months preceding the incident.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Total fees paid by Customer in the 12 months preceding the incident."
+  },
+  {
+    "pair_id": "gold_leg_002",
+    "query_id": "q_leg_01",
+    "query": "What is the monetary cap specified in the limitation of liability clause?",
+    "chunk_id": "leg_chunk_005",
+    "chunk_text": "Section 14.1 (Force Majeure): Neither party shall be liable for delay or default in performance if caused by conditions beyond its reasonable control, including acts of God, war, terrorism, civil unrest, labor strikes, and national power grid failures.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Total fees paid by Customer in the 12 months preceding the incident."
+  },
+  {
+    "pair_id": "gold_leg_003",
+    "query_id": "q_leg_02",
+    "query": "Which state's law governs the contract and what is the chosen venue for disputes?",
+    "chunk_id": "leg_chunk_003",
+    "chunk_text": "Section 11.4 (Governing Law and Jurisdiction): This Agreement shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law principles. Any dispute shall be resolved in New Castle County.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Laws of the State of Delaware; venue in New Castle County."
+  },
+  {
+    "pair_id": "gold_leg_004",
+    "query_id": "q_leg_02",
+    "query": "Which state's law governs the contract and what is the chosen venue for disputes?",
+    "chunk_id": "leg_chunk_009",
+    "chunk_text": "Section 3.2 (Payment Terms and Late Interest): Customer shall pay all undisputed invoiced amounts within thirty (30) days of invoice date. Overdue amounts shall accrue interest at 1.5% per month or the maximum rate permitted by law.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Laws of the State of Delaware; venue in New Castle County."
+  },
+  {
+    "pair_id": "gold_leg_005",
+    "query_id": "q_leg_03",
+    "query": "How long does the receiving party's confidentiality obligation last?",
+    "chunk_id": "leg_chunk_004",
+    "chunk_text": "Section 4.3 (Confidential Information): Receiving Party agrees to protect Confidential Information using the same degree of care it uses for its own confidential information of like nature, but no less than reasonable care, for a period of five (5) years.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Five (5) years."
+  },
+  {
+    "pair_id": "gold_leg_006",
+    "query_id": "q_leg_03",
+    "query": "How long does the receiving party's confidentiality obligation last?",
+    "chunk_id": "leg_chunk_007",
+    "chunk_text": "Section 12.2 (Termination for Cause): Either party may terminate this Agreement upon thirty (30) days' written notice if the other party materially breaches any provision and fails to cure such breach within the thirty-day cure period.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Five (5) years."
+  },
+  {
+    "pair_id": "gold_leg_007",
+    "query_id": "q_leg_04",
+    "query": "What notice period and cure period are required for termination for cause?",
+    "chunk_id": "leg_chunk_007",
+    "chunk_text": "Section 12.2 (Termination for Cause): Either party may terminate this Agreement upon thirty (30) days' written notice if the other party materially breaches any provision and fails to cure such breach within the thirty-day cure period.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Thirty (30) days written notice and a thirty-day cure period."
+  },
+  {
+    "pair_id": "gold_leg_008",
+    "query_id": "q_leg_04",
+    "query": "What notice period and cure period are required for termination for cause?",
+    "chunk_id": "leg_chunk_010",
+    "chunk_text": "Section 6.1 (Warranty Disclaimer): Except as expressly provided herein, the services and software are provided 'as is' without warranty of any kind, whether express, implied, statutory, or otherwise, including warranties of merchantability and fitness.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Thirty (30) days written notice and a thirty-day cure period."
+  },
+  {
+    "pair_id": "gold_leg_009",
+    "query_id": "q_leg_05",
+    "query": "Under GDPR Article 17, when do data subjects have the right to erasure?",
+    "chunk_id": "leg_chunk_008",
+    "chunk_text": "Article 17 (GDPR Right to Erasure): Data subjects shall have the right to obtain from the controller the erasure of personal data concerning them without undue delay where the personal data are no longer necessary in relation to the purposes.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "When the personal data are no longer necessary in relation to the purposes."
+  },
+  {
+    "pair_id": "gold_leg_010",
+    "query_id": "q_leg_05",
+    "query": "Under GDPR Article 17, when do data subjects have the right to erasure?",
+    "chunk_id": "leg_chunk_002",
+    "chunk_text": "Section 8.2 (Exclusion of Consequential Damages): Neither party shall be liable for any lost profits, loss of data, loss of goodwill, or indirect, special, incidental, punitive, or consequential damages, even if advised of the possibility.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "When the personal data are no longer necessary in relation to the purposes."
+  }
+]
