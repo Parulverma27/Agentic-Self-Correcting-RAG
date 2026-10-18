@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import AcademicBanner from './components/AcademicBanner';
@@ -14,10 +14,51 @@ import ReportsView from './views/ReportsView';
 import SettingsView from './views/SettingsView';
 import DocQAView from './views/DocQAView';
 
+const VALID_PANELS = [
+  'dashboard',
+  'documents',
+  'docqa',
+  'datasets',
+  'strategies',
+  'evaluation',
+  'results',
+  'demo',
+  'reports',
+  'settings'
+];
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const getInitialTab = () => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.replace(/^#\/?/, '').trim().toLowerCase();
+      if (VALID_PANELS.includes(hash)) {
+        return hash;
+      }
+    }
+    return 'dashboard';
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [searchQuery, setSearchQuery] = useState('');
   const [notificationMsg, setNotificationMsg] = useState(null);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace(/^#\/?/, '').trim().toLowerCase();
+      if (VALID_PANELS.includes(hash)) {
+        setActiveTab(hash);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    if (typeof window !== 'undefined') {
+      window.location.hash = `#/${tab}`;
+    }
+  };
 
   const handleNotificationClick = () => {
     setNotificationMsg('All 3 relevance-grading models initialized and benchmark ready.');
@@ -27,9 +68,9 @@ export default function App() {
   const renderActiveView = () => {
     switch (activeTab) {
       case 'dashboard':
-        return <DashboardView onNavigate={(tab) => setActiveTab(tab)} />;
+        return <DashboardView onNavigate={handleTabChange} />;
       case 'documents':
-        return <DocumentsView onNavigateToDataset={() => setActiveTab('datasets')} />;
+        return <DocumentsView onNavigateToDataset={() => handleTabChange('datasets')} />;
       case 'docqa':
         return <DocQAView />;
       case 'datasets':
@@ -37,7 +78,7 @@ export default function App() {
       case 'strategies':
         return <StrategiesView />;
       case 'evaluation':
-        return <EvaluationView onComplete={() => setActiveTab('results')} />;
+        return <EvaluationView onComplete={() => handleTabChange('results')} />;
       case 'results':
         return <ResultsView />;
       case 'demo':
@@ -47,14 +88,14 @@ export default function App() {
       case 'settings':
         return <SettingsView />;
       default:
-        return <DashboardView onNavigate={(tab) => setActiveTab(tab)} />;
+        return <DashboardView onNavigate={handleTabChange} />;
     }
   };
 
   return (
     <div className="app-layout">
       {/* Sidebar Navigation */}
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar activeTab={activeTab} setActiveTab={handleTabChange} />
 
       {/* Main Workspace */}
       <div className="main-wrapper">

@@ -1,10 +1,13 @@
+import io
+import re
 from contextlib import asynccontextmanager
 from typing import List, Dict, Any, Optional
-from fastapi import FastAPI, HTTPException, Query, Body
+from fastapi import FastAPI, HTTPException, Query, Body, File, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.schemas import (
+    DocumentChunk,
     QueryRequest,
     CompareQueryRequest,
     DocQARequest,
@@ -179,10 +182,50 @@ async def add_gold_sample(item: GoldBenchmarkItem):
     evaluation_engine.benchmark_items.append(item)
     return {"status": "success", "message": "Gold sample registered successfully.", "item": item}
 
+def chunk_text_content(text: str, doc_name: str, domain: str) -> List[DocumentChunk]:
+    """Helper to split document text into semantic chunks for vector retrieval."""
+    raw_paras = [p.strip() for p in text.split("\n\n") if p.strip()]
+    if not raw_paras or len(raw_paras) == 1:
+        raw_paras = [p.strip() for p in text.split("\n") if len(p.strip()) > 20]
+    if not raw_paras:
+        raw_paras = [text.strip()]
+
+    refined_chunks = []
+    for p in raw_paras:
+        if len(p) > 700:
+            sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", p) if s.strip()]
+            curr = ""
+            for s in sentences:
+                if len(curr) + len(s) > 500:
+                    if curr:
+                        refined_chunks.append(curr)
+                    curr = s
+                else:
+                    curr = (curr + " " + s).strip()
+            if curr:
+                refined_chunks.append(curr)
+        else:
+            if len(p) > 15:
+                refined_chunks.append(p)
+
+    if not refined_chunks:
+        refined_chunks = [text[:800]]
+
+    chunks = []
+    for idx, p in enumerate(refined_chunks):
+        chunk = DocumentChunk(
+            chunk_id=f"usr_chunk_{idx + 1:03d}",
+            domain=domain,
+            text=p,
+            metadata={"source": doc_name, "chunk_index": idx + 1, "title": f"Passage {idx + 1}"}
+        )
+        chunks.append(chunk)
+    return chunks
+
 @app.post("/api/doc-qa/query")
 async def execute_doc_qa(request: DocQARequest):
     """
-    Executes a Corrective RAG query against a specific document collection (such as Extended_RAG_Grading_Comparison_Report).
+    Executes a Corrective RAG query against a specific document collection.
     Returns grounded answers, relevant evidence chunks, and relevance-grading decisions.
     """
     domain = request.domain
@@ -197,30 +240,80 @@ async def execute_doc_qa(request: DocQARequest):
     )
     return response
 
+@app.post("/api/doc-qa/compare")
+async def compare_doc_qa_strategies(request: DocQARequest):
+    """
+    Executes the query across all 3 grading strategies concurrently on the document.
+    Returns detailed traces and metrics for response time graphs and strategy comparison.
+    """
+    domain = request.domain
+    if domain not in vector_store.chunks:
+        domain = "report" if "report" in vector_store.chunks else list(vector_store.chunks.keys())[0]
+
+    strategies: List[StrategyType] = ["llm", "cross_encoder", "similarity_threshold"]
+    results: Dict[StrategyType, PipelineResponse] = {}
+
+    for strat in strategies:
+        resp = await crag_pipeline.execute(
+            query=request.query,
+            domain=domain,
+            strategy=strat,
+            top_k=request.top_k
+        )
+        results[strat] = resp
+
+    comparison_metrics = [
+        {
+            "strategy": "llm",
+            "name": "Strategy A: LLM Judge",
+            "total_latency_ms": results["llm"].total_latency_ms,
+            "grading_latency_ms": results["llm"].grading_latency_ms,
+            "retries": results["llm"].reformulation_retries,
+            "relevant_count": results["llm"].graded_relevant_count,
+            "total_chunks": results["llm"].retrieved_chunks_count,
+            "llm_calls": results["llm"].total_llm_calls,
+            "final_answer": results["llm"].final_answer,
+            "is_grounded": results["llm"].graded_relevant_count > 0
+        },
+        {
+            "strategy": "cross_encoder",
+            "name": "Strategy B: Cross-Encoder",
+            "total_latency_ms": results["cross_encoder"].total_latency_ms,
+            "grading_latency_ms": results["cross_encoder"].grading_latency_ms,
+            "retries": results["cross_encoder"].reformulation_retries,
+            "relevant_count": results["cross_encoder"].graded_relevant_count,
+            "total_chunks": results["cross_encoder"].retrieved_chunks_count,
+            "llm_calls": results["cross_encoder"].total_llm_calls,
+            "final_answer": results["cross_encoder"].final_answer,
+            "is_grounded": results["cross_encoder"].graded_relevant_count > 0
+        },
+        {
+            "strategy": "similarity_threshold",
+            "name": "Strategy C: Cosine Similarity",
+            "total_latency_ms": results["similarity_threshold"].total_latency_ms,
+            "grading_latency_ms": results["similarity_threshold"].grading_latency_ms,
+            "retries": results["similarity_threshold"].reformulation_retries,
+            "relevant_count": results["similarity_threshold"].graded_relevant_count,
+            "total_chunks": results["similarity_threshold"].retrieved_chunks_count,
+            "llm_calls": results["similarity_threshold"].total_llm_calls,
+            "final_answer": results["similarity_threshold"].final_answer,
+            "is_grounded": results["similarity_threshold"].graded_relevant_count > 0
+        }
+    ]
+
+    return {
+        "query": request.query,
+        "domain": domain,
+        "results": results,
+        "comparison_metrics": comparison_metrics
+    }
+
 @app.post("/api/doc-qa/upload")
 async def upload_custom_document(request: DocUploadRequest):
-    """
-    Uploads and indexes arbitrary document text into the vector store.
-    Splits text into chunks of ~300 characters/paragraphs and builds TF-IDF indices.
-    """
-    paragraphs = [p.strip() for p in request.doc_text.split("\n\n") if len(p.strip()) > 30]
-    if not paragraphs:
-        paragraphs = [p.strip() for p in request.doc_text.split("\n") if len(p.strip()) > 20]
-    if not paragraphs:
-        paragraphs = [request.doc_text.strip()]
-
-    chunks = []
+    """Uploads and indexes raw document text into the vector store."""
     domain = request.domain or "custom_doc"
-    for idx, p in enumerate(paragraphs):
-        chunk = DocumentChunk(
-            chunk_id=f"usr_chunk_{idx + 1:03d}",
-            domain=domain,
-            text=p,
-            metadata={"source": request.doc_name, "chunk_index": idx + 1}
-        )
-        chunks.append(chunk)
+    chunks = chunk_text_content(request.doc_text, request.doc_name, domain)
 
-    # Overwrite / add to domain
     vector_store.chunks[domain] = []
     vector_store.add_chunks(domain, chunks)
 
@@ -230,6 +323,57 @@ async def upload_custom_document(request: DocUploadRequest):
         "doc_name": request.doc_name,
         "chunks_indexed": len(chunks),
         "message": f"Document '{request.doc_name}' indexed with {len(chunks)} chunks."
+    }
+
+@app.post("/api/doc-qa/upload-file")
+async def upload_document_file(
+    file: UploadFile = File(...),
+    domain: str = Form("custom_doc")
+):
+    """Uploads and indexes binary or text document file (.pdf, .docx, .txt, .md)."""
+    filename = file.filename or "uploaded_document.txt"
+    ext = filename.lower().split(".")[-1]
+    content_bytes = await file.read()
+    text = ""
+
+    try:
+        if ext == "pdf":
+            from pypdf import PdfReader
+            reader = PdfReader(io.BytesIO(content_bytes))
+            pages_text = []
+            for page in reader.pages:
+                t = page.extract_text()
+                if t:
+                    pages_text.append(t)
+            text = "\n\n".join(pages_text)
+
+        elif ext == "docx":
+            import docx
+            doc = docx.Document(io.BytesIO(content_bytes))
+            text = "\n\n".join([p.text for p in doc.paragraphs if p.text.strip()])
+
+        else:
+            try:
+                text = content_bytes.decode("utf-8")
+            except UnicodeDecodeError:
+                text = content_bytes.decode("latin-1", errors="ignore")
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to extract text from '{filename}': {str(e)}")
+
+    if not text.strip():
+        raise HTTPException(status_code=400, detail=f"No readable text could be extracted from '{filename}'.")
+
+    chunks = chunk_text_content(text, filename, domain)
+    vector_store.chunks[domain] = []
+    vector_store.add_chunks(domain, chunks)
+
+    return {
+        "status": "success",
+        "domain": domain,
+        "doc_name": filename,
+        "chunks_indexed": len(chunks),
+        "message": f"Document '{filename}' indexed with {len(chunks)} chunks."
     }
 
 
