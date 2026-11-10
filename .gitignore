@@ -1,13 +1,15 @@
+# Python
 venv/
 .venv/
 __pycache__/
-*.pyc
-data/*/raw/*.txt
-data/*/processed/*
-data/*/qa_pairs.json
-data/*/gold_labels.jsonl
-data/results/*.json
-!data/*/raw/.gitkeep
-!data/*/processed/.gitkeep
-!data/results/.gitkeep
+*.py[cod]
+.pytest_cache/
+
+# Node / Frontend
+node_modules/
+dist/
+
+# Environment & OS
 .env
+.DS_Store
+Thumbs.db
