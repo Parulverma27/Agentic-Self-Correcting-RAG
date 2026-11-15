@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import {
-  FileText,
   UploadCloud,
   Send,
   Sparkles,
   Box,
   Target,
   CheckCircle2,
-  XCircle,
-  HelpCircle,
   Loader2,
   BookOpen,
-  FileCheck,
-  ChevronRight,
   Copy,
   Check,
-  Layers,
   ArrowRight
 } from 'lucide-react';
 import { askDocQA, uploadCustomDoc } from '../services/api';

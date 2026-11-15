@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Layers,
   Cpu,
@@ -11,8 +11,37 @@ import {
   FileDown
 } from 'lucide-react';
 import { initialStats, recentResultsData } from '../data/mockData';
+import { fetchLatestEvaluation } from '../services/api';
+
+const STRATEGY_NAMES = {
+  llm: 'LLM-Prompt Judge',
+  cross_encoder: 'Cross-Encoder / NLI',
+  similarity_threshold: 'Similarity Threshold'
+};
 
 export default function DashboardView({ onNavigate }) {
+  const [recentRows, setRecentRows] = useState(recentResultsData);
+  const [stats, setStats] = useState(initialStats);
+
+  useEffect(() => {
+    fetchLatestEvaluation().then((report) => {
+      if (report && report.matrix && report.matrix.length > 0) {
+        const mapped = report.matrix.map((m) => ({
+          strategy: STRATEGY_NAMES[m.strategy] || m.strategy,
+          domain: m.domain === 'hotpotqa' ? 'HotpotQA' : m.domain === 'legal' ? 'Legal' : m.domain,
+          em: (m.exact_match ?? m.answer_quality?.exact_match ?? 0) * 100,
+          f1: (m.f1_score ?? m.grading_accuracy?.f1_score ?? 0) * 100,
+          latency: `${(m.avg_grading_latency_ms ?? 0).toFixed(2)} ms`
+        }));
+        setRecentRows(mapped);
+        setStats((prev) => ({
+          ...prev,
+          queries: report.total_gold_pairs || prev.queries,
+          completedText: `Paired t-test & 2,000-iter bootstrap (${report.statistical_significance?.length || 12} tests)`
+        }));
+      }
+    });
+  }, []);
   return (
     <div className="dashboard-view">
       {/* Hero Banner */}
@@ -53,8 +82,8 @@ export default function DashboardView({ onNavigate }) {
           </div>
           <div className="stat-info">
             <span className="stat-label">Domains</span>
-            <span className="stat-value">{initialStats.domains}</span>
-            <span className="stat-subtext">{initialStats.domainsText}</span>
+            <span className="stat-value">{stats.domains}</span>
+            <span className="stat-subtext">{stats.domainsText}</span>
           </div>
         </div>
 
@@ -65,8 +94,8 @@ export default function DashboardView({ onNavigate }) {
           </div>
           <div className="stat-info">
             <span className="stat-label">Grading Strategies</span>
-            <span className="stat-value">{initialStats.strategies}</span>
-            <span className="stat-subtext">{initialStats.strategiesText}</span>
+            <span className="stat-value">{stats.strategies}</span>
+            <span className="stat-subtext">{stats.strategiesText}</span>
           </div>
         </div>
 
@@ -76,9 +105,9 @@ export default function DashboardView({ onNavigate }) {
             <HelpCircle size={22} strokeWidth={2.2} />
           </div>
           <div className="stat-info">
-            <span className="stat-label">Total Queries</span>
-            <span className="stat-value">{initialStats.queries}</span>
-            <span className="stat-subtext">{initialStats.queriesText}</span>
+            <span className="stat-label">Total Gold Pairs</span>
+            <span className="stat-value">{stats.queries}</span>
+            <span className="stat-subtext">{stats.queriesText}</span>
           </div>
         </div>
 
@@ -89,8 +118,8 @@ export default function DashboardView({ onNavigate }) {
           </div>
           <div className="stat-info">
             <span className="stat-label">Evaluation Completed</span>
-            <span className="stat-value">{initialStats.completed}</span>
-            <span className="stat-subtext">{initialStats.completedText}</span>
+            <span className="stat-value">{stats.completed}</span>
+            <span className="stat-subtext">{stats.completedText}</span>
           </div>
         </div>
       </div>
@@ -100,7 +129,7 @@ export default function DashboardView({ onNavigate }) {
         {/* Recent Results Table */}
         <div className="card-panel" id="recent-results-panel">
           <div className="card-header-row">
-            <h3 className="card-heading">Recent Results</h3>
+            <h3 className="card-heading">Empirical Comparison Matrix (Live Results)</h3>
           </div>
 
           <table className="custom-table" id="recent-results-table">
@@ -108,13 +137,13 @@ export default function DashboardView({ onNavigate }) {
               <tr>
                 <th>Strategy</th>
                 <th>Domain</th>
-                <th>EM ↑</th>
-                <th>F1 ↑</th>
+                <th>Ans EM ↑</th>
+                <th>Grade F1 ↑</th>
                 <th>Latency ↓</th>
               </tr>
             </thead>
             <tbody>
-              {recentResultsData.map((row, index) => (
+              {recentRows.map((row, index) => (
                 <tr key={index}>
                   <td style={{ fontWeight: 500 }}>{row.strategy}</td>
                   <td>

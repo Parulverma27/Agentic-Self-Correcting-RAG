@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Loader2, Sparkles, Box, Target, Check } from 'lucide-react';
+import { Send, CheckCircle2, Loader2, Sparkles, Box, Target } from 'lucide-react';
 import { demoSampleQueries, demoPresetResponses } from '../data/mockData';
 import { runCragLiveCompare } from '../services/api';
 
-export default function DemoView() {
-  const [query, setQuery] = useState('What is the capital of France?');
-  const [isLoading, setIsLoading] = useState(false);
-  const [comparison, setComparison] = useState(demoPresetResponses['What is the capital of France?']);
+const defaultQuery = demoSampleQueries[0];
 
-  const handleExecuteQuery = async (queryText) => {
+export default function DemoView() {
+  const [query, setQuery] = useState(defaultQuery);
+  const [domain, setDomain] = useState('HotpotQA');
+  const [isLoading, setIsLoading] = useState(false);
+  const [comparison, setComparison] = useState(
+    demoPresetResponses[defaultQuery] || {
+      llm: { relevant: '1/4', latency: '2.84s', retries: 0, llmCalls: 5, result: 'Select or enter a query to compare all 3 grading strategies.' },
+      cross_encoder: { relevant: '1/4', latency: '0.06s', retries: 0, llmCalls: 1, result: 'Select or enter a query to compare all 3 grading strategies.' },
+      similarity_threshold: { relevant: '2/4', latency: '0.01s', retries: 0, llmCalls: 1, result: 'Select or enter a query to compare all 3 grading strategies.' },
+      finalAnswer: 'The Roman Colosseum (Flavian Amphitheatre) was commissioned by Emperor Vespasian in AD 72 and completed under Titus in AD 80.',
+      evidenceBadge: 'Grounded in retrieved domain corpus'
+    }
+  );
+
+  const handleExecuteQuery = async (queryText, domainOverride) => {
     const q = queryText || query;
+    const dom = domainOverride || domain;
     if (!q.trim()) return;
 
     setIsLoading(true);
     try {
-      const res = await runCragLiveCompare(q);
+      const res = await runCragLiveCompare(q, dom);
       setComparison(res);
-    } catch (e) {
+    } catch {
       // fallback
     } finally {
       setIsLoading(false);
@@ -29,7 +41,7 @@ export default function DemoView() {
       <div className="section-header">
         <h2 className="section-title">Interactive Demo</h2>
         <p className="section-subtitle">
-          Ask a question and see how each strategy works in real-time.
+          Ask a question on HotpotQA or Legal text and inspect how each grading strategy filters retrieved chunks in real time.
         </p>
       </div>
 
@@ -38,10 +50,20 @@ export default function DemoView() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleExecuteQuery(query);
+            handleExecuteQuery(query, domain);
           }}
           style={{ display: 'flex', gap: '10px' }}
         >
+          <select
+            id="demo-domain-select"
+            className="form-control"
+            style={{ width: '160px', fontWeight: 600 }}
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+          >
+            <option value="HotpotQA">HotpotQA</option>
+            <option value="Legal">Legal Contracts</option>
+          </select>
           <input
             id="demo-query-input"
             type="text"
@@ -67,34 +89,38 @@ export default function DemoView() {
           <span style={{ fontSize: '12px', color: '#64748b', alignSelf: 'center' }}>
             Try asking:
           </span>
-          {demoSampleQueries.map((item, idx) => (
-            <button
-              key={idx}
-              type="button"
-              style={{
-                background: '#f1f5f9',
-                border: '1px solid #e2e8f0',
-                borderRadius: '9999px',
-                padding: '4px 12px',
-                fontSize: '12px',
-                color: '#334155',
-                cursor: 'pointer'
-              }}
-              onClick={() => {
-                setQuery(item);
-                handleExecuteQuery(item);
-              }}
-            >
-              {item}
-            </button>
-          ))}
+          {demoSampleQueries.map((item, idx) => {
+            const inferredDomain = item.includes('Section') || item.includes('Agreement') ? 'Legal' : 'HotpotQA';
+            return (
+              <button
+                key={idx}
+                type="button"
+                style={{
+                  background: '#f1f5f9',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '9999px',
+                  padding: '4px 12px',
+                  fontSize: '12px',
+                  color: '#334155',
+                  cursor: 'pointer'
+                }}
+                onClick={() => {
+                  setQuery(item);
+                  setDomain(inferredDomain);
+                  handleExecuteQuery(item, inferredDomain);
+                }}
+              >
+                [{inferredDomain}] {item.length > 68 ? `${item.slice(0, 68)}…` : item}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Strategy Comparison Heading */}
       <div style={{ marginBottom: '14px' }}>
         <h3 className="card-heading" style={{ fontSize: '15px' }}>
-          Strategy Comparison
+          Side-by-Side Grading Strategy Comparison ({domain})
         </h3>
       </div>
 
@@ -114,23 +140,31 @@ export default function DemoView() {
               <Sparkles size={16} />
             </div>
             <h4 style={{ fontSize: '13.5px', fontWeight: 700, color: '#0f172a' }}>
-              LLM-prompt Judge
+              Strategy A: LLM Judge (qwen2.5:3b)
             </h4>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12.5px', color: '#475569', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '12.5px', color: '#475569', marginBottom: '14px' }}>
             <div>
-              <span>Relevant Chunks: </span>
+              <span>Relevant Chunks Kept: </span>
               <strong className="mono-num" style={{ color: '#0f172a' }}>
                 {comparison.llm.relevant}
               </strong>
             </div>
             <div>
-              <span>Latency: </span>
+              <span>End-to-End Latency: </span>
               <strong className="mono-num" style={{ color: '#2563eb' }}>
                 {comparison.llm.latency}
               </strong>
             </div>
+            {comparison.llm.llmCalls !== undefined && (
+              <div>
+                <span>LLM Calls / Retries: </span>
+                <strong className="mono-num" style={{ color: '#059669' }}>
+                  {comparison.llm.llmCalls} calls ({comparison.llm.retries ?? 0} retries)
+                </strong>
+              </div>
+            )}
           </div>
 
           <div style={{ background: '#f8fafc', padding: '10px 12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12.5px', color: '#1e293b', minHeight: '52px' }}>
@@ -152,23 +186,31 @@ export default function DemoView() {
               <Box size={16} />
             </div>
             <h4 style={{ fontSize: '13.5px', fontWeight: 700, color: '#0f172a' }}>
-              Cross-encoder / NLI
+              Strategy B: Cross-Encoder (MiniLM)
             </h4>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12.5px', color: '#475569', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '12.5px', color: '#475569', marginBottom: '14px' }}>
             <div>
-              <span>Relevant Chunks: </span>
+              <span>Relevant Chunks Kept: </span>
               <strong className="mono-num" style={{ color: '#0f172a' }}>
                 {comparison.cross_encoder.relevant}
               </strong>
             </div>
             <div>
-              <span>Latency: </span>
+              <span>End-to-End Latency: </span>
               <strong className="mono-num" style={{ color: '#2563eb' }}>
                 {comparison.cross_encoder.latency}
               </strong>
             </div>
+            {comparison.cross_encoder.llmCalls !== undefined && (
+              <div>
+                <span>LLM Calls / Retries: </span>
+                <strong className="mono-num" style={{ color: '#7c3aed' }}>
+                  {comparison.cross_encoder.llmCalls} call ({comparison.cross_encoder.retries ?? 0} retries)
+                </strong>
+              </div>
+            )}
           </div>
 
           <div style={{ background: '#f8fafc', padding: '10px 12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12.5px', color: '#1e293b', minHeight: '52px' }}>
@@ -190,23 +232,31 @@ export default function DemoView() {
               <Target size={16} />
             </div>
             <h4 style={{ fontSize: '13.5px', fontWeight: 700, color: '#0f172a' }}>
-              Similarity Threshold
+              Strategy C: Similarity Threshold
             </h4>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12.5px', color: '#475569', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '12.5px', color: '#475569', marginBottom: '14px' }}>
             <div>
-              <span>Relevant Chunks: </span>
+              <span>Relevant Chunks Kept: </span>
               <strong className="mono-num" style={{ color: '#0f172a' }}>
                 {comparison.similarity_threshold.relevant}
               </strong>
             </div>
             <div>
-              <span>Latency: </span>
+              <span>End-to-End Latency: </span>
               <strong className="mono-num" style={{ color: '#2563eb' }}>
                 {comparison.similarity_threshold.latency}
               </strong>
             </div>
+            {comparison.similarity_threshold.llmCalls !== undefined && (
+              <div>
+                <span>LLM Calls / Retries: </span>
+                <strong className="mono-num" style={{ color: '#2563eb' }}>
+                  {comparison.similarity_threshold.llmCalls} call ({comparison.similarity_threshold.retries ?? 0} retries)
+                </strong>
+              </div>
+            )}
           </div>
 
           <div style={{ background: '#f8fafc', padding: '10px 12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '12.5px', color: '#1e293b', minHeight: '52px' }}>
@@ -230,7 +280,7 @@ export default function DemoView() {
             <CheckCircle2 size={20} />
           </div>
           <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#166534' }}>
-            Final Answer (Corrected RAG)
+            Final Answer (Corrective RAG Output)
           </h4>
         </div>
 

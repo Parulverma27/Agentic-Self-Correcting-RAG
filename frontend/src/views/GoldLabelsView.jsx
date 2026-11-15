@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, ArrowRight, Search, Check, X, Filter } from 'lucide-react';
+import { Plus, ArrowRight, Search } from 'lucide-react';
 import { initialGoldLabels } from '../data/mockData';
-import { fetchGoldLabels } from '../services/api';
+import { fetchGoldLabels, saveGoldLabelApi } from '../services/api';
 
 export default function GoldLabelsView() {
   const [labels, setLabels] = useState(initialGoldLabels);
   const [search, setSearch] = useState('');
   const [domainFilter, setDomainFilter] = useState('ALL');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(15);
 
   // New label modal form
   const [newQuery, setNewQuery] = useState('');
@@ -15,6 +16,7 @@ export default function GoldLabelsView() {
   const [newRelevance, setNewRelevance] = useState(true);
   const [newDomain, setNewDomain] = useState('HotpotQA');
   const [newPassageText, setNewPassageText] = useState('');
+  const [newExpectedAnswer, setNewExpectedAnswer] = useState('');
 
   useEffect(() => {
     fetchGoldLabels().then((data) => {
@@ -31,7 +33,7 @@ export default function GoldLabelsView() {
     return matchesSearch && matchesDomain;
   });
 
-  const handleAddLabel = (e) => {
+  const handleAddLabel = async (e) => {
     e.preventDefault();
     if (!newQuery.trim() || !newChunkId.trim()) return;
 
@@ -41,13 +43,16 @@ export default function GoldLabelsView() {
       chunk: newChunkId,
       relevance: newRelevance,
       domain: newDomain,
-      text: newPassageText || 'Custom annotated passage content.'
+      text: newPassageText || 'Custom annotated passage content.',
+      expected_answer: newExpectedAnswer
     };
 
+    await saveGoldLabelApi(newItem);
     setLabels([newItem, ...labels]);
     setNewQuery('');
     setNewChunkId('');
     setNewPassageText('');
+    setNewExpectedAnswer('');
     setIsModalOpen(false);
   };
 
@@ -55,15 +60,15 @@ export default function GoldLabelsView() {
     <div className="gold-labels-view">
       {/* Header */}
       <div className="section-header">
-        <h2 className="section-title">Gold Standard Labels</h2>
+        <h2 className="section-title">Gold Standard Labels ({labels.length} Pairs)</h2>
         <p className="section-subtitle">
-          Manually annotated relevance judgments for evaluation.
+          Hand-labelled query-chunk relevance judgements across HotpotQA and Legal domains used to measure grading precision, recall, and F1 directly.
         </p>
       </div>
 
       <div className="card-panel">
         {/* Filter & Search Bar */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', gap: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', gap: '16px', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flex: 1 }}>
             <div className="search-container" style={{ width: '280px' }}>
               <Search size={16} color="#94a3b8" />
@@ -82,9 +87,9 @@ export default function GoldLabelsView() {
               value={domainFilter}
               onChange={(e) => setDomainFilter(e.target.value)}
             >
-              <option value="ALL">All Domains</option>
+              <option value="ALL">All Domains ({labels.length})</option>
               <option value="HotpotQA">HotpotQA</option>
-              <option value="BioASQ">BioASQ</option>
+              <option value="Legal">Legal</option>
             </select>
           </div>
 
@@ -103,16 +108,23 @@ export default function GoldLabelsView() {
         <table className="custom-table" id="gold-labels-table">
           <thead>
             <tr>
-              <th style={{ width: '38%' }}>Query</th>
-              <th style={{ width: '20%' }}>Chunk</th>
-              <th style={{ width: '22%' }}>Relevance</th>
+              <th style={{ width: '42%' }}>Query</th>
+              <th style={{ width: '18%' }}>Chunk ID</th>
+              <th style={{ width: '20%' }}>Gold Relevance</th>
               <th style={{ width: '20%' }}>Domain</th>
             </tr>
           </thead>
           <tbody>
-            {filteredLabels.slice(0, 5).map((row) => (
+            {filteredLabels.slice(0, visibleCount).map((row) => (
               <tr key={row.id}>
-                <td style={{ fontWeight: 600, color: '#0f172a' }}>{row.query}</td>
+                <td style={{ fontWeight: 600, color: '#0f172a' }}>
+                  <div>{row.query}</div>
+                  {row.text && (
+                    <div style={{ fontSize: '11.5px', color: '#64748b', fontWeight: 400, marginTop: '4px' }}>
+                      {row.text.length > 140 ? `${row.text.slice(0, 140)}...` : row.text}
+                    </div>
+                  )}
+                </td>
                 <td className="mono-num" style={{ color: '#64748b' }}>{row.chunk}</td>
                 <td>
                   {row.relevance ? (
@@ -126,14 +138,14 @@ export default function GoldLabelsView() {
                   )}
                 </td>
                 <td>
-                  <span className="badge-pill badge-domain">{row.domain}</span>
+                  <span className="badge-pill badge-domain" style={{ textTransform: 'uppercase' }}>{row.domain}</span>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
 
-        {/* Footer with Legend and Manage Labels */}
+        {/* Footer with Legend and Load More / Manage Labels */}
         <div
           style={{
             display: 'flex',
@@ -141,7 +153,9 @@ export default function GoldLabelsView() {
             justifyContent: 'space-between',
             marginTop: '20px',
             paddingTop: '16px',
-            borderTop: '1px solid #e2e8f0'
+            borderTop: '1px solid #e2e8f0',
+            flexWrap: 'wrap',
+            gap: '12px'
           }}
         >
           {/* Legend */}
@@ -152,20 +166,33 @@ export default function GoldLabelsView() {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-              <span>Not Relevant</span>
+              <span>Not Relevant (Hard-Negative Distractor)</span>
             </div>
-            <span style={{ color: '#94a3b8' }}>• Showing 1-5 of 100+ labels</span>
+            <span style={{ color: '#94a3b8' }}>
+              • Showing 1–{Math.min(visibleCount, filteredLabels.length)} of {filteredLabels.length} labels
+            </span>
           </div>
 
-          <button
-            id="btn-manage-labels"
-            className="card-link"
-            style={{ background: 'none', border: 'none', fontSize: '13px' }}
-            onClick={() => setIsModalOpen(true)}
-          >
-            <span>Manage Labels</span>
-            <ArrowRight size={14} />
-          </button>
+          <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
+            {visibleCount < filteredLabels.length && (
+              <button
+                className="card-link"
+                style={{ background: 'none', border: 'none', fontSize: '13px', cursor: 'pointer' }}
+                onClick={() => setVisibleCount((prev) => prev + 30)}
+              >
+                <span>Show More (+30)</span>
+              </button>
+            )}
+            <button
+              id="btn-manage-labels"
+              className="card-link"
+              style={{ background: 'none', border: 'none', fontSize: '13px' }}
+              onClick={() => setIsModalOpen(true)}
+            >
+              <span>Add Gold Pair</span>
+              <ArrowRight size={14} />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -177,7 +204,7 @@ export default function GoldLabelsView() {
               Add Benchmark Gold Label
             </h3>
             <p style={{ fontSize: '12.5px', color: '#64748b', marginBottom: '18px' }}>
-              Register a curated human-annotated query-chunk relevance judgment.
+              Register a curated human-annotated query-chunk relevance judgment (persisted to gold_benchmark.json).
             </p>
 
             <form onSubmit={handleAddLabel}>
@@ -186,7 +213,7 @@ export default function GoldLabelsView() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="e.g. What is the mechanism of penicillin?"
+                  placeholder="e.g. What is the maximum aggregate cumulative liability cap under Section 8.1?"
                   value={newQuery}
                   onChange={(e) => setNewQuery(e.target.value)}
                   required
@@ -199,7 +226,7 @@ export default function GoldLabelsView() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="chunk_142"
+                    placeholder="leg_chunk_016"
                     value={newChunkId}
                     onChange={(e) => setNewChunkId(e.target.value)}
                     required
@@ -214,7 +241,7 @@ export default function GoldLabelsView() {
                     onChange={(e) => setNewDomain(e.target.value)}
                   >
                     <option value="HotpotQA">HotpotQA</option>
-                    <option value="BioASQ">BioASQ</option>
+                    <option value="Legal">Legal</option>
                   </select>
                 </div>
               </div>
@@ -251,6 +278,17 @@ export default function GoldLabelsView() {
                   placeholder="Document chunk text snippet..."
                   value={newPassageText}
                   onChange={(e) => setNewPassageText(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Expected Ground-Truth Answer (Optional)</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="e.g. Twelve (12) months of fees paid or $2,500,000"
+                  value={newExpectedAnswer}
+                  onChange={(e) => setNewExpectedAnswer(e.target.value)}
                 />
               </div>
 

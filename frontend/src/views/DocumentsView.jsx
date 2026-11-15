@@ -1,22 +1,33 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   UploadCloud,
   FileText,
   Eye,
   Trash2,
-  Database,
-  ArrowRight,
-  CheckCircle,
-  ExternalLink
+  Database
 } from 'lucide-react';
 import { uploadedDocuments, datasetInfoList } from '../data/mockData';
+import { fetchDomains } from '../services/api';
 
 export default function DocumentsView({ onNavigateToDataset }) {
   const [activeTab, setActiveTab] = useState('documents');
   const [documents, setDocuments] = useState(uploadedDocuments);
-  const [selectedDataset, setSelectedDataset] = useState(null);
+  const [datasets, setDatasets] = useState(datasetInfoList);
   const [previewDoc, setPreviewDoc] = useState(null);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    fetchDomains().then((domainData) => {
+      if (domainData && Array.isArray(domainData)) {
+        setDatasets((prev) =>
+          prev.map((ds) => {
+            const match = domainData.find((d) => d.id.toLowerCase() === ds.domain.toLowerCase());
+            return match ? { ...ds, docs: match.chunk_count } : ds;
+          })
+        );
+      }
+    });
+  }, []);
 
   const handleFileUpload = (e) => {
     const files = e.target.files;
@@ -188,7 +199,7 @@ export default function DocumentsView({ onNavigateToDataset }) {
             </h3>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {datasetInfoList.map((dataset) => (
+              {datasets.map((dataset) => (
                 <div
                   key={dataset.id}
                   style={{

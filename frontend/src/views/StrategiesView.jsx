@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Sparkles,
   Box,
@@ -6,15 +6,35 @@ import {
   Check,
   X,
   Sliders,
-  Settings2,
   Info
 } from 'lucide-react';
 import { gradingStrategies } from '../data/mockData';
+import { fetchGraders } from '../services/api';
 
 export default function StrategiesView() {
   const [strategies, setStrategies] = useState(gradingStrategies);
   const [selectedStrategy, setSelectedStrategy] = useState(null);
-  const [configThreshold, setConfigThreshold] = useState(0.7);
+  const [configThreshold, setConfigThreshold] = useState(0.5);
+
+  useEffect(() => {
+    fetchGraders().then((res) => {
+      if (res && Array.isArray(res.strategies)) {
+        const byId = Object.fromEntries(res.strategies.map((s) => [s.id, s]));
+        setStrategies((prev) =>
+          prev.map((item) => {
+            const live = byId[item.id];
+            if (!live) return item;
+            return {
+              ...item,
+              threshold: typeof live.threshold === 'number' ? live.threshold : item.threshold,
+              model: live.model || item.model,
+              latencyDesc: live.latency_profile || item.latencyDesc
+            };
+          })
+        );
+      }
+    });
+  }, []);
 
   const openConfig = (strat) => {
     setSelectedStrategy(strat);

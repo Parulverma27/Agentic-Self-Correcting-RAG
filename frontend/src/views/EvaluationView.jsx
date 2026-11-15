@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ArrowRight, Play, CheckCircle2, Loader2, Sparkles, AlertCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { runEvaluationApi } from '../services/api';
 
 export default function EvaluationView({ onComplete }) {
-  const [domain, setDomain] = useState('HotpotQA');
+  const [domain, setDomain] = useState('All Domains');
   const [strategy, setStrategy] = useState('All Strategies (Comparison)');
   const [topK, setTopK] = useState(5);
   const [maxRetries, setMaxRetries] = useState(3);
@@ -15,33 +15,52 @@ export default function EvaluationView({ onComplete }) {
   const [currentStep, setCurrentStep] = useState('');
   const [isDone, setIsDone] = useState(false);
   const [logs, setLogs] = useState([]);
+  const [reportSummary, setReportSummary] = useState(null);
 
   const handleStartEvaluation = async () => {
     setIsRunning(true);
-    setProgress(5);
-    setCurrentStep('Initializing evaluation environment and vector indices...');
-    setLogs(['[SYSTEM] Loading gold benchmark annotations...', '[RETRIEVER] Embedding candidate corpus...']);
+    setProgress(15);
+    setCurrentStep('Initializing evaluation environment and FAISS dense indices...');
+    setLogs([
+      '[SYSTEM] Loading 120 hand-labelled gold benchmark annotations (60 HotpotQA, 60 Legal)...',
+      '[RETRIEVER] Verifying all-MiniLM-L6-v2 + FAISS IndexFlatIP indices...'
+    ]);
 
-    // Call API in parallel
-    runEvaluationApi(domain);
+    try {
+      setProgress(35);
+      setCurrentStep('Running 3 grading strategies across gold pairs and end-to-end queries...');
+      const report = await runEvaluationApi(domain);
+      setReportSummary(report);
 
-    const steps = [
-      { p: 25, msg: 'Evaluating Strategy A: LLM-prompt Judge across test queries...', log: '[LLM-JUDGE] Evaluated 50 queries. Avg latency: 3.42s' },
-      { p: 55, msg: 'Evaluating Strategy B: Cross-Encoder / NLI Model...', log: '[CROSS-ENCODER] Evaluated 50 queries. Avg latency: 0.84s' },
-      { p: 80, msg: 'Evaluating Strategy C: Similarity Threshold baseline...', log: '[SIMILARITY] Evaluated 50 queries. Avg latency: 0.42s' },
-      { p: 95, msg: 'Calculating paired Student’s t-test statistical significance...', log: '[STATS] t-stat: 4.82, p-value: 0.0001 (Significant p < 0.05)' },
-      { p: 100, msg: 'Evaluation complete! Metrics aggregated successfully.', log: '[DONE] Evaluation completed. Report ready.' }
-    ];
+      const newLogs = [];
+      if (report?.matrix?.length) {
+        report.matrix.forEach((m) => {
+          const gF1 = m.f1_score ?? m.grading_accuracy?.f1_score ?? 0;
+          const aF1 = m.token_f1 ?? m.answer_quality?.f1_score ?? 0;
+          newLogs.push(
+            `[${m.domain.toUpperCase()} / ${m.strategy.toUpperCase()}] Grade F1: ${gF1.toFixed(3)} | Ans F1: ${aF1.toFixed(3)} | Latency: ${m.avg_grading_latency_ms.toFixed(2)} ms`
+          );
+        });
+      }
+      if (report?.statistical_significance?.length) {
+        const sigCount = report.statistical_significance.filter(
+          (s) => s.statistically_significant ?? s.significant
+        ).length;
+        newLogs.push(
+          `[STATS] Completed ${report.statistical_significance.length} paired t-test + 2,000-iter bootstrap tests (${sigCount} significant at α=0.05).`
+        );
+      }
+      newLogs.push('[DONE] Evaluation completed and persisted to latest_evaluation.json.');
 
-    for (let i = 0; i < steps.length; i++) {
-      await new Promise((r) => setTimeout(r, 650));
-      setProgress(steps[i].p);
-      setCurrentStep(steps[i].msg);
-      setLogs((prev) => [...prev, steps[i].log]);
+      setProgress(100);
+      setCurrentStep('Evaluation complete! Metrics and statistical validation ready.');
+      setLogs((prev) => [...prev, ...newLogs]);
+    } catch (err) {
+      setLogs((prev) => [...prev, `[ERROR] Evaluation encountered an issue: ${err.message}`]);
+    } finally {
+      setIsRunning(false);
+      setIsDone(true);
     }
-
-    setIsRunning(false);
-    setIsDone(true);
   };
 
   return (
@@ -72,9 +91,9 @@ export default function EvaluationView({ onComplete }) {
                 onChange={(e) => setDomain(e.target.value)}
                 disabled={isRunning}
               >
-                <option value="HotpotQA">HotpotQA</option>
-                <option value="BioASQ">BioASQ</option>
-                <option value="All Domains">All Domains (HotpotQA & BioASQ)</option>
+                <option value="All Domains">All Domains (HotpotQA & Legal)</option>
+                <option value="HotpotQA">HotpotQA (Multi-Hop General Knowledge)</option>
+                <option value="Legal">Legal (Corporate & Regulatory Contracts)</option>
               </select>
             </div>
 
@@ -239,9 +258,30 @@ export default function EvaluationView({ onComplete }) {
               <h4 style={{ fontSize: '16px', fontWeight: 700, color: '#065f46', marginBottom: '4px' }}>
                 Evaluation Completed Successfully!
               </h4>
-              <p style={{ fontSize: '13px', color: '#047857', marginBottom: '18px' }}>
-                All queries processed across 3 relevance grading strategies with paired t-test validation.
+              <p style={{ fontSize: '13px', color: '#047857', marginBottom: '12px' }}>
+                {reportSummary?.summary_findings ||
+                  'All queries processed across 3 relevance grading strategies with paired t-test & 2,000-iteration bootstrap validation.'}
               </p>
+              {logs.length > 0 && (
+                <div
+                  style={{
+                    background: '#0f172a',
+                    color: '#cbd5e1',
+                    borderRadius: '8px',
+                    padding: '10px 12px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '11px',
+                    textAlign: 'left',
+                    marginBottom: '16px',
+                    maxHeight: '140px',
+                    overflowY: 'auto'
+                  }}
+                >
+                  {logs.map((l, i) => (
+                    <div key={i} style={{ color: l.includes('DONE') ? '#10b981' : '#cbd5e1' }}>{l}</div>
+                  ))}
+                </div>
+              )}
               <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
                 <button
                   className="btn-primary"

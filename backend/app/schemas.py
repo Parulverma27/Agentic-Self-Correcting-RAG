@@ -19,6 +19,7 @@ class GradingResult(BaseModel):
     score: float = Field(ge=0.0, le=1.0)
     latency_ms: float
     llm_calls_made: int
+    used_fallback: bool = False
     reasoning: Optional[str] = None
 
 class PipelineTraceStep(BaseModel):
@@ -68,7 +69,6 @@ class DocUploadRequest(BaseModel):
     doc_text: str
     domain: str = "custom_doc"
 
-
 class GoldBenchmarkItem(BaseModel):
     pair_id: str
     query_id: str
@@ -83,14 +83,14 @@ class StrategyMetrics(BaseModel):
     strategy: StrategyType
     domain: str
     sample_count: int
-    
+
     # Grading Accuracy against Hand-Labelled Gold Standard
     precision: float
     recall: float
     f1_score: float
     accuracy: float
     specificity: float
-    
+
     # Downstream End-to-End Metrics
     exact_match: float
     token_f1: float
@@ -108,7 +108,11 @@ class StatisticalComparison(BaseModel):
     difference: float
     t_statistic: float
     p_value: float
-    statistically_significant: bool  # p < 0.05
+    p_value_holm: Optional[float] = None
+    bootstrap_p_value: Optional[float] = None
+    bootstrap_ci_95: Optional[List[float]] = None
+    cohens_d: Optional[float] = None
+    statistically_significant: bool  # p < 0.05 (after Holm / bootstrap verification)
     confidence_interval_95: List[float]
     interpretation: str
 
@@ -118,3 +122,5 @@ class EvaluationReport(BaseModel):
     matrix: List[StrategyMetrics]
     statistical_significance: List[StatisticalComparison]
     summary_findings: str
+    timestamp: Optional[str] = None
+    total_gold_pairs: Optional[int] = None

@@ -1,0 +1,390 @@
+{
+  "domains_evaluated": [
+    "hotpotqa",
+    "legal"
+  ],
+  "strategies_evaluated": [
+    "llm",
+    "cross_encoder",
+    "similarity_threshold"
+  ],
+  "matrix": [
+    {
+      "strategy": "llm",
+      "domain": "hotpotqa",
+      "sample_count": 30,
+      "precision": 0.8462,
+      "recall": 0.7333,
+      "f1_score": 0.7857,
+      "accuracy": 0.8,
+      "specificity": 0.8667,
+      "exact_match": 0.7333,
+      "token_f1": 0.4395,
+      "retry_rate": 0.2667,
+      "avg_grading_latency_ms": 1924.1917,
+      "avg_total_latency_ms": 12451.05,
+      "avg_llm_calls_per_query": 6.87
+    },
+    {
+      "strategy": "cross_encoder",
+      "domain": "hotpotqa",
+      "sample_count": 30,
+      "precision": 0.7692,
+      "recall": 1.0,
+      "f1_score": 0.8696,
+      "accuracy": 0.85,
+      "specificity": 0.7,
+      "exact_match": 0.9333,
+      "token_f1": 0.5392,
+      "retry_rate": 0.0,
+      "avg_grading_latency_ms": 33.115,
+      "avg_total_latency_ms": 115.81,
+      "avg_llm_calls_per_query": 1.0
+    },
+    {
+      "strategy": "similarity_threshold",
+      "domain": "hotpotqa",
+      "sample_count": 30,
+      "precision": 0.6667,
+      "recall": 1.0,
+      "f1_score": 0.8,
+      "accuracy": 0.75,
+      "specificity": 0.5,
+      "exact_match": 0.9,
+      "token_f1": 0.4894,
+      "retry_rate": 0.0,
+      "avg_grading_latency_ms": 0.0007,
+      "avg_total_latency_ms": 0.38,
+      "avg_llm_calls_per_query": 1.0
+    },
+    {
+      "strategy": "llm",
+      "domain": "legal",
+      "sample_count": 30,
+      "precision": 1.0,
+      "recall": 0.4667,
+      "f1_score": 0.6364,
+      "accuracy": 0.7333,
+      "specificity": 1.0,
+      "exact_match": 0.4667,
+      "token_f1": 0.3087,
+      "retry_rate": 0.4333,
+      "avg_grading_latency_ms": 1822.7417,
+      "avg_total_latency_ms": 13648.96,
+      "avg_llm_calls_per_query": 7.93
+    },
+    {
+      "strategy": "cross_encoder",
+      "domain": "legal",
+      "sample_count": 30,
+      "precision": 0.7317,
+      "recall": 1.0,
+      "f1_score": 0.8451,
+      "accuracy": 0.8167,
+      "specificity": 0.6333,
+      "exact_match": 0.9667,
+      "token_f1": 0.4259,
+      "retry_rate": 0.0,
+      "avg_grading_latency_ms": 29.8032,
+      "avg_total_latency_ms": 129.96,
+      "avg_llm_calls_per_query": 1.0
+    },
+    {
+      "strategy": "similarity_threshold",
+      "domain": "legal",
+      "sample_count": 30,
+      "precision": 0.625,
+      "recall": 1.0,
+      "f1_score": 0.7692,
+      "accuracy": 0.7,
+      "specificity": 0.4,
+      "exact_match": 0.9667,
+      "token_f1": 0.3416,
+      "retry_rate": 0.0,
+      "avg_grading_latency_ms": 0.0004,
+      "avg_total_latency_ms": 0.56,
+      "avg_llm_calls_per_query": 1.0
+    }
+  ],
+  "statistical_significance": [
+    {
+      "strategy_a": "llm",
+      "strategy_b": "cross_encoder",
+      "metric_name": "Answer Token F1 (hotpotqa)",
+      "mean_a": 0.4395,
+      "mean_b": 0.5392,
+      "difference": -0.0996,
+      "t_statistic": -2.1275,
+      "p_value": 0.042,
+      "p_value_holm": 0.126,
+      "bootstrap_p_value": 0.02,
+      "bootstrap_ci_95": [
+        -0.1947,
+        -0.0136
+      ],
+      "cohens_d": -0.3884,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        -0.1954,
+        -0.0039
+      ],
+      "interpretation": "Statistically significant difference (paired t=-2.128, p=0.04200 < 0.05, bootstrap p=0.02000, Cohen's d=-0.39, n=30). 'cross_encoder' differs significantly on Answer Token F1 (hotpotqa) with 95% CI [-0.1954, -0.0039]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "cross_encoder",
+      "metric_name": "End-to-End Latency (hotpotqa)",
+      "mean_a": 12451.046,
+      "mean_b": 115.806,
+      "difference": 12335.24,
+      "t_statistic": 8.5801,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        9814.1518,
+        15270.3071
+      ],
+      "cohens_d": 1.5665,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        9394.8844,
+        15275.5956
+      ],
+      "interpretation": "Statistically significant difference (paired t=8.580, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.57, n=30). 'llm' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [9394.8844, 15275.5956]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "Answer Token F1 (hotpotqa)",
+      "mean_a": 0.4395,
+      "mean_b": 0.4894,
+      "difference": -0.0498,
+      "t_statistic": -1.02,
+      "p_value": 0.31615,
+      "p_value_holm": 0.6323,
+      "bootstrap_p_value": 0.287,
+      "bootstrap_ci_95": [
+        -0.1487,
+        0.0418
+      ],
+      "cohens_d": -0.1862,
+      "statistically_significant": false,
+      "confidence_interval_95": [
+        -0.1497,
+        0.0501
+      ],
+      "interpretation": "No statistically significant difference (paired t=-1.020, p=0.31615 >= 0.05, bootstrap p=0.28700, Cohen's d=-0.19, n=30). Mean difference (-0.0498) is within sampling variation; 95% CI [-0.1497, 0.0501]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "End-to-End Latency (hotpotqa)",
+      "mean_a": 12451.046,
+      "mean_b": 0.3813,
+      "difference": 12450.6647,
+      "t_statistic": 8.6636,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        9933.4376,
+        15387.3845
+      ],
+      "cohens_d": 1.5818,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        9511.4259,
+        15389.9035
+      ],
+      "interpretation": "Statistically significant difference (paired t=8.664, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.58, n=30). 'llm' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [9511.4259, 15389.9035]."
+    },
+    {
+      "strategy_a": "cross_encoder",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "Answer Token F1 (hotpotqa)",
+      "mean_a": 0.5392,
+      "mean_b": 0.4894,
+      "difference": 0.0498,
+      "t_statistic": 2.6862,
+      "p_value": 0.01183,
+      "p_value_holm": 0.05915,
+      "bootstrap_p_value": 0.001,
+      "bootstrap_ci_95": [
+        0.0159,
+        0.0868
+      ],
+      "cohens_d": 0.4904,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        0.0119,
+        0.0877
+      ],
+      "interpretation": "Statistically significant difference (paired t=2.686, p=0.01183 < 0.05, bootstrap p=0.00100, Cohen's d=0.49, n=30). 'cross_encoder' differs significantly on Answer Token F1 (hotpotqa) with 95% CI [0.0119, 0.0877]."
+    },
+    {
+      "strategy_a": "cross_encoder",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "End-to-End Latency (hotpotqa)",
+      "mean_a": 115.806,
+      "mean_b": 0.3813,
+      "difference": 115.4247,
+      "t_statistic": 40.9859,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        111.3952,
+        121.3272
+      ],
+      "cohens_d": 7.483,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        109.6649,
+        121.1844
+      ],
+      "interpretation": "Statistically significant difference (paired t=40.986, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=7.48, n=30). 'cross_encoder' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [109.6649, 121.1844]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "cross_encoder",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.3087,
+      "mean_b": 0.4259,
+      "difference": -0.1172,
+      "t_statistic": -2.36,
+      "p_value": 0.02522,
+      "p_value_holm": 0.10088,
+      "bootstrap_p_value": 0.02,
+      "bootstrap_ci_95": [
+        -0.2064,
+        -0.0186
+      ],
+      "cohens_d": -0.4309,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        -0.2187,
+        -0.0156
+      ],
+      "interpretation": "Statistically significant difference (paired t=-2.360, p=0.02522 < 0.05, bootstrap p=0.02000, Cohen's d=-0.43, n=30). 'cross_encoder' differs significantly on Answer Token F1 (legal) with 95% CI [-0.2187, -0.0156]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "cross_encoder",
+      "metric_name": "End-to-End Latency (legal)",
+      "mean_a": 13648.96,
+      "mean_b": 129.9637,
+      "difference": 13518.9963,
+      "t_statistic": 10.2459,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        11028.9124,
+        16130.2553
+      ],
+      "cohens_d": 1.8706,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        10820.4101,
+        16217.5826
+      ],
+      "interpretation": "Statistically significant difference (paired t=10.246, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.87, n=30). 'llm' differs significantly on End-to-End Latency (legal) with 95% CI [10820.4101, 16217.5826]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.3087,
+      "mean_b": 0.3416,
+      "difference": -0.0329,
+      "t_statistic": -0.631,
+      "p_value": 0.53299,
+      "p_value_holm": 0.6323,
+      "bootstrap_p_value": 0.556,
+      "bootstrap_ci_95": [
+        -0.1287,
+        0.0714
+      ],
+      "cohens_d": -0.1152,
+      "statistically_significant": false,
+      "confidence_interval_95": [
+        -0.1396,
+        0.0738
+      ],
+      "interpretation": "No statistically significant difference (paired t=-0.631, p=0.53299 >= 0.05, bootstrap p=0.55600, Cohen's d=-0.12, n=30). Mean difference (-0.0329) is within sampling variation; 95% CI [-0.1396, 0.0738]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "End-to-End Latency (legal)",
+      "mean_a": 13648.96,
+      "mean_b": 0.558,
+      "difference": 13648.402,
+      "t_statistic": 10.3444,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        11157.5833,
+        16257.5838
+      ],
+      "cohens_d": 1.8886,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        10949.9329,
+        16346.8711
+      ],
+      "interpretation": "Statistically significant difference (paired t=10.344, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.89, n=30). 'llm' differs significantly on End-to-End Latency (legal) with 95% CI [10949.9329, 16346.8711]."
+    },
+    {
+      "strategy_a": "cross_encoder",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.4259,
+      "mean_b": 0.3416,
+      "difference": 0.0843,
+      "t_statistic": 3.2576,
+      "p_value": 0.00286,
+      "p_value_holm": 0.01716,
+      "bootstrap_p_value": 0.001,
+      "bootstrap_ci_95": [
+        0.0362,
+        0.1344
+      ],
+      "cohens_d": 0.5948,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        0.0314,
+        0.1372
+      ],
+      "interpretation": "Statistically significant difference (paired t=3.258, p=0.00286 < 0.05, bootstrap p=0.00100, Cohen's d=0.59, n=30). 'cross_encoder' differs significantly on Answer Token F1 (legal) with 95% CI [0.0314, 0.1372]."
+    },
+    {
+      "strategy_a": "cross_encoder",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "End-to-End Latency (legal)",
+      "mean_a": 129.9637,
+      "mean_b": 0.558,
+      "difference": 129.4057,
+      "t_statistic": 55.4795,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        125.0805,
+        134.1224
+      ],
+      "cohens_d": 10.1291,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        124.6352,
+        134.1762
+      ],
+      "interpretation": "Statistically significant difference (paired t=55.480, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=10.13, n=30). 'cross_encoder' differs significantly on End-to-End Latency (legal) with 95% CI [124.6352, 134.1762]."
+    }
+  ],
+  "summary_findings": "Evaluated across 2 domain(s) (60 unique queries, 120 gold query-chunk pairs). Strategy A (LLM Judge - qwen2.5:3b): grading F1=71.1%, answer F1=37.4%, grading latency=1873.5 ms/chunk, 7.4 LLM calls/query | Strategy B (Cross-Encoder - ms-marco-MiniLM-L-6-v2): grading F1=85.7%, answer F1=48.3%, grading latency=31.5 ms/chunk, 1.0 LLM calls/query | Strategy C (Similarity Threshold - all-MiniLM-L6-v2): grading F1=78.5%, answer F1=41.5%, grading latency=0.0 ms/chunk, 1.0 LLM calls/query. Across 12 pairwise hypothesis tests, 10 reached statistical significance (p < 0.05).",
+  "timestamp": "2026-11-14 09:36:56 UTC",
+  "total_gold_pairs": 120
+}

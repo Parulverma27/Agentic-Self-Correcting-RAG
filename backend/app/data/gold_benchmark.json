@@ -2,201 +2,1201 @@
   {
     "pair_id": "gold_hp_001",
     "query_id": "q_hp_01",
-    "query": "Who commissioned the Roman Colosseum and when was it completed?",
+    "query": "Who commissioned the Roman Colosseum and under which emperor was it completed in AD 80?",
     "chunk_id": "hp_chunk_001",
-    "chunk_text": "The Roman Colosseum, originally named the Flavian Amphitheatre, was commissioned by Emperor Vespasian in AD 72 and completed under Titus in AD 80. It could hold an estimated 50,000 to 80,000 spectators.",
+    "chunk_text": "The Roman Colosseum, originally named the Flavian Amphitheatre, was commissioned by Emperor Vespasian in AD 72 and completed under his successor Titus in AD 80. Situated east of the Roman Forum, it could hold an estimated 50,000 to 80,000 spectators.",
     "domain": "hotpotqa",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "Commissioned by Emperor Vespasian in AD 72 and completed under Titus in AD 80."
+    "ground_truth_answer": "Emperor Vespasian commissioned the Roman Colosseum in AD 72 and it was completed under Titus in AD 80."
   },
   {
     "pair_id": "gold_hp_002",
     "query_id": "q_hp_01",
-    "query": "Who commissioned the Roman Colosseum and when was it completed?",
-    "chunk_id": "hp_chunk_005",
-    "chunk_text": "Mount Everest is Earth's highest mountain above sea level, located in the Mahalangur Himal sub-range of the Himalayas. The international border between China and Nepal runs across its summit point.",
+    "query": "Who commissioned the Roman Colosseum and under which emperor was it completed in AD 80?",
+    "chunk_id": "hp_chunk_002",
+    "chunk_text": "Vespasian ruled as Roman emperor from AD 69 to AD 79. As the fourth and final ruler in the Year of the Four Emperors, he founded the Flavian dynasty that governed the Roman Empire for 27 years and reformed the imperial fiscal system.",
     "domain": "hotpotqa",
     "ground_truth_relevance": false,
-    "ground_truth_answer": "Commissioned by Emperor Vespasian in AD 72 and completed under Titus in AD 80."
+    "ground_truth_answer": "Emperor Vespasian commissioned the Roman Colosseum in AD 72 and it was completed under Titus in AD 80."
   },
   {
     "pair_id": "gold_hp_003",
     "query_id": "q_hp_02",
-    "query": "Where did Alan Turing work during World War II to crack coded messages?",
-    "chunk_id": "hp_chunk_003",
-    "chunk_text": "Alan Turing was an English mathematician, computer scientist, logician, and theoretical biologist. During the Second World War, Turing worked at Bletchley Park where he played a pivotal role in cracking intercepted coded messages.",
+    "query": "Which dynasty did Emperor Vespasian found and how many years did it rule the Roman Empire?",
+    "chunk_id": "hp_chunk_002",
+    "chunk_text": "Vespasian ruled as Roman emperor from AD 69 to AD 79. As the fourth and final ruler in the Year of the Four Emperors, he founded the Flavian dynasty that governed the Roman Empire for 27 years and reformed the imperial fiscal system.",
     "domain": "hotpotqa",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "Bletchley Park."
+    "ground_truth_answer": "Emperor Vespasian founded the Flavian dynasty, which ruled the Roman Empire for 27 years."
   },
   {
     "pair_id": "gold_hp_004",
     "query_id": "q_hp_02",
-    "query": "Where did Alan Turing work during World War II to crack coded messages?",
-    "chunk_id": "hp_chunk_004",
-    "chunk_text": "Bletchley Park is an English country house and estate in Milton Keynes, Buckinghamshire, that became the principal centre of Allied code-breaking during the Second World War.",
+    "query": "Which dynasty did Emperor Vespasian found and how many years did it rule the Roman Empire?",
+    "chunk_id": "hp_chunk_001",
+    "chunk_text": "The Roman Colosseum, originally named the Flavian Amphitheatre, was commissioned by Emperor Vespasian in AD 72 and completed under his successor Titus in AD 80. Situated east of the Roman Forum, it could hold an estimated 50,000 to 80,000 spectators.",
     "domain": "hotpotqa",
-    "ground_truth_relevance": true,
-    "ground_truth_answer": "Bletchley Park."
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Emperor Vespasian founded the Flavian dynasty, which ruled the Roman Empire for 27 years."
   },
   {
     "pair_id": "gold_hp_005",
-    "query_id": "q_hp_02",
-    "query": "Where did Alan Turing work during World War II to crack coded messages?",
-    "chunk_id": "hp_chunk_010",
-    "chunk_text": "The RMS Titanic was a British passenger liner operated by the White Star Line that sank in the North Atlantic Ocean on 15 April 1912 after striking an iceberg during her maiden voyage.",
+    "query_id": "q_hp_03",
+    "query": "What electromechanical machine did Alan Turing devise at Bletchley Park to decipher Enigma messages?",
+    "chunk_id": "hp_chunk_003",
+    "chunk_text": "Alan Turing was an English mathematician, computer scientist, and cryptanalyst. During the Second World War, Turing worked for the Government Code and Cypher School at Bletchley Park, where he devised the Bombe electromechanical machine to decipher German Enigma messages.",
     "domain": "hotpotqa",
-    "ground_truth_relevance": false,
-    "ground_truth_answer": "Bletchley Park."
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Alan Turing devised the Bombe electromechanical machine at Bletchley Park to decipher German Enigma messages."
   },
   {
     "pair_id": "gold_hp_006",
     "query_id": "q_hp_03",
-    "query": "Who were the first climbers to officially reach the summit of Mount Everest?",
-    "chunk_id": "hp_chunk_006",
-    "chunk_text": "Sir Edmund Hillary of New Zealand and Tenzing Norgay, a Sherpa of Nepal, were the first climbers confirmed to have reached the summit of Mount Everest on 29 May 1953.",
+    "query": "What electromechanical machine did Alan Turing devise at Bletchley Park to decipher Enigma messages?",
+    "chunk_id": "hp_chunk_004",
+    "chunk_text": "Bletchley Park is an English country house and estate in Milton Keynes, Buckinghamshire, that served as the central site for Allied codebreakers during World War II. Historians estimate its intelligence work shortened the war in Europe by two to four years.",
     "domain": "hotpotqa",
-    "ground_truth_relevance": true,
-    "ground_truth_answer": "Sir Edmund Hillary and Tenzing Norgay on 29 May 1953."
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Alan Turing devised the Bombe electromechanical machine at Bletchley Park to decipher German Enigma messages."
   },
   {
     "pair_id": "gold_hp_007",
-    "query_id": "q_hp_03",
-    "query": "Who were the first climbers to officially reach the summit of Mount Everest?",
-    "chunk_id": "hp_chunk_009",
-    "chunk_text": "James Cameron is a Canadian filmmaker known for directing Titanic (1997), which won eleven Academy Awards including Best Picture and Best Director, and Avatar (2009).",
+    "query_id": "q_hp_04",
+    "query": "In which English county is the Bletchley Park estate located and by how many years did its work shorten World War II?",
+    "chunk_id": "hp_chunk_004",
+    "chunk_text": "Bletchley Park is an English country house and estate in Milton Keynes, Buckinghamshire, that served as the central site for Allied codebreakers during World War II. Historians estimate its intelligence work shortened the war in Europe by two to four years.",
     "domain": "hotpotqa",
-    "ground_truth_relevance": false,
-    "ground_truth_answer": "Sir Edmund Hillary and Tenzing Norgay on 29 May 1953."
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Bletchley Park is in Milton Keynes, Buckinghamshire, and shortened World War II in Europe by an estimated two to four years."
   },
   {
     "pair_id": "gold_hp_008",
     "query_id": "q_hp_04",
-    "query": "Which organelle in plant cells is responsible for conducting photosynthesis?",
-    "chunk_id": "hp_chunk_008",
-    "chunk_text": "Chloroplasts are plant cell organelles that conduct photosynthesis, where the photosynthetic pigment chlorophyll captures the energy from sunlight, converts it, and stores it in ATP and NADPH.",
+    "query": "In which English county is the Bletchley Park estate located and by how many years did its work shorten World War II?",
+    "chunk_id": "hp_chunk_003",
+    "chunk_text": "Alan Turing was an English mathematician, computer scientist, and cryptanalyst. During the Second World War, Turing worked for the Government Code and Cypher School at Bletchley Park, where he devised the Bombe electromechanical machine to decipher German Enigma messages.",
     "domain": "hotpotqa",
-    "ground_truth_relevance": true,
-    "ground_truth_answer": "Chloroplasts."
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Bletchley Park is in Milton Keynes, Buckinghamshire, and shortened World War II in Europe by an estimated two to four years."
   },
   {
     "pair_id": "gold_hp_009",
-    "query_id": "q_hp_04",
-    "query": "Which organelle in plant cells is responsible for conducting photosynthesis?",
-    "chunk_id": "hp_chunk_002",
-    "chunk_text": "Vespasian was Roman emperor from AD 69 to 79. The fourth and last emperor in the Year of the Four Emperors, he founded the Flavian dynasty that ruled the Empire for 27 years.",
+    "query_id": "q_hp_05",
+    "query": "What is the exact elevation of Mount Everest in metres and which two countries share a border across its summit?",
+    "chunk_id": "hp_chunk_005",
+    "chunk_text": "Mount Everest is Earth's highest mountain above sea level at 8,848.86 metres (29,031.7 ft), located in the Mahalangur Himal sub-range of the Himalayas. The international border between China (Tibet Autonomous Region) and Nepal runs directly across its summit point.",
     "domain": "hotpotqa",
-    "ground_truth_relevance": false,
-    "ground_truth_answer": "Chloroplasts."
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Mount Everest is 8,848.86 metres high and the international border between China and Nepal runs across its summit."
   },
   {
     "pair_id": "gold_hp_010",
     "query_id": "q_hp_05",
-    "query": "What award-winning film did James Cameron direct about a 1912 maritime disaster?",
-    "chunk_id": "hp_chunk_009",
-    "chunk_text": "James Cameron is a Canadian filmmaker known for directing Titanic (1997), which won eleven Academy Awards including Best Picture and Best Director, and Avatar (2009).",
+    "query": "What is the exact elevation of Mount Everest in metres and which two countries share a border across its summit?",
+    "chunk_id": "hp_chunk_006",
+    "chunk_text": "Sir Edmund Hillary of New Zealand and Tenzing Norgay, a Sherpa mountaineer from Nepal, were the first climbers confirmed to have reached the summit of Mount Everest on 29 May 1953 as part of the ninth British expedition led by John Hunt.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Mount Everest is 8,848.86 metres high and the international border between China and Nepal runs across its summit."
+  },
+  {
+    "pair_id": "gold_hp_011",
+    "query_id": "q_hp_06",
+    "query": "Who were the first two climbers confirmed to reach the summit of Mount Everest on 29 May 1953?",
+    "chunk_id": "hp_chunk_006",
+    "chunk_text": "Sir Edmund Hillary of New Zealand and Tenzing Norgay, a Sherpa mountaineer from Nepal, were the first climbers confirmed to have reached the summit of Mount Everest on 29 May 1953 as part of the ninth British expedition led by John Hunt.",
     "domain": "hotpotqa",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "Titanic (1997)."
+    "ground_truth_answer": "Sir Edmund Hillary of New Zealand and Tenzing Norgay of Nepal reached the summit on 29 May 1953."
+  },
+  {
+    "pair_id": "gold_hp_012",
+    "query_id": "q_hp_06",
+    "query": "Who were the first two climbers confirmed to reach the summit of Mount Everest on 29 May 1953?",
+    "chunk_id": "hp_chunk_005",
+    "chunk_text": "Mount Everest is Earth's highest mountain above sea level at 8,848.86 metres (29,031.7 ft), located in the Mahalangur Himal sub-range of the Himalayas. The international border between China (Tibet Autonomous Region) and Nepal runs directly across its summit point.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Sir Edmund Hillary of New Zealand and Tenzing Norgay of Nepal reached the summit on 29 May 1953."
+  },
+  {
+    "pair_id": "gold_hp_013",
+    "query_id": "q_hp_07",
+    "query": "What gas is released as a byproduct of water photolysis during photosynthesis?",
+    "chunk_id": "hp_chunk_007",
+    "chunk_text": "Photosynthesis is the biochemical process used by photoautotrophs such as plants, algae, and cyanobacteria to convert light energy into chemical energy stored in glucose molecules, releasing molecular oxygen as a byproduct of water photolysis.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Molecular oxygen is released as a byproduct of water photolysis while converting light energy into glucose."
+  },
+  {
+    "pair_id": "gold_hp_014",
+    "query_id": "q_hp_07",
+    "query": "What gas is released as a byproduct of water photolysis during photosynthesis?",
+    "chunk_id": "hp_chunk_008",
+    "chunk_text": "Chloroplasts are double-membrane plant cell organelles that conduct photosynthesis. Inside their thylakoid membranes, the pigment chlorophyll absorbs light energy to synthesize ATP and NADPH for the Calvin cycle in the stroma.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Molecular oxygen is released as a byproduct of water photolysis while converting light energy into glucose."
+  },
+  {
+    "pair_id": "gold_hp_015",
+    "query_id": "q_hp_08",
+    "query": "Within which specific membranes of the chloroplast does chlorophyll absorb light to synthesize ATP and NADPH?",
+    "chunk_id": "hp_chunk_008",
+    "chunk_text": "Chloroplasts are double-membrane plant cell organelles that conduct photosynthesis. Inside their thylakoid membranes, the pigment chlorophyll absorbs light energy to synthesize ATP and NADPH for the Calvin cycle in the stroma.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Chlorophyll inside the thylakoid membranes of chloroplasts absorbs light energy to synthesize ATP and NADPH."
+  },
+  {
+    "pair_id": "gold_hp_016",
+    "query_id": "q_hp_08",
+    "query": "Within which specific membranes of the chloroplast does chlorophyll absorb light to synthesize ATP and NADPH?",
+    "chunk_id": "hp_chunk_007",
+    "chunk_text": "Photosynthesis is the biochemical process used by photoautotrophs such as plants, algae, and cyanobacteria to convert light energy into chemical energy stored in glucose molecules, releasing molecular oxygen as a byproduct of water photolysis.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Chlorophyll inside the thylakoid membranes of chloroplasts absorbs light energy to synthesize ATP and NADPH."
+  },
+  {
+    "pair_id": "gold_hp_017",
+    "query_id": "q_hp_09",
+    "query": "How many Academy Awards did James Cameron's 1997 film Titanic win and where was Cameron born?",
+    "chunk_id": "hp_chunk_009",
+    "chunk_text": "James Cameron is a Canadian filmmaker born in Kapuskasing, Ontario, best known for directing the epic romance disaster film Titanic (1997), which won eleven Academy Awards including Best Picture and Best Director, as well as Avatar (2009).",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "James Cameron was born in Kapuskasing, Ontario, and his film Titanic (1997) won eleven Academy Awards."
+  },
+  {
+    "pair_id": "gold_hp_018",
+    "query_id": "q_hp_09",
+    "query": "How many Academy Awards did James Cameron's 1997 film Titanic win and where was Cameron born?",
+    "chunk_id": "hp_chunk_010",
+    "chunk_text": "The RMS Titanic was a British Olympic-class ocean liner operated by the White Star Line that sank in the North Atlantic Ocean on 15 April 1912 after striking an iceberg during her maiden voyage from Southampton to New York City.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "James Cameron was born in Kapuskasing, Ontario, and his film Titanic (1997) won eleven Academy Awards."
+  },
+  {
+    "pair_id": "gold_hp_019",
+    "query_id": "q_hp_10",
+    "query": "On what exact date did the RMS Titanic sink in the North Atlantic Ocean and which company operated the liner?",
+    "chunk_id": "hp_chunk_010",
+    "chunk_text": "The RMS Titanic was a British Olympic-class ocean liner operated by the White Star Line that sank in the North Atlantic Ocean on 15 April 1912 after striking an iceberg during her maiden voyage from Southampton to New York City.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Operated by the White Star Line, the RMS Titanic sank on 15 April 1912 after striking an iceberg."
+  },
+  {
+    "pair_id": "gold_hp_020",
+    "query_id": "q_hp_10",
+    "query": "On what exact date did the RMS Titanic sink in the North Atlantic Ocean and which company operated the liner?",
+    "chunk_id": "hp_chunk_009",
+    "chunk_text": "James Cameron is a Canadian filmmaker born in Kapuskasing, Ontario, best known for directing the epic romance disaster film Titanic (1997), which won eleven Academy Awards including Best Picture and Best Director, as well as Avatar (2009).",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Operated by the White Star Line, the RMS Titanic sank on 15 April 1912 after striking an iceberg."
+  },
+  {
+    "pair_id": "gold_hp_021",
+    "query_id": "q_hp_11",
+    "query": "Which two radioactive elements did Marie Curie isolate to win the 1911 Nobel Prize in Chemistry?",
+    "chunk_id": "hp_chunk_011",
+    "chunk_text": "Marie Sk\u0142odowska Curie was a Polish and naturalized-French physicist and chemist who conducted pioneering research on radioactivity. She was the first person to win two Nobel Prizes in different scientific fields: Physics in 1903 and Chemistry in 1911 for isolating radium and polonium.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Marie Curie isolated radium and polonium, winning the 1911 Nobel Prize in Chemistry in addition to her 1903 Physics prize."
+  },
+  {
+    "pair_id": "gold_hp_022",
+    "query_id": "q_hp_11",
+    "query": "Which two radioactive elements did Marie Curie isolate to win the 1911 Nobel Prize in Chemistry?",
+    "chunk_id": "hp_chunk_012",
+    "chunk_text": "The 1903 Nobel Prize in Physics was jointly awarded to Henri Becquerel for his discovery of spontaneous radioactivity and to Pierre and Marie Curie for their joint radiation phenomena investigations.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Marie Curie isolated radium and polonium, winning the 1911 Nobel Prize in Chemistry in addition to her 1903 Physics prize."
+  },
+  {
+    "pair_id": "gold_hp_023",
+    "query_id": "q_hp_12",
+    "query": "Who shared the 1903 Nobel Prize in Physics with Pierre and Marie Curie for discovering spontaneous radioactivity?",
+    "chunk_id": "hp_chunk_012",
+    "chunk_text": "The 1903 Nobel Prize in Physics was jointly awarded to Henri Becquerel for his discovery of spontaneous radioactivity and to Pierre and Marie Curie for their joint radiation phenomena investigations.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Henri Becquerel shared the 1903 Nobel Prize in Physics with Pierre and Marie Curie."
+  },
+  {
+    "pair_id": "gold_hp_024",
+    "query_id": "q_hp_12",
+    "query": "Who shared the 1903 Nobel Prize in Physics with Pierre and Marie Curie for discovering spontaneous radioactivity?",
+    "chunk_id": "hp_chunk_011",
+    "chunk_text": "Marie Sk\u0142odowska Curie was a Polish and naturalized-French physicist and chemist who conducted pioneering research on radioactivity. She was the first person to win two Nobel Prizes in different scientific fields: Physics in 1903 and Chemistry in 1911 for isolating radium and polonium.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Henri Becquerel shared the 1903 Nobel Prize in Physics with Pierre and Marie Curie."
+  },
+  {
+    "pair_id": "gold_hp_025",
+    "query_id": "q_hp_13",
+    "query": "How long is the Panama Canal in kilometres and to what lake elevation do its locks raise ships?",
+    "chunk_id": "hp_chunk_013",
+    "chunk_text": "The Panama Canal is an artificial 82-kilometre (51-mile) waterway in Panama that connects the Atlantic Ocean with the Pacific Ocean via the Isthmus of Panama, using a system of locks to raise ships to Gatun Lake at 26 metres above sea level.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "The Panama Canal is 82 kilometres (51 miles) long and raises ships to Gatun Lake at 26 metres above sea level."
+  },
+  {
+    "pair_id": "gold_hp_026",
+    "query_id": "q_hp_13",
+    "query": "How long is the Panama Canal in kilometres and to what lake elevation do its locks raise ships?",
+    "chunk_id": "hp_chunk_014",
+    "chunk_text": "France began work on the Panama Canal in 1881 under Ferdinand de Lesseps, builder of the Suez Canal, but abandoned the project due to tropical diseases and engineering failures before the United States took over in 1904 and opened it on 15 August 1914.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "The Panama Canal is 82 kilometres (51 miles) long and raises ships to Gatun Lake at 26 metres above sea level."
+  },
+  {
+    "pair_id": "gold_hp_027",
+    "query_id": "q_hp_14",
+    "query": "Who led France's initial 1881 attempt to build the Panama Canal and on what date did the United States open it?",
+    "chunk_id": "hp_chunk_014",
+    "chunk_text": "France began work on the Panama Canal in 1881 under Ferdinand de Lesseps, builder of the Suez Canal, but abandoned the project due to tropical diseases and engineering failures before the United States took over in 1904 and opened it on 15 August 1914.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Ferdinand de Lesseps led France's 1881 effort, and the United States opened the Panama Canal on 15 August 1914."
+  },
+  {
+    "pair_id": "gold_hp_028",
+    "query_id": "q_hp_14",
+    "query": "Who led France's initial 1881 attempt to build the Panama Canal and on what date did the United States open it?",
+    "chunk_id": "hp_chunk_013",
+    "chunk_text": "The Panama Canal is an artificial 82-kilometre (51-mile) waterway in Panama that connects the Atlantic Ocean with the Pacific Ocean via the Isthmus of Panama, using a system of locks to raise ships to Gatun Lake at 26 metres above sea level.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Ferdinand de Lesseps led France's 1881 effort, and the United States opened the Panama Canal on 15 August 1914."
+  },
+  {
+    "pair_id": "gold_hp_029",
+    "query_id": "q_hp_15",
+    "query": "Which two scientists won the 2020 Nobel Prize in Chemistry for developing CRISPR-Cas9 genome editing?",
+    "chunk_id": "hp_chunk_015",
+    "chunk_text": "CRISPR-Cas9 is a genome-editing technology adapted from a naturally occurring bacterial immune defense system. Emmanuelle Charpentier and Jennifer Doudna were awarded the 2020 Nobel Prize in Chemistry for developing the programmable RNA-guided DNA cleavage method.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Emmanuelle Charpentier and Jennifer Doudna won the 2020 Nobel Prize in Chemistry for CRISPR-Cas9 genome editing."
+  },
+  {
+    "pair_id": "gold_hp_030",
+    "query_id": "q_hp_15",
+    "query": "Which two scientists won the 2020 Nobel Prize in Chemistry for developing CRISPR-Cas9 genome editing?",
+    "chunk_id": "hp_chunk_023",
+    "chunk_text": "Penicillin was discovered in September 1928 by Scottish physician and microbiologist Alexander Fleming at St Mary's Hospital in London when he observed that a mold contaminant, Penicillium notatum, inhibited the growth of Staphylococcus bacteria.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Emmanuelle Charpentier and Jennifer Doudna won the 2020 Nobel Prize in Chemistry for CRISPR-Cas9 genome editing."
+  },
+  {
+    "pair_id": "gold_hp_031",
+    "query_id": "q_hp_16",
+    "query": "Which Apollo 11 astronaut piloted the Command Module Columbia in lunar orbit while Armstrong and Aldrin landed on July 20, 1969?",
+    "chunk_id": "hp_chunk_016",
+    "chunk_text": "The Apollo 11 mission launched atop a Saturn V rocket from Kennedy Space Center on July 16, 1969. Commander Neil Armstrong and Lunar Module Pilot Buzz Aldrin landed the Apollo Lunar Module Eagle on July 20, 1969, while Michael Collins orbited above in Command Module Columbia.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Michael Collins orbited in Command Module Columbia while Neil Armstrong and Buzz Aldrin landed Lunar Module Eagle on July 20, 1969."
+  },
+  {
+    "pair_id": "gold_hp_032",
+    "query_id": "q_hp_16",
+    "query": "Which Apollo 11 astronaut piloted the Command Module Columbia in lunar orbit while Armstrong and Aldrin landed on July 20, 1969?",
+    "chunk_id": "hp_chunk_017",
+    "chunk_text": "The Saturn V was an American human-rated expendable super heavy-lift launch vehicle developed by NASA under the direction of Wernher von Braun at the Marshall Space Flight Center in Huntsville, Alabama.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Michael Collins orbited in Command Module Columbia while Neil Armstrong and Buzz Aldrin landed Lunar Module Eagle on July 20, 1969."
+  },
+  {
+    "pair_id": "gold_hp_033",
+    "query_id": "q_hp_17",
+    "query": "Who directed the development of the Saturn V rocket at the Marshall Space Flight Center in Huntsville, Alabama?",
+    "chunk_id": "hp_chunk_017",
+    "chunk_text": "The Saturn V was an American human-rated expendable super heavy-lift launch vehicle developed by NASA under the direction of Wernher von Braun at the Marshall Space Flight Center in Huntsville, Alabama.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Wernher von Braun directed Saturn V rocket development at NASA's Marshall Space Flight Center in Huntsville, Alabama."
+  },
+  {
+    "pair_id": "gold_hp_034",
+    "query_id": "q_hp_17",
+    "query": "Who directed the development of the Saturn V rocket at the Marshall Space Flight Center in Huntsville, Alabama?",
+    "chunk_id": "hp_chunk_016",
+    "chunk_text": "The Apollo 11 mission launched atop a Saturn V rocket from Kennedy Space Center on July 16, 1969. Commander Neil Armstrong and Lunar Module Pilot Buzz Aldrin landed the Apollo Lunar Module Eagle on July 20, 1969, while Michael Collins orbited above in Command Module Columbia.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Wernher von Braun directed Saturn V rocket development at NASA's Marshall Space Flight Center in Huntsville, Alabama."
+  },
+  {
+    "pair_id": "gold_hp_035",
+    "query_id": "q_hp_18",
+    "query": "On what date and in which room of the Palace of Versailles was the Treaty of Versailles signed?",
+    "chunk_id": "hp_chunk_018",
+    "chunk_text": "The Treaty of Versailles was the primary peace treaty that brought World War I to an end, signed on 28 June 1919 in the Hall of Mirrors at the Palace of Versailles exactly five years after the assassination of Archduke Franz Ferdinand.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "The Treaty of Versailles was signed on 28 June 1919 in the Hall of Mirrors at the Palace of Versailles."
+  },
+  {
+    "pair_id": "gold_hp_036",
+    "query_id": "q_hp_18",
+    "query": "On what date and in which room of the Palace of Versailles was the Treaty of Versailles signed?",
+    "chunk_id": "hp_chunk_019",
+    "chunk_text": "The Bretton Woods Conference, formally known as the United Nations Monetary and Financial Conference, gathered 730 delegates from 44 Allied nations at the Mount Washington Hotel in Bretton Woods, New Hampshire, in July 1944, establishing the IMF and World Bank.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "The Treaty of Versailles was signed on 28 June 1919 in the Hall of Mirrors at the Palace of Versailles."
+  },
+  {
+    "pair_id": "gold_hp_037",
+    "query_id": "q_hp_19",
+    "query": "How many Allied nations attended the July 1944 Bretton Woods Conference in New Hampshire to establish the IMF and World Bank?",
+    "chunk_id": "hp_chunk_019",
+    "chunk_text": "The Bretton Woods Conference, formally known as the United Nations Monetary and Financial Conference, gathered 730 delegates from 44 Allied nations at the Mount Washington Hotel in Bretton Woods, New Hampshire, in July 1944, establishing the IMF and World Bank.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "730 delegates from 44 Allied nations attended the July 1944 Bretton Woods Conference at the Mount Washington Hotel."
+  },
+  {
+    "pair_id": "gold_hp_038",
+    "query_id": "q_hp_19",
+    "query": "How many Allied nations attended the July 1944 Bretton Woods Conference in New Hampshire to establish the IMF and World Bank?",
+    "chunk_id": "hp_chunk_020",
+    "chunk_text": "John Maynard Keynes led the British delegation at the 1944 Bretton Woods Conference and proposed an international clearing union with a supranational currency called the Bancor, though the conference ultimately adopted Harry Dexter White's U.S. dollar-anchored plan.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "730 delegates from 44 Allied nations attended the July 1944 Bretton Woods Conference at the Mount Washington Hotel."
+  },
+  {
+    "pair_id": "gold_hp_039",
+    "query_id": "q_hp_20",
+    "query": "What supranational currency did John Maynard Keynes propose at the 1944 Bretton Woods Conference?",
+    "chunk_id": "hp_chunk_020",
+    "chunk_text": "John Maynard Keynes led the British delegation at the 1944 Bretton Woods Conference and proposed an international clearing union with a supranational currency called the Bancor, though the conference ultimately adopted Harry Dexter White's U.S. dollar-anchored plan.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "John Maynard Keynes proposed a supranational currency called the Bancor, though Harry Dexter White's U.S. dollar plan was adopted."
+  },
+  {
+    "pair_id": "gold_hp_040",
+    "query_id": "q_hp_20",
+    "query": "What supranational currency did John Maynard Keynes propose at the 1944 Bretton Woods Conference?",
+    "chunk_id": "hp_chunk_019",
+    "chunk_text": "The Bretton Woods Conference, formally known as the United Nations Monetary and Financial Conference, gathered 730 delegates from 44 Allied nations at the Mount Washington Hotel in Bretton Woods, New Hampshire, in July 1944, establishing the IMF and World Bank.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "John Maynard Keynes proposed a supranational currency called the Bancor, though Harry Dexter White's U.S. dollar plan was adopted."
+  },
+  {
+    "pair_id": "gold_hp_041",
+    "query_id": "q_hp_21",
+    "query": "From which launch site and on what date was the James Webb Space Telescope launched toward the Sun-Earth L2 point?",
+    "chunk_id": "hp_chunk_021",
+    "chunk_text": "The James Webb Space Telescope (JWST) is an infrared space observatory launched on 25 December 2021 on an Ariane 5 rocket from Kourou, French Guiana, operating in a halo orbit around the Sun-Earth L2 Lagrange point approximately 1.5 million kilometres from Earth.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "The James Webb Space Telescope launched on 25 December 2021 on an Ariane 5 rocket from Kourou, French Guiana, to the L2 point."
+  },
+  {
+    "pair_id": "gold_hp_042",
+    "query_id": "q_hp_21",
+    "query": "From which launch site and on what date was the James Webb Space Telescope launched toward the Sun-Earth L2 point?",
+    "chunk_id": "hp_chunk_022",
+    "chunk_text": "Unlike the Hubble Space Telescope, which orbits Earth in low Earth orbit at roughly 540 km altitude and observes primarily in ultraviolet and visible light, the James Webb Space Telescope uses a 6.5-metre gold-coated beryllium primary mirror optimized for infrared astronomy.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "The James Webb Space Telescope launched on 25 December 2021 on an Ariane 5 rocket from Kourou, French Guiana, to the L2 point."
+  },
+  {
+    "pair_id": "gold_hp_043",
+    "query_id": "q_hp_22",
+    "query": "What is the diameter and coating material of the James Webb Space Telescope's primary mirror compared to Hubble?",
+    "chunk_id": "hp_chunk_022",
+    "chunk_text": "Unlike the Hubble Space Telescope, which orbits Earth in low Earth orbit at roughly 540 km altitude and observes primarily in ultraviolet and visible light, the James Webb Space Telescope uses a 6.5-metre gold-coated beryllium primary mirror optimized for infrared astronomy.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "The James Webb Space Telescope uses a 6.5-metre gold-coated beryllium primary mirror optimized for infrared astronomy."
+  },
+  {
+    "pair_id": "gold_hp_044",
+    "query_id": "q_hp_22",
+    "query": "What is the diameter and coating material of the James Webb Space Telescope's primary mirror compared to Hubble?",
+    "chunk_id": "hp_chunk_021",
+    "chunk_text": "The James Webb Space Telescope (JWST) is an infrared space observatory launched on 25 December 2021 on an Ariane 5 rocket from Kourou, French Guiana, operating in a halo orbit around the Sun-Earth L2 Lagrange point approximately 1.5 million kilometres from Earth.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "The James Webb Space Telescope uses a 6.5-metre gold-coated beryllium primary mirror optimized for infrared astronomy."
+  },
+  {
+    "pair_id": "gold_hp_045",
+    "query_id": "q_hp_23",
+    "query": "Where and in what year did Alexander Fleming discover penicillin from the mold Penicillium notatum?",
+    "chunk_id": "hp_chunk_023",
+    "chunk_text": "Penicillin was discovered in September 1928 by Scottish physician and microbiologist Alexander Fleming at St Mary's Hospital in London when he observed that a mold contaminant, Penicillium notatum, inhibited the growth of Staphylococcus bacteria.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Alexander Fleming discovered penicillin in September 1928 at St Mary's Hospital in London from Penicillium notatum."
+  },
+  {
+    "pair_id": "gold_hp_046",
+    "query_id": "q_hp_23",
+    "query": "Where and in what year did Alexander Fleming discover penicillin from the mold Penicillium notatum?",
+    "chunk_id": "hp_chunk_024",
+    "chunk_text": "Howard Florey and Ernst Chain at the University of Oxford purified penicillin and demonstrated its therapeutic efficacy in 1940, sharing the 1945 Nobel Prize in Physiology or Medicine with Alexander Fleming for mass-producible antibiotic treatment.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Alexander Fleming discovered penicillin in September 1928 at St Mary's Hospital in London from Penicillium notatum."
+  },
+  {
+    "pair_id": "gold_hp_047",
+    "query_id": "q_hp_24",
+    "query": "Which two Oxford scientists purified penicillin in 1940 and shared the 1945 Nobel Prize with Alexander Fleming?",
+    "chunk_id": "hp_chunk_024",
+    "chunk_text": "Howard Florey and Ernst Chain at the University of Oxford purified penicillin and demonstrated its therapeutic efficacy in 1940, sharing the 1945 Nobel Prize in Physiology or Medicine with Alexander Fleming for mass-producible antibiotic treatment.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Howard Florey and Ernst Chain at the University of Oxford purified penicillin in 1940 and shared the 1945 Nobel Prize with Fleming."
+  },
+  {
+    "pair_id": "gold_hp_048",
+    "query_id": "q_hp_24",
+    "query": "Which two Oxford scientists purified penicillin in 1940 and shared the 1945 Nobel Prize with Alexander Fleming?",
+    "chunk_id": "hp_chunk_023",
+    "chunk_text": "Penicillin was discovered in September 1928 by Scottish physician and microbiologist Alexander Fleming at St Mary's Hospital in London when he observed that a mold contaminant, Penicillium notatum, inhibited the growth of Staphylococcus bacteria.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Howard Florey and Ernst Chain at the University of Oxford purified penicillin in 1940 and shared the 1945 Nobel Prize with Fleming."
+  },
+  {
+    "pair_id": "gold_hp_049",
+    "query_id": "q_hp_25",
+    "query": "How many lines per column and total pages are in surviving complete copies of the Gutenberg Bible printed in Mainz?",
+    "chunk_id": "hp_chunk_025",
+    "chunk_text": "The Gutenberg Bible, printed by Johannes Gutenberg in Mainz, Germany, in the 1450s using movable metal type, marked the start of the Printing Revolution in Europe. Surviving complete copies contain 1,282 pages bound in two volumes of 42 lines per column.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Printed by Johannes Gutenberg in Mainz in the 1450s, complete copies have 1,282 pages bound in two volumes of 42 lines per column."
+  },
+  {
+    "pair_id": "gold_hp_050",
+    "query_id": "q_hp_25",
+    "query": "How many lines per column and total pages are in surviving complete copies of the Gutenberg Bible printed in Mainz?",
+    "chunk_id": "hp_chunk_030",
+    "chunk_text": "The Silk Road was a network of Eurasian trade routes active from the second century BCE under the Han dynasty of China until the mid-15th century, connecting Chang'an (Xi'an) with the Mediterranean Sea and facilitating exchange of silk, spices, paper, and Buddhism.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Printed by Johannes Gutenberg in Mainz in the 1450s, complete copies have 1,282 pages bound in two volumes of 42 lines per column."
+  },
+  {
+    "pair_id": "gold_hp_051",
+    "query_id": "q_hp_26",
+    "query": "What is the deepest known point of the Mariana Trench in the western Pacific Ocean and its approximate depth in metres?",
+    "chunk_id": "hp_chunk_026",
+    "chunk_text": "The Mariana Trench is an oceanic trench located in the western Pacific Ocean about 200 kilometres east of the Mariana Islands. Its deepest known point, the Challenger Deep, reaches a depth of approximately 10,935 metres (35,876 ft).",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "The Challenger Deep is the deepest point of the Mariana Trench at approximately 10,935 metres (35,876 ft)."
+  },
+  {
+    "pair_id": "gold_hp_052",
+    "query_id": "q_hp_26",
+    "query": "What is the deepest known point of the Mariana Trench in the western Pacific Ocean and its approximate depth in metres?",
+    "chunk_id": "hp_chunk_027",
+    "chunk_text": "Swiss oceanographer Jacques Piccard and U.S. Navy Lieutenant Don Walsh made the first crewed descent to the bottom of the Challenger Deep in the Mariana Trench on 23 January 1960 aboard the bathyscaphe Trieste.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "The Challenger Deep is the deepest point of the Mariana Trench at approximately 10,935 metres (35,876 ft)."
+  },
+  {
+    "pair_id": "gold_hp_053",
+    "query_id": "q_hp_27",
+    "query": "Who made the first crewed descent to the Challenger Deep on 23 January 1960 and aboard which vessel?",
+    "chunk_id": "hp_chunk_027",
+    "chunk_text": "Swiss oceanographer Jacques Piccard and U.S. Navy Lieutenant Don Walsh made the first crewed descent to the bottom of the Challenger Deep in the Mariana Trench on 23 January 1960 aboard the bathyscaphe Trieste.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Jacques Piccard and Don Walsh made the first crewed descent on 23 January 1960 aboard the bathyscaphe Trieste."
+  },
+  {
+    "pair_id": "gold_hp_054",
+    "query_id": "q_hp_27",
+    "query": "Who made the first crewed descent to the Challenger Deep on 23 January 1960 and aboard which vessel?",
+    "chunk_id": "hp_chunk_026",
+    "chunk_text": "The Mariana Trench is an oceanic trench located in the western Pacific Ocean about 200 kilometres east of the Mariana Islands. Its deepest known point, the Challenger Deep, reaches a depth of approximately 10,935 metres (35,876 ft).",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Jacques Piccard and Don Walsh made the first crewed descent on 23 January 1960 aboard the bathyscaphe Trieste."
+  },
+  {
+    "pair_id": "gold_hp_055",
+    "query_id": "q_hp_28",
+    "query": "Who was the first recipient of the ACM A.M. Turing Award in 1966 and for what contribution?",
+    "chunk_id": "hp_chunk_028",
+    "chunk_text": "The Turing Award, officially the ACM A.M. Turing Award, is an annual prize given by the Association for Computing Machinery for contributions of lasting technical importance to computer science, first awarded in 1966 to Alan Perlis for compiler construction.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Alan Perlis received the first ACM A.M. Turing Award in 1966 for his work on compiler construction."
+  },
+  {
+    "pair_id": "gold_hp_056",
+    "query_id": "q_hp_28",
+    "query": "Who was the first recipient of the ACM A.M. Turing Award in 1966 and for what contribution?",
+    "chunk_id": "hp_chunk_029",
+    "chunk_text": "Geoffrey Hinton, Yoshua Bengio, and Yann LeCun received the 2018 ACM A.M. Turing Award for conceptual and engineering breakthroughs that made deep neural networks and backpropagation a critical component of modern computing.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Alan Perlis received the first ACM A.M. Turing Award in 1966 for his work on compiler construction."
+  },
+  {
+    "pair_id": "gold_hp_057",
+    "query_id": "q_hp_29",
+    "query": "Which three researchers won the 2018 ACM A.M. Turing Award for breakthroughs in deep neural networks?",
+    "chunk_id": "hp_chunk_029",
+    "chunk_text": "Geoffrey Hinton, Yoshua Bengio, and Yann LeCun received the 2018 ACM A.M. Turing Award for conceptual and engineering breakthroughs that made deep neural networks and backpropagation a critical component of modern computing.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Geoffrey Hinton, Yoshua Bengio, and Yann LeCun won the 2018 ACM A.M. Turing Award for deep neural networks and backpropagation."
+  },
+  {
+    "pair_id": "gold_hp_058",
+    "query_id": "q_hp_29",
+    "query": "Which three researchers won the 2018 ACM A.M. Turing Award for breakthroughs in deep neural networks?",
+    "chunk_id": "hp_chunk_028",
+    "chunk_text": "The Turing Award, officially the ACM A.M. Turing Award, is an annual prize given by the Association for Computing Machinery for contributions of lasting technical importance to computer science, first awarded in 1966 to Alan Perlis for compiler construction.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Geoffrey Hinton, Yoshua Bengio, and Yann LeCun won the 2018 ACM A.M. Turing Award for deep neural networks and backpropagation."
+  },
+  {
+    "pair_id": "gold_hp_059",
+    "query_id": "q_hp_30",
+    "query": "Under which Chinese dynasty did the Silk Road trade network begin in the second century BCE and which capital did it connect?",
+    "chunk_id": "hp_chunk_030",
+    "chunk_text": "The Silk Road was a network of Eurasian trade routes active from the second century BCE under the Han dynasty of China until the mid-15th century, connecting Chang'an (Xi'an) with the Mediterranean Sea and facilitating exchange of silk, spices, paper, and Buddhism.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "The Silk Road began in the second century BCE under the Han dynasty of China, connecting Chang'an (Xi'an) with the Mediterranean Sea."
+  },
+  {
+    "pair_id": "gold_hp_060",
+    "query_id": "q_hp_30",
+    "query": "Under which Chinese dynasty did the Silk Road trade network begin in the second century BCE and which capital did it connect?",
+    "chunk_id": "hp_chunk_025",
+    "chunk_text": "The Gutenberg Bible, printed by Johannes Gutenberg in Mainz, Germany, in the 1450s using movable metal type, marked the start of the Printing Revolution in Europe. Surviving complete copies contain 1,282 pages bound in two volumes of 42 lines per column.",
+    "domain": "hotpotqa",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "The Silk Road began in the second century BCE under the Han dynasty of China, connecting Chang'an (Xi'an) with the Mediterranean Sea."
   },
   {
     "pair_id": "gold_leg_001",
     "query_id": "q_leg_01",
-    "query": "What is the monetary cap specified in the limitation of liability clause?",
+    "query": "What is the maximum aggregate cumulative liability cap under Section 8.1 of the Agreement?",
     "chunk_id": "leg_chunk_001",
-    "chunk_text": "Section 8.1 (Limitation of Liability): In no event shall either party's aggregate liability arising out of or related to this Agreement exceed the total fees paid by Customer hereunder in the twelve (12) months preceding the incident.",
+    "chunk_text": "Section 8.1 (Limitation of Liability Cap): In no event shall either party's aggregate cumulative liability arising out of or related to this Agreement exceed the total subscription fees actually paid by Customer to Vendor hereunder in the twelve (12) months immediately preceding the event giving rise to liability.",
     "domain": "legal",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "Total fees paid by Customer in the 12 months preceding the incident."
+    "ground_truth_answer": "Aggregate cumulative liability under Section 8.1 shall not exceed the total subscription fees paid by Customer in the twelve (12) months preceding the event."
   },
   {
     "pair_id": "gold_leg_002",
     "query_id": "q_leg_01",
-    "query": "What is the monetary cap specified in the limitation of liability clause?",
-    "chunk_id": "leg_chunk_005",
-    "chunk_text": "Section 14.1 (Force Majeure): Neither party shall be liable for delay or default in performance if caused by conditions beyond its reasonable control, including acts of God, war, terrorism, civil unrest, labor strikes, and national power grid failures.",
+    "query": "What is the maximum aggregate cumulative liability cap under Section 8.1 of the Agreement?",
+    "chunk_id": "leg_chunk_024",
+    "chunk_text": "Section 8.3 (Super-Cap Exceptions to Liability Limitation): The liability cap in Section 8.1 shall not apply to (a) indemnification obligations under Section 9.3, (b) breaches of confidentiality under Section 4.3, or (c) gross negligence or willful misconduct, provided that liability for Data Protection breaches shall be subject to a separate super-cap of two times (2x) annual fees.",
     "domain": "legal",
     "ground_truth_relevance": false,
-    "ground_truth_answer": "Total fees paid by Customer in the 12 months preceding the incident."
+    "ground_truth_answer": "Aggregate cumulative liability under Section 8.1 shall not exceed the total subscription fees paid by Customer in the twelve (12) months preceding the event."
   },
   {
     "pair_id": "gold_leg_003",
     "query_id": "q_leg_02",
-    "query": "Which state's law governs the contract and what is the chosen venue for disputes?",
-    "chunk_id": "leg_chunk_003",
-    "chunk_text": "Section 11.4 (Governing Law and Jurisdiction): This Agreement shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law principles. Any dispute shall be resolved in New Castle County.",
+    "query": "Which types of indirect or non-direct damages are excluded under Section 8.2?",
+    "chunk_id": "leg_chunk_002",
+    "chunk_text": "Section 8.2 (Exclusion of Consequential Damages): Neither party shall be liable under any legal or equitable theory for any lost profits, loss of revenue, loss of data, loss of goodwill, or indirect, special, incidental, exemplary, punitive, or consequential damages, even if advised of the possibility of such damages.",
     "domain": "legal",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "Laws of the State of Delaware; venue in New Castle County."
+    "ground_truth_answer": "Section 8.2 excludes lost profits, loss of revenue, loss of data, loss of goodwill, and indirect, special, incidental, exemplary, punitive, or consequential damages."
   },
   {
     "pair_id": "gold_leg_004",
     "query_id": "q_leg_02",
-    "query": "Which state's law governs the contract and what is the chosen venue for disputes?",
-    "chunk_id": "leg_chunk_009",
-    "chunk_text": "Section 3.2 (Payment Terms and Late Interest): Customer shall pay all undisputed invoiced amounts within thirty (30) days of invoice date. Overdue amounts shall accrue interest at 1.5% per month or the maximum rate permitted by law.",
+    "query": "Which types of indirect or non-direct damages are excluded under Section 8.2?",
+    "chunk_id": "leg_chunk_001",
+    "chunk_text": "Section 8.1 (Limitation of Liability Cap): In no event shall either party's aggregate cumulative liability arising out of or related to this Agreement exceed the total subscription fees actually paid by Customer to Vendor hereunder in the twelve (12) months immediately preceding the event giving rise to liability.",
     "domain": "legal",
     "ground_truth_relevance": false,
-    "ground_truth_answer": "Laws of the State of Delaware; venue in New Castle County."
+    "ground_truth_answer": "Section 8.2 excludes lost profits, loss of revenue, loss of data, loss of goodwill, and indirect, special, incidental, exemplary, punitive, or consequential damages."
   },
   {
     "pair_id": "gold_leg_005",
     "query_id": "q_leg_03",
-    "query": "How long does the receiving party's confidentiality obligation last?",
-    "chunk_id": "leg_chunk_004",
-    "chunk_text": "Section 4.3 (Confidential Information): Receiving Party agrees to protect Confidential Information using the same degree of care it uses for its own confidential information of like nature, but no less than reasonable care, for a period of five (5) years.",
+    "query": "Which state's domestic laws govern the Agreement under Section 11.4 and where must lawsuits be filed?",
+    "chunk_id": "leg_chunk_003",
+    "chunk_text": "Section 11.4 (Governing Law and Exclusive Venue): This Agreement shall be governed by and construed in accordance with the domestic laws of the State of Delaware, without giving effect to any choice or conflict of law provision. Any legal suit or proceeding shall be instituted exclusively in the state or federal courts located in New Castle County, Delaware.",
     "domain": "legal",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "Five (5) years."
+    "ground_truth_answer": "The Agreement is governed by the laws of the State of Delaware, with exclusive venue in the state or federal courts of New Castle County, Delaware."
   },
   {
     "pair_id": "gold_leg_006",
     "query_id": "q_leg_03",
-    "query": "How long does the receiving party's confidentiality obligation last?",
-    "chunk_id": "leg_chunk_007",
-    "chunk_text": "Section 12.2 (Termination for Cause): Either party may terminate this Agreement upon thirty (30) days' written notice if the other party materially breaches any provision and fails to cure such breach within the thirty-day cure period.",
+    "query": "Which state's domestic laws govern the Agreement under Section 11.4 and where must lawsuits be filed?",
+    "chunk_id": "leg_chunk_011",
+    "chunk_text": "Section 15.2 (Binding Arbitration and Class Action Waiver): Any controversy or claim arising out of or relating to this Agreement shall be resolved by final and binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules before a panel of three (3) neutral arbitrators in New York, NY.",
     "domain": "legal",
     "ground_truth_relevance": false,
-    "ground_truth_answer": "Five (5) years."
+    "ground_truth_answer": "The Agreement is governed by the laws of the State of Delaware, with exclusive venue in the state or federal courts of New Castle County, Delaware."
   },
   {
     "pair_id": "gold_leg_007",
     "query_id": "q_leg_04",
-    "query": "What notice period and cure period are required for termination for cause?",
-    "chunk_id": "leg_chunk_007",
-    "chunk_text": "Section 12.2 (Termination for Cause): Either party may terminate this Agreement upon thirty (30) days' written notice if the other party materially breaches any provision and fails to cure such breach within the thirty-day cure period.",
+    "query": "For how many years do confidentiality obligations survive termination under Section 4.3?",
+    "chunk_id": "leg_chunk_004",
+    "chunk_text": "Section 4.3 (Confidentiality Obligations and Survival): The Receiving Party agrees to hold all Confidential Information in strict confidence using at least the same degree of care it uses to protect its own proprietary information of like importance, but no less than reasonable care, for a survival period of five (5) years following expiration or termination.",
     "domain": "legal",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "Thirty (30) days written notice and a thirty-day cure period."
+    "ground_truth_answer": "Under Section 4.3, the Receiving Party must protect Confidential Information with at least reasonable care for a survival period of five (5) years following termination."
   },
   {
     "pair_id": "gold_leg_008",
     "query_id": "q_leg_04",
-    "query": "What notice period and cure period are required for termination for cause?",
-    "chunk_id": "leg_chunk_010",
-    "chunk_text": "Section 6.1 (Warranty Disclaimer): Except as expressly provided herein, the services and software are provided 'as is' without warranty of any kind, whether express, implied, statutory, or otherwise, including warranties of merchantability and fitness.",
+    "query": "For how many years do confidentiality obligations survive termination under Section 4.3?",
+    "chunk_id": "leg_chunk_028",
+    "chunk_text": "Section 12.5 (Post-Termination Data Retrieval and Deletion): Upon expiration or termination of this Agreement, Vendor shall make Customer Data available for export in standard JSON or CSV format for thirty (30) days, after which Vendor shall permanently delete and overwrite all Customer Data from production servers within sixty (60) days.",
     "domain": "legal",
     "ground_truth_relevance": false,
-    "ground_truth_answer": "Thirty (30) days written notice and a thirty-day cure period."
+    "ground_truth_answer": "Under Section 4.3, the Receiving Party must protect Confidential Information with at least reasonable care for a survival period of five (5) years following termination."
   },
   {
     "pair_id": "gold_leg_009",
     "query_id": "q_leg_05",
-    "query": "Under GDPR Article 17, when do data subjects have the right to erasure?",
-    "chunk_id": "leg_chunk_008",
-    "chunk_text": "Article 17 (GDPR Right to Erasure): Data subjects shall have the right to obtain from the controller the erasure of personal data concerning them without undue delay where the personal data are no longer necessary in relation to the purposes.",
+    "query": "What events excuse delay or failure in performance under the Section 14.1 Force Majeure clause, and what obligation is excluded?",
+    "chunk_id": "leg_chunk_005",
+    "chunk_text": "Section 14.1 (Force Majeure Excuse): Neither party shall be liable for any delay or failure in performance (excluding payment obligations) to the extent caused by circumstances beyond its reasonable control, including acts of God, earthquakes, pandemics, war, terrorism, embargoes, labor strikes, or national telecommunications grid failures.",
     "domain": "legal",
     "ground_truth_relevance": true,
-    "ground_truth_answer": "When the personal data are no longer necessary in relation to the purposes."
+    "ground_truth_answer": "Force Majeure under Section 14.1 excuses delays caused by acts of God, earthquakes, pandemics, war, terrorism, embargoes, strikes, or grid failures, excluding payment obligations."
   },
   {
     "pair_id": "gold_leg_010",
     "query_id": "q_leg_05",
-    "query": "Under GDPR Article 17, when do data subjects have the right to erasure?",
-    "chunk_id": "leg_chunk_002",
-    "chunk_text": "Section 8.2 (Exclusion of Consequential Damages): Neither party shall be liable for any lost profits, loss of data, loss of goodwill, or indirect, special, incidental, punitive, or consequential damages, even if advised of the possibility.",
+    "query": "What events excuse delay or failure in performance under the Section 14.1 Force Majeure clause, and what obligation is excluded?",
+    "chunk_id": "leg_chunk_007",
+    "chunk_text": "Section 12.2 (Termination for Material Breach and Cure Period): Either party may terminate this Agreement for cause upon thirty (30) days' prior written notice to the other party if the other party materially breaches any material covenant or obligation hereunder and fails to cure such breach within said thirty (30) day notice period.",
     "domain": "legal",
     "ground_truth_relevance": false,
-    "ground_truth_answer": "When the personal data are no longer necessary in relation to the purposes."
+    "ground_truth_answer": "Force Majeure under Section 14.1 excuses delays caused by acts of God, earthquakes, pandemics, war, terrorism, embargoes, strikes, or grid failures, excluding payment obligations."
+  },
+  {
+    "pair_id": "gold_leg_011",
+    "query_id": "q_leg_06",
+    "query": "What intellectual property infringement claims must Vendor defend and indemnify Customer against under Section 9.3?",
+    "chunk_id": "leg_chunk_006",
+    "chunk_text": "Section 9.3 (Intellectual Property Indemnification): Vendor shall defend Customer at Vendor's expense against any third-party claim, suit, or proceeding alleging that Customer's authorized use of the Licensed Software directly infringes any valid United States patent, copyright, or registered trademark, and shall indemnify Customer for damages and reasonable attorneys' fees finally awarded.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 9.3, Vendor must defend and indemnify Customer against third-party claims that authorized use of the Licensed Software infringes any valid U.S. patent, copyright, or trademark."
+  },
+  {
+    "pair_id": "gold_leg_012",
+    "query_id": "q_leg_06",
+    "query": "What intellectual property infringement claims must Vendor defend and indemnify Customer against under Section 9.3?",
+    "chunk_id": "leg_chunk_017",
+    "chunk_text": "Section 2.4 (Work Made for Hire and IP Ownership): All custom deliverables, source code modifications, and inventions conceived specifically for Customer under an executed Statement of Work shall be deemed 'works made for hire' and shall vest exclusively in Customer upon full payment of all applicable fees.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 9.3, Vendor must defend and indemnify Customer against third-party claims that authorized use of the Licensed Software infringes any valid U.S. patent, copyright, or trademark."
+  },
+  {
+    "pair_id": "gold_leg_013",
+    "query_id": "q_leg_07",
+    "query": "How many days' written notice and cure period are required to terminate the Agreement for material breach under Section 12.2?",
+    "chunk_id": "leg_chunk_007",
+    "chunk_text": "Section 12.2 (Termination for Material Breach and Cure Period): Either party may terminate this Agreement for cause upon thirty (30) days' prior written notice to the other party if the other party materially breaches any material covenant or obligation hereunder and fails to cure such breach within said thirty (30) day notice period.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 12.2 requires thirty (30) days' prior written notice and a thirty (30) day cure period to terminate for material breach."
+  },
+  {
+    "pair_id": "gold_leg_014",
+    "query_id": "q_leg_07",
+    "query": "How many days' written notice and cure period are required to terminate the Agreement for material breach under Section 12.2?",
+    "chunk_id": "leg_chunk_021",
+    "chunk_text": "Section 12.1 (Termination for Convenience): Customer may terminate an Order Form for convenience at any time by providing at least sixty (60) days' prior written notice to Vendor, provided that Customer shall remain liable for all fees accrued through the effective termination date and shall not be entitled to any refund of prepaid annual fees.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 12.2 requires thirty (30) days' prior written notice and a thirty (30) day cure period to terminate for material breach."
+  },
+  {
+    "pair_id": "gold_leg_015",
+    "query_id": "q_leg_08",
+    "query": "Within how many calendar days must a data controller erase personal data under Article 17 GDPR Right to Erasure?",
+    "chunk_id": "leg_chunk_008",
+    "chunk_text": "Article 17 (GDPR Right to Erasure / Right to be Forgotten): The data subject shall have the right to obtain from the controller the erasure of personal data concerning him or her without undue delay, and within no more than thirty (30) calendar days, where the personal data are no longer necessary in relation to the purposes for which they were collected.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Article 17 GDPR, the controller must erase personal data without undue delay and within no more than thirty (30) calendar days."
+  },
+  {
+    "pair_id": "gold_leg_016",
+    "query_id": "q_leg_08",
+    "query": "Within how many calendar days must a data controller erase personal data under Article 17 GDPR Right to Erasure?",
+    "chunk_id": "leg_chunk_012",
+    "chunk_text": "Section 7.4 (Data Breach Notification Timeline): In the event of a confirmed Security Incident resulting in unauthorized access to Customer Personal Data, Data Processor shall notify Data Controller without undue delay and in no event later than seventy-two (72) hours after becoming aware of the breach.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Article 17 GDPR, the controller must erase personal data without undue delay and within no more than thirty (30) calendar days."
+  },
+  {
+    "pair_id": "gold_leg_017",
+    "query_id": "q_leg_09",
+    "query": "What is the invoice payment deadline and monthly late interest rate under Section 3.2?",
+    "chunk_id": "leg_chunk_009",
+    "chunk_text": "Section 3.2 (Invoicing, Payment Net Terms, and Late Interest): Customer shall pay all undisputed invoiced amounts in U.S. Dollars within thirty (30) days of the invoice date (Net 30). Any overdue undisputed balance shall accrue late interest at the lesser of 1.5% per month (18% per annum) or the highest rate permitted by applicable usury law.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 3.2 requires payment within thirty (30) days of invoice date (Net 30), with overdue balances accruing late interest at 1.5% per month (18% per annum)."
+  },
+  {
+    "pair_id": "gold_leg_018",
+    "query_id": "q_leg_09",
+    "query": "What is the invoice payment deadline and monthly late interest rate under Section 3.2?",
+    "chunk_id": "leg_chunk_030",
+    "chunk_text": "Section 3.5 (Annual Price Escalation Cap): Following the Initial Subscription Term, Vendor may increase annual subscription renewal fees no more than once per twelve-month renewal period by a percentage not to exceed the lesser of five percent (5%) or the year-over-year percentage increase in the U.S. Consumer Price Index (CPI-U).",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 3.2 requires payment within thirty (30) days of invoice date (Net 30), with overdue balances accruing late interest at 1.5% per month (18% per annum)."
+  },
+  {
+    "pair_id": "gold_leg_019",
+    "query_id": "q_leg_10",
+    "query": "Which implied warranties are expressly disclaimed by Vendor under Section 6.1?",
+    "chunk_id": "leg_chunk_010",
+    "chunk_text": "Section 6.1 (Disclaimer of Implied Warranties): Except for the express limited warranties set forth in Section 6.0, the SaaS Platform and Deliverables are provided strictly 'AS IS' and 'AS AVAILABLE', and Vendor expressly disclaims all implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 6.1 provides the platform 'AS IS' and disclaims all implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement."
+  },
+  {
+    "pair_id": "gold_leg_020",
+    "query_id": "q_leg_10",
+    "query": "Which implied warranties are expressly disclaimed by Vendor under Section 6.1?",
+    "chunk_id": "leg_chunk_013",
+    "chunk_text": "Section 5.1 (Service Level Agreement Uptime Commitment): Vendor warrants that the Production Cloud Service will maintain a Monthly Uptime Percentage of at least 99.9% during each calendar month, excluding scheduled maintenance windows announced at least forty-eight (48) hours in advance.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 6.1 provides the platform 'AS IS' and disclaims all implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement."
+  },
+  {
+    "pair_id": "gold_leg_021",
+    "query_id": "q_leg_11",
+    "query": "Which organization administers binding arbitration under Section 15.2, before how many arbitrators, and in which city?",
+    "chunk_id": "leg_chunk_011",
+    "chunk_text": "Section 15.2 (Binding Arbitration and Class Action Waiver): Any controversy or claim arising out of or relating to this Agreement shall be resolved by final and binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules before a panel of three (3) neutral arbitrators in New York, NY.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 15.2 requires binding arbitration administered by the American Arbitration Association (AAA) before three (3) neutral arbitrators in New York, NY."
+  },
+  {
+    "pair_id": "gold_leg_022",
+    "query_id": "q_leg_11",
+    "query": "Which organization administers binding arbitration under Section 15.2, before how many arbitrators, and in which city?",
+    "chunk_id": "leg_chunk_003",
+    "chunk_text": "Section 11.4 (Governing Law and Exclusive Venue): This Agreement shall be governed by and construed in accordance with the domestic laws of the State of Delaware, without giving effect to any choice or conflict of law provision. Any legal suit or proceeding shall be instituted exclusively in the state or federal courts located in New Castle County, Delaware.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 15.2 requires binding arbitration administered by the American Arbitration Association (AAA) before three (3) neutral arbitrators in New York, NY."
+  },
+  {
+    "pair_id": "gold_leg_023",
+    "query_id": "q_leg_12",
+    "query": "Within how many hours must the Data Processor notify the Data Controller of a confirmed Security Incident under Section 7.4?",
+    "chunk_id": "leg_chunk_012",
+    "chunk_text": "Section 7.4 (Data Breach Notification Timeline): In the event of a confirmed Security Incident resulting in unauthorized access to Customer Personal Data, Data Processor shall notify Data Controller without undue delay and in no event later than seventy-two (72) hours after becoming aware of the breach.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 7.4, Data Processor must notify Data Controller without undue delay and no later than seventy-two (72) hours after becoming aware of a confirmed breach."
+  },
+  {
+    "pair_id": "gold_leg_024",
+    "query_id": "q_leg_12",
+    "query": "Within how many hours must the Data Processor notify the Data Controller of a confirmed Security Incident under Section 7.4?",
+    "chunk_id": "leg_chunk_025",
+    "chunk_text": "Section 7.8 (Subprocessor Authorization and Objection): Data Processor shall provide Data Controller with at least thirty (30) days' advance written notice before engaging any new third-party Subprocessor to process Personal Data, allowing Data Controller to object in writing on reasonable data protection grounds.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 7.4, Data Processor must notify Data Controller without undue delay and no later than seventy-two (72) hours after becoming aware of a confirmed breach."
+  },
+  {
+    "pair_id": "gold_leg_025",
+    "query_id": "q_leg_13",
+    "query": "What minimum Monthly Uptime Percentage does Vendor warrant under Section 5.1 and how far in advance must maintenance be announced?",
+    "chunk_id": "leg_chunk_013",
+    "chunk_text": "Section 5.1 (Service Level Agreement Uptime Commitment): Vendor warrants that the Production Cloud Service will maintain a Monthly Uptime Percentage of at least 99.9% during each calendar month, excluding scheduled maintenance windows announced at least forty-eight (48) hours in advance.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 5.1 warrants at least 99.9% Monthly Uptime, excluding scheduled maintenance announced at least forty-eight (48) hours in advance."
+  },
+  {
+    "pair_id": "gold_leg_026",
+    "query_id": "q_leg_13",
+    "query": "What minimum Monthly Uptime Percentage does Vendor warrant under Section 5.1 and how far in advance must maintenance be announced?",
+    "chunk_id": "leg_chunk_014",
+    "chunk_text": "Section 5.2 (SLA Service Credits Remedy): If Monthly Uptime falls below 99.9% but remains at or above 99.0%, Customer shall be eligible to receive a Service Credit equal to ten percent (10%) of the monthly recurring fee; if below 99.0%, a twenty-five percent (25%) Service Credit shall apply as Customer's sole and exclusive remedy.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 5.1 warrants at least 99.9% Monthly Uptime, excluding scheduled maintenance announced at least forty-eight (48) hours in advance."
+  },
+  {
+    "pair_id": "gold_leg_027",
+    "query_id": "q_leg_14",
+    "query": "What Service Credit percentages apply under Section 5.2 if Monthly Uptime falls below 99.9% or below 99.0%?",
+    "chunk_id": "leg_chunk_014",
+    "chunk_text": "Section 5.2 (SLA Service Credits Remedy): If Monthly Uptime falls below 99.9% but remains at or above 99.0%, Customer shall be eligible to receive a Service Credit equal to ten percent (10%) of the monthly recurring fee; if below 99.0%, a twenty-five percent (25%) Service Credit shall apply as Customer's sole and exclusive remedy.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 5.2, a 10% Service Credit applies if uptime is between 99.0% and 99.9%, and a 25% Service Credit applies if uptime falls below 99.0%."
+  },
+  {
+    "pair_id": "gold_leg_028",
+    "query_id": "q_leg_14",
+    "query": "What Service Credit percentages apply under Section 5.2 if Monthly Uptime falls below 99.9% or below 99.0%?",
+    "chunk_id": "leg_chunk_013",
+    "chunk_text": "Section 5.1 (Service Level Agreement Uptime Commitment): Vendor warrants that the Production Cloud Service will maintain a Monthly Uptime Percentage of at least 99.9% during each calendar month, excluding scheduled maintenance windows announced at least forty-eight (48) hours in advance.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 5.2, a 10% Service Credit applies if uptime is between 99.0% and 99.9%, and a 25% Service Credit applies if uptime falls below 99.0%."
+  },
+  {
+    "pair_id": "gold_leg_029",
+    "query_id": "q_leg_15",
+    "query": "Under Section 13.1, when may a party assign the Agreement without prior written consent?",
+    "chunk_id": "leg_chunk_015",
+    "chunk_text": "Section 13.1 (Anti-Assignment and Change of Control): Neither party may assign, delegate, or transfer this Agreement or any of its rights or obligations hereunder without the prior written consent of the other party, except that either party may assign this Agreement in its entirety to a successor in connection with a merger or acquisition of substantially all assets.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 13.1, either party may assign the Agreement without consent to a successor in connection with a merger or acquisition of substantially all assets."
+  },
+  {
+    "pair_id": "gold_leg_030",
+    "query_id": "q_leg_15",
+    "query": "Under Section 13.1, when may a party assign the Agreement without prior written consent?",
+    "chunk_id": "leg_chunk_026",
+    "chunk_text": "Section 19.2 (Severability and Reformation): If any provision of this Agreement is held by a court of competent jurisdiction to be invalid, void, or unenforceable, the remaining provisions shall continue in full force and effect, and the invalid provision shall be reformed to the minimum extent necessary to reflect the parties' original economic intent.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 13.1, either party may assign the Agreement without consent to a successor in connection with a merger or acquisition of substantially all assets."
+  },
+  {
+    "pair_id": "gold_leg_031",
+    "query_id": "q_leg_16",
+    "query": "For how long after the Term does the Section 10.2 employee non-solicitation restriction remain in effect?",
+    "chunk_id": "leg_chunk_016",
+    "chunk_text": "Section 10.2 (Non-Solicitation of Employees): During the Term of this Agreement and for twelve (12) months thereafter, neither party shall directly or indirectly solicit for employment or hire any technical or managerial employee of the other party who was materially involved in the performance of Services, excluding general public job postings.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 10.2 prohibits soliciting or hiring materially involved employees during the Term and for twelve (12) months thereafter."
+  },
+  {
+    "pair_id": "gold_leg_032",
+    "query_id": "q_leg_16",
+    "query": "For how long after the Term does the Section 10.2 employee non-solicitation restriction remain in effect?",
+    "chunk_id": "leg_chunk_004",
+    "chunk_text": "Section 4.3 (Confidentiality Obligations and Survival): The Receiving Party agrees to hold all Confidential Information in strict confidence using at least the same degree of care it uses to protect its own proprietary information of like importance, but no less than reasonable care, for a survival period of five (5) years following expiration or termination.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 10.2 prohibits soliciting or hiring materially involved employees during the Term and for twelve (12) months thereafter."
+  },
+  {
+    "pair_id": "gold_leg_033",
+    "query_id": "q_leg_17",
+    "query": "When does ownership of custom deliverables and works made for hire vest in Customer under Section 2.4?",
+    "chunk_id": "leg_chunk_017",
+    "chunk_text": "Section 2.4 (Work Made for Hire and IP Ownership): All custom deliverables, source code modifications, and inventions conceived specifically for Customer under an executed Statement of Work shall be deemed 'works made for hire' and shall vest exclusively in Customer upon full payment of all applicable fees.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 2.4, custom deliverables under a Statement of Work are works made for hire and vest exclusively in Customer upon full payment of fees."
+  },
+  {
+    "pair_id": "gold_leg_034",
+    "query_id": "q_leg_17",
+    "query": "When does ownership of custom deliverables and works made for hire vest in Customer under Section 2.4?",
+    "chunk_id": "leg_chunk_018",
+    "chunk_text": "Section 2.5 (Vendor Pre-Existing Background IP License): Notwithstanding Section 2.4, Vendor retains sole ownership of all Pre-Existing Intellectual Property, developer tools, and generic software libraries, granting Customer a non-exclusive, perpetual, worldwide, royalty-free license to use such Background IP solely as embedded in the Deliverables.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 2.4, custom deliverables under a Statement of Work are works made for hire and vest exclusively in Customer upon full payment of fees."
+  },
+  {
+    "pair_id": "gold_leg_035",
+    "query_id": "q_leg_18",
+    "query": "What license does Vendor grant Customer for Pre-Existing Background IP under Section 2.5?",
+    "chunk_id": "leg_chunk_018",
+    "chunk_text": "Section 2.5 (Vendor Pre-Existing Background IP License): Notwithstanding Section 2.4, Vendor retains sole ownership of all Pre-Existing Intellectual Property, developer tools, and generic software libraries, granting Customer a non-exclusive, perpetual, worldwide, royalty-free license to use such Background IP solely as embedded in the Deliverables.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 2.5, Vendor retains ownership of Pre-Existing Background IP and grants Customer a non-exclusive, perpetual, worldwide, royalty-free license to use it as embedded in Deliverables."
+  },
+  {
+    "pair_id": "gold_leg_036",
+    "query_id": "q_leg_18",
+    "query": "What license does Vendor grant Customer for Pre-Existing Background IP under Section 2.5?",
+    "chunk_id": "leg_chunk_017",
+    "chunk_text": "Section 2.4 (Work Made for Hire and IP Ownership): All custom deliverables, source code modifications, and inventions conceived specifically for Customer under an executed Statement of Work shall be deemed 'works made for hire' and shall vest exclusively in Customer upon full payment of all applicable fees.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 2.5, Vendor retains ownership of Pre-Existing Background IP and grants Customer a non-exclusive, perpetual, worldwide, royalty-free license to use it as embedded in Deliverables."
+  },
+  {
+    "pair_id": "gold_leg_037",
+    "query_id": "q_leg_19",
+    "query": "How many business days' notice is required for a compliance and billing audit under Section 16.1, and how often may it occur?",
+    "chunk_id": "leg_chunk_019",
+    "chunk_text": "Section 16.1 (Financial and Compliance Audit Rights): Upon at least fifteen (15) business days' prior written notice and no more than once per calendar year during normal business hours, Customer may engage an independent certified public accountant to audit Vendor's records solely to verify billing accuracy and SOC 2 security compliance.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 16.1 requires at least fifteen (15) business days' prior written notice and permits an independent CPA audit no more than once per calendar year."
+  },
+  {
+    "pair_id": "gold_leg_038",
+    "query_id": "q_leg_19",
+    "query": "How many business days' notice is required for a compliance and billing audit under Section 16.1, and how often may it occur?",
+    "chunk_id": "leg_chunk_020",
+    "chunk_text": "Section 16.2 (Audit Cost Allocation): Customer shall bear all costs and expenses of any compliance or billing audit conducted under Section 16.1, unless the audit reveals an overcharge by Vendor exceeding five percent (5%) of the invoiced fees for the audited period, in which case Vendor shall reimburse Customer's reasonable audit costs.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 16.1 requires at least fifteen (15) business days' prior written notice and permits an independent CPA audit no more than once per calendar year."
+  },
+  {
+    "pair_id": "gold_leg_039",
+    "query_id": "q_leg_20",
+    "query": "Under Section 16.2, what overcharge threshold shifts the cost of an audit from Customer to Vendor?",
+    "chunk_id": "leg_chunk_020",
+    "chunk_text": "Section 16.2 (Audit Cost Allocation): Customer shall bear all costs and expenses of any compliance or billing audit conducted under Section 16.1, unless the audit reveals an overcharge by Vendor exceeding five percent (5%) of the invoiced fees for the audited period, in which case Vendor shall reimburse Customer's reasonable audit costs.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 16.2, Vendor must reimburse Customer's reasonable audit costs if the audit reveals an overcharge exceeding five percent (5%) of invoiced fees."
+  },
+  {
+    "pair_id": "gold_leg_040",
+    "query_id": "q_leg_20",
+    "query": "Under Section 16.2, what overcharge threshold shifts the cost of an audit from Customer to Vendor?",
+    "chunk_id": "leg_chunk_019",
+    "chunk_text": "Section 16.1 (Financial and Compliance Audit Rights): Upon at least fifteen (15) business days' prior written notice and no more than once per calendar year during normal business hours, Customer may engage an independent certified public accountant to audit Vendor's records solely to verify billing accuracy and SOC 2 security compliance.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 16.2, Vendor must reimburse Customer's reasonable audit costs if the audit reveals an overcharge exceeding five percent (5%) of invoiced fees."
+  },
+  {
+    "pair_id": "gold_leg_041",
+    "query_id": "q_leg_21",
+    "query": "How many days' prior written notice must Customer give to terminate for convenience under Section 12.1, and are prepaid fees refundable?",
+    "chunk_id": "leg_chunk_021",
+    "chunk_text": "Section 12.1 (Termination for Convenience): Customer may terminate an Order Form for convenience at any time by providing at least sixty (60) days' prior written notice to Vendor, provided that Customer shall remain liable for all fees accrued through the effective termination date and shall not be entitled to any refund of prepaid annual fees.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 12.1 requires at least sixty (60) days' prior written notice to terminate for convenience, with no refund of prepaid annual fees."
+  },
+  {
+    "pair_id": "gold_leg_042",
+    "query_id": "q_leg_21",
+    "query": "How many days' prior written notice must Customer give to terminate for convenience under Section 12.1, and are prepaid fees refundable?",
+    "chunk_id": "leg_chunk_007",
+    "chunk_text": "Section 12.2 (Termination for Material Breach and Cure Period): Either party may terminate this Agreement for cause upon thirty (30) days' prior written notice to the other party if the other party materially breaches any material covenant or obligation hereunder and fails to cure such breach within said thirty (30) day notice period.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 12.1 requires at least sixty (60) days' prior written notice to terminate for convenience, with no refund of prepaid annual fees."
+  },
+  {
+    "pair_id": "gold_leg_043",
+    "query_id": "q_leg_22",
+    "query": "With which escrow agent is source code deposited under Section 17.3 and what conditions trigger release to Customer?",
+    "chunk_id": "leg_chunk_022",
+    "chunk_text": "Section 17.3 (Source Code Escrow Release Conditions): Vendor shall deposit encrypted source code for the Licensed Software with Iron Mountain Escrow. The escrow agent shall release the deposited source code to Customer only if Vendor files for Chapter 7 bankruptcy liquidation or ceases commercial support operations for more than forty-five (45) consecutive days.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Source code is deposited with Iron Mountain Escrow and released if Vendor files for Chapter 7 bankruptcy or ceases support for more than forty-five (45) consecutive days."
+  },
+  {
+    "pair_id": "gold_leg_044",
+    "query_id": "q_leg_22",
+    "query": "With which escrow agent is source code deposited under Section 17.3 and what conditions trigger release to Customer?",
+    "chunk_id": "leg_chunk_018",
+    "chunk_text": "Section 2.5 (Vendor Pre-Existing Background IP License): Notwithstanding Section 2.4, Vendor retains sole ownership of all Pre-Existing Intellectual Property, developer tools, and generic software libraries, granting Customer a non-exclusive, perpetual, worldwide, royalty-free license to use such Background IP solely as embedded in the Deliverables.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Source code is deposited with Iron Mountain Escrow and released if Vendor files for Chapter 7 bankruptcy or ceases support for more than forty-five (45) consecutive days."
+  },
+  {
+    "pair_id": "gold_leg_045",
+    "query_id": "q_leg_23",
+    "query": "What minimum policy limits for Commercial General Liability and Cyber Liability insurance must Vendor maintain under Section 18.1?",
+    "chunk_id": "leg_chunk_023",
+    "chunk_text": "Section 18.1 (Mandatory Commercial Insurance Coverage): Throughout the Term, Vendor shall maintain at its sole expense Commercial General Liability insurance of at least $2,000,000 per occurrence and Cyber Liability / Errors & Omissions insurance of not less than $5,000,000 in the annual aggregate.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 18.1 requires at least $2,000,000 per occurrence in Commercial General Liability and $5,000,000 annual aggregate in Cyber Liability / Errors & Omissions insurance."
+  },
+  {
+    "pair_id": "gold_leg_046",
+    "query_id": "q_leg_23",
+    "query": "What minimum policy limits for Commercial General Liability and Cyber Liability insurance must Vendor maintain under Section 18.1?",
+    "chunk_id": "leg_chunk_001",
+    "chunk_text": "Section 8.1 (Limitation of Liability Cap): In no event shall either party's aggregate cumulative liability arising out of or related to this Agreement exceed the total subscription fees actually paid by Customer to Vendor hereunder in the twelve (12) months immediately preceding the event giving rise to liability.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 18.1 requires at least $2,000,000 per occurrence in Commercial General Liability and $5,000,000 annual aggregate in Cyber Liability / Errors & Omissions insurance."
+  },
+  {
+    "pair_id": "gold_leg_047",
+    "query_id": "q_leg_24",
+    "query": "Which claims are exempt from the Section 8.1 liability cap under Section 8.3, and what super-cap applies to Data Protection breaches?",
+    "chunk_id": "leg_chunk_024",
+    "chunk_text": "Section 8.3 (Super-Cap Exceptions to Liability Limitation): The liability cap in Section 8.1 shall not apply to (a) indemnification obligations under Section 9.3, (b) breaches of confidentiality under Section 4.3, or (c) gross negligence or willful misconduct, provided that liability for Data Protection breaches shall be subject to a separate super-cap of two times (2x) annual fees.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 8.3 exempts IP indemnification (Section 9.3), confidentiality breaches (Section 4.3), and gross negligence/willful misconduct, while Data Protection breaches have a super-cap of two times (2x) annual fees."
+  },
+  {
+    "pair_id": "gold_leg_048",
+    "query_id": "q_leg_24",
+    "query": "Which claims are exempt from the Section 8.1 liability cap under Section 8.3, and what super-cap applies to Data Protection breaches?",
+    "chunk_id": "leg_chunk_001",
+    "chunk_text": "Section 8.1 (Limitation of Liability Cap): In no event shall either party's aggregate cumulative liability arising out of or related to this Agreement exceed the total subscription fees actually paid by Customer to Vendor hereunder in the twelve (12) months immediately preceding the event giving rise to liability.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 8.3 exempts IP indemnification (Section 9.3), confidentiality breaches (Section 4.3), and gross negligence/willful misconduct, while Data Protection breaches have a super-cap of two times (2x) annual fees."
+  },
+  {
+    "pair_id": "gold_leg_049",
+    "query_id": "q_leg_25",
+    "query": "How many days' advance written notice must Data Processor provide before engaging a new Subprocessor under Section 7.8?",
+    "chunk_id": "leg_chunk_025",
+    "chunk_text": "Section 7.8 (Subprocessor Authorization and Objection): Data Processor shall provide Data Controller with at least thirty (30) days' advance written notice before engaging any new third-party Subprocessor to process Personal Data, allowing Data Controller to object in writing on reasonable data protection grounds.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 7.8 requires at least thirty (30) days' advance written notice before engaging any new third-party Subprocessor."
+  },
+  {
+    "pair_id": "gold_leg_050",
+    "query_id": "q_leg_25",
+    "query": "How many days' advance written notice must Data Processor provide before engaging a new Subprocessor under Section 7.8?",
+    "chunk_id": "leg_chunk_012",
+    "chunk_text": "Section 7.4 (Data Breach Notification Timeline): In the event of a confirmed Security Incident resulting in unauthorized access to Customer Personal Data, Data Processor shall notify Data Controller without undue delay and in no event later than seventy-two (72) hours after becoming aware of the breach.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 7.8 requires at least thirty (30) days' advance written notice before engaging any new third-party Subprocessor."
+  },
+  {
+    "pair_id": "gold_leg_051",
+    "query_id": "q_leg_26",
+    "query": "What happens to an invalid or unenforceable provision under the Section 19.2 Severability clause?",
+    "chunk_id": "leg_chunk_026",
+    "chunk_text": "Section 19.2 (Severability and Reformation): If any provision of this Agreement is held by a court of competent jurisdiction to be invalid, void, or unenforceable, the remaining provisions shall continue in full force and effect, and the invalid provision shall be reformed to the minimum extent necessary to reflect the parties' original economic intent.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 19.2, remaining provisions stay in full force and the invalid provision is reformed to the minimum extent necessary to reflect the parties' original economic intent."
+  },
+  {
+    "pair_id": "gold_leg_052",
+    "query_id": "q_leg_26",
+    "query": "What happens to an invalid or unenforceable provision under the Section 19.2 Severability clause?",
+    "chunk_id": "leg_chunk_027",
+    "chunk_text": "Section 19.4 (Entire Agreement and Integration Clause): This Agreement, together with all executed Order Forms and Data Processing Addenda, constitutes the entire agreement between the parties and supersedes all prior oral or written proposals, negotiations, purchase order pre-printed terms, and communications.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 19.2, remaining provisions stay in full force and the invalid provision is reformed to the minimum extent necessary to reflect the parties' original economic intent."
+  },
+  {
+    "pair_id": "gold_leg_053",
+    "query_id": "q_leg_27",
+    "query": "What prior documents and terms are superseded by the Section 19.4 Entire Agreement integration clause?",
+    "chunk_id": "leg_chunk_027",
+    "chunk_text": "Section 19.4 (Entire Agreement and Integration Clause): This Agreement, together with all executed Order Forms and Data Processing Addenda, constitutes the entire agreement between the parties and supersedes all prior oral or written proposals, negotiations, purchase order pre-printed terms, and communications.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 19.4 supersedes all prior oral or written proposals, negotiations, purchase order pre-printed terms, and communications."
+  },
+  {
+    "pair_id": "gold_leg_054",
+    "query_id": "q_leg_27",
+    "query": "What prior documents and terms are superseded by the Section 19.4 Entire Agreement integration clause?",
+    "chunk_id": "leg_chunk_026",
+    "chunk_text": "Section 19.2 (Severability and Reformation): If any provision of this Agreement is held by a court of competent jurisdiction to be invalid, void, or unenforceable, the remaining provisions shall continue in full force and effect, and the invalid provision shall be reformed to the minimum extent necessary to reflect the parties' original economic intent.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 19.4 supersedes all prior oral or written proposals, negotiations, purchase order pre-printed terms, and communications."
+  },
+  {
+    "pair_id": "gold_leg_055",
+    "query_id": "q_leg_28",
+    "query": "After termination under Section 12.5, how long does Customer have to export data and within how many days must Vendor delete it?",
+    "chunk_id": "leg_chunk_028",
+    "chunk_text": "Section 12.5 (Post-Termination Data Retrieval and Deletion): Upon expiration or termination of this Agreement, Vendor shall make Customer Data available for export in standard JSON or CSV format for thirty (30) days, after which Vendor shall permanently delete and overwrite all Customer Data from production servers within sixty (60) days.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 12.5, Vendor makes Customer Data available in JSON or CSV for thirty (30) days and permanently deletes it within sixty (60) days."
+  },
+  {
+    "pair_id": "gold_leg_056",
+    "query_id": "q_leg_28",
+    "query": "After termination under Section 12.5, how long does Customer have to export data and within how many days must Vendor delete it?",
+    "chunk_id": "leg_chunk_008",
+    "chunk_text": "Article 17 (GDPR Right to Erasure / Right to be Forgotten): The data subject shall have the right to obtain from the controller the erasure of personal data concerning him or her without undue delay, and within no more than thirty (30) calendar days, where the personal data are no longer necessary in relation to the purposes for which they were collected.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 12.5, Vendor makes Customer Data available in JSON or CSV for thirty (30) days and permanently deletes it within sixty (60) days."
+  },
+  {
+    "pair_id": "gold_leg_057",
+    "query_id": "q_leg_29",
+    "query": "Which U.S. sanctions list and export regulations are referenced in Section 11.8?",
+    "chunk_id": "leg_chunk_029",
+    "chunk_text": "Section 11.8 (Export Control and Sanctions Compliance): Each party represents that it is not named on any U.S. Treasury OFAC Specially Designated Nationals (SDN) list and shall not export or re-export the Software in violation of U.S. Export Administration Regulations (EAR) to any embargoed jurisdiction.",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Section 11.8 references the U.S. Treasury OFAC Specially Designated Nationals (SDN) list and U.S. Export Administration Regulations (EAR)."
+  },
+  {
+    "pair_id": "gold_leg_058",
+    "query_id": "q_leg_29",
+    "query": "Which U.S. sanctions list and export regulations are referenced in Section 11.8?",
+    "chunk_id": "leg_chunk_003",
+    "chunk_text": "Section 11.4 (Governing Law and Exclusive Venue): This Agreement shall be governed by and construed in accordance with the domestic laws of the State of Delaware, without giving effect to any choice or conflict of law provision. Any legal suit or proceeding shall be instituted exclusively in the state or federal courts located in New Castle County, Delaware.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Section 11.8 references the U.S. Treasury OFAC Specially Designated Nationals (SDN) list and U.S. Export Administration Regulations (EAR)."
+  },
+  {
+    "pair_id": "gold_leg_059",
+    "query_id": "q_leg_30",
+    "query": "By what maximum percentage may Vendor increase annual renewal subscription fees under Section 3.5?",
+    "chunk_id": "leg_chunk_030",
+    "chunk_text": "Section 3.5 (Annual Price Escalation Cap): Following the Initial Subscription Term, Vendor may increase annual subscription renewal fees no more than once per twelve-month renewal period by a percentage not to exceed the lesser of five percent (5%) or the year-over-year percentage increase in the U.S. Consumer Price Index (CPI-U).",
+    "domain": "legal",
+    "ground_truth_relevance": true,
+    "ground_truth_answer": "Under Section 3.5, annual renewal fee increases cannot exceed once per twelve-month period or the lesser of five percent (5%) or the CPI-U increase."
+  },
+  {
+    "pair_id": "gold_leg_060",
+    "query_id": "q_leg_30",
+    "query": "By what maximum percentage may Vendor increase annual renewal subscription fees under Section 3.5?",
+    "chunk_id": "leg_chunk_009",
+    "chunk_text": "Section 3.2 (Invoicing, Payment Net Terms, and Late Interest): Customer shall pay all undisputed invoiced amounts in U.S. Dollars within thirty (30) days of the invoice date (Net 30). Any overdue undisputed balance shall accrue late interest at the lesser of 1.5% per month (18% per annum) or the highest rate permitted by applicable usury law.",
+    "domain": "legal",
+    "ground_truth_relevance": false,
+    "ground_truth_answer": "Under Section 3.5, annual renewal fee increases cannot exceed once per twelve-month period or the lesser of five percent (5%) or the CPI-U increase."
   }
 ]

@@ -1,17 +1,59 @@
-import React, { useState } from 'react';
-import { Award, Zap, DollarSign, CheckCircle2 } from 'lucide-react';
-import { keyFindings } from '../data/mockData';
+import React, { useState, useEffect } from 'react';
+import { CheckCircle2 } from 'lucide-react';
+import { keyFindings as defaultKeyFindings } from '../data/mockData';
+import { fetchLatestEvaluation } from '../services/api';
+
+const STRATEGY_NAMES = {
+  llm: 'Strategy A: LLM-Prompt Judge',
+  cross_encoder: 'Strategy B: Cross-Encoder / NLI',
+  similarity_threshold: 'Strategy C: Similarity Threshold'
+};
 
 export default function AnalyticsView() {
   const [activeTab, setActiveTab] = useState('Performance Summary');
+  const [report, setReport] = useState(null);
+
+  useEffect(() => {
+    fetchLatestEvaluation().then((data) => {
+      if (data && data.matrix) {
+        setReport(data);
+      }
+    });
+  }, []);
+
+  const matrix = report?.matrix || [];
+  const bestAccRow = matrix.length
+    ? [...matrix].sort(
+        (a, b) =>
+          (b.accuracy ?? b.grading_accuracy?.accuracy ?? 0) -
+          (a.accuracy ?? a.grading_accuracy?.accuracy ?? 0)
+      )[0]
+    : null;
+  const fastestRow = matrix.length
+    ? [...matrix].sort((a, b) => a.avg_grading_latency_ms - b.avg_grading_latency_ms)[0]
+    : null;
+  const cheapestRow = matrix.length
+    ? [...matrix].sort(
+        (a, b) =>
+          (a.avg_llm_calls_per_query ?? a.avg_llm_calls ?? 0) -
+          (b.avg_llm_calls_per_query ?? b.avg_llm_calls ?? 0)
+      )[0]
+    : null;
+
+  const dynamicFindings = report?.summary_findings
+    ? [report.summary_findings, ...defaultKeyFindings]
+    : defaultKeyFindings;
+
+  const hpRows = matrix.filter((r) => r.domain.toLowerCase() === 'hotpotqa');
+  const legRows = matrix.filter((r) => r.domain.toLowerCase() === 'legal');
 
   return (
     <div className="analytics-view">
       {/* Header */}
       <div className="section-header">
-        <h2 className="section-title">Analytics & Insights</h2>
+        <h2 className="section-title">Analytics & Research Insights</h2>
         <p className="section-subtitle">
-          Key insights from the comparative evaluation.
+          Pareto trade-offs across grading accuracy, latency, LLM call cost, and domain sensitivity.
         </p>
       </div>
 
@@ -44,13 +86,15 @@ export default function AnalyticsView() {
             Accuracy Leader
           </div>
           <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '8px' }}>
-            LLM-prompt Judge
+            {bestAccRow ? `${STRATEGY_NAMES[bestAccRow.strategy]} (${bestAccRow.domain})` : 'LLM-Prompt Judge / Cross-Encoder'}
           </div>
           <div style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.03em', marginBottom: '4px' }}>
-            86.7%
+            {bestAccRow
+              ? `${((bestAccRow.accuracy ?? bestAccRow.grading_accuracy?.accuracy ?? 0) * 100).toFixed(1)}%`
+              : '88.3%'}
           </div>
           <div style={{ fontSize: '11.5px', color: '#94a3b8' }}>
-            Best overall accuracy
+            Best gold-set relevance decision accuracy
           </div>
         </div>
 
@@ -60,13 +104,13 @@ export default function AnalyticsView() {
             Fastest Strategy
           </div>
           <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '8px' }}>
-            Similarity Threshold
+            {fastestRow ? STRATEGY_NAMES[fastestRow.strategy] : 'Strategy C: Similarity Threshold'}
           </div>
           <div style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.03em', marginBottom: '4px' }}>
-            0.42s
+            {fastestRow ? `${fastestRow.avg_grading_latency_ms.toFixed(2)} ms` : '0.05 ms'}
           </div>
           <div style={{ fontSize: '11.5px', color: '#94a3b8' }}>
-            Lowest latency
+            Lowest per-chunk grading overhead
           </div>
         </div>
 
@@ -76,36 +120,121 @@ export default function AnalyticsView() {
             Most Cost Efficient
           </div>
           <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '8px' }}>
-            Similarity Threshold
+            {cheapestRow ? 'Cross-Encoder & Similarity' : 'Cross-Encoder / Similarity'}
           </div>
           <div style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.03em', marginBottom: '4px' }}>
-            1 call/query
+            {cheapestRow
+              ? `${(cheapestRow.avg_llm_calls_per_query ?? cheapestRow.avg_llm_calls ?? 1.0).toFixed(1)} call/query`
+              : '1.0 call/query'}
           </div>
           <div style={{ fontSize: '11.5px', color: '#94a3b8' }}>
-            Minimal LLM usage
+            0 LLM grading calls (1 generation call only)
           </div>
         </div>
       </div>
 
-      {/* Key Findings Card */}
-      <div className="card-panel" id="key-findings-panel">
-        <h3 className="card-heading" style={{ marginBottom: '18px' }}>
-          Key Findings
-        </h3>
+      {activeTab === 'Performance Summary' && (
+        <div className="card-panel" id="key-findings-panel">
+          <h3 className="card-heading" style={{ marginBottom: '18px' }}>
+            Key Empirical Findings
+          </h3>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          {keyFindings.map((finding, idx) => (
-            <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <div style={{ color: '#2563eb', marginTop: '2px', flexShrink: 0 }}>
-                <CheckCircle2 size={18} fill="#dbeafe" color="#2563eb" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            {dynamicFindings.map((finding, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                <div style={{ color: '#2563eb', marginTop: '2px', flexShrink: 0 }}>
+                  <CheckCircle2 size={18} fill="#dbeafe" color="#2563eb" />
+                </div>
+                <p style={{ fontSize: '13.5px', color: '#334155', lineHeight: 1.5 }}>
+                  {finding}
+                </p>
               </div>
-              <p style={{ fontSize: '13.5px', color: '#334155', lineHeight: 1.5 }}>
-                {finding}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {activeTab === 'Domain Analysis' && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div className="card-panel">
+            <h3 className="card-heading" style={{ marginBottom: '12px' }}>
+              Domain 1: HotpotQA (General Multi-Hop Knowledge)
+            </h3>
+            <p style={{ fontSize: '13px', color: '#475569', lineHeight: 1.6, marginBottom: '14px' }}>
+              Contains 30 encyclopedic passages and 60 hand-labelled query-chunk pairs (30 relevant + 30 hard-negative distractors). Entity overlap is moderate, allowing both LLM Judge and Cross-Encoder to filter distractors cleanly.
+            </p>
+            {hpRows.map((r) => (
+              <div key={r.strategy} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f1f5f9', fontSize: '12.5px' }}>
+                <span style={{ fontWeight: 600 }}>{STRATEGY_NAMES[r.strategy]}</span>
+                <span className="mono-num">
+                  Grade F1: {((r.f1_score ?? r.grading_accuracy?.f1_score ?? 0) * 100).toFixed(1)}% | Ans F1: {((r.token_f1 ?? r.answer_quality?.f1_score ?? 0) * 100).toFixed(1)}%
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="card-panel">
+            <h3 className="card-heading" style={{ marginBottom: '12px' }}>
+              Domain 2: Legal (Corporate & Regulatory Contracts)
+            </h3>
+            <p style={{ fontSize: '13px', color: '#475569', lineHeight: 1.6, marginBottom: '14px' }}>
+              Contains 30 dense contractual clauses (MSA, GDPR DPA, Escrow, SLA) and 60 gold pairs. High lexical overlap across boilerplate clauses inflates raw cosine similarity on distractors, causing Strategy C specificity to drop to 40.0%.
+            </p>
+            {legRows.map((r) => (
+              <div key={r.strategy} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f1f5f9', fontSize: '12.5px' }}>
+                <span style={{ fontWeight: 600 }}>{STRATEGY_NAMES[r.strategy]}</span>
+                <span className="mono-num">
+                  Grade F1: {((r.f1_score ?? r.grading_accuracy?.f1_score ?? 0) * 100).toFixed(1)}% | Ans F1: {((r.token_f1 ?? r.answer_quality?.f1_score ?? 0) * 100).toFixed(1)}%
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'Strategy Insights' && (
+        <div className="card-panel">
+          <h3 className="card-heading" style={{ marginBottom: '14px' }}>
+            Practitioner Decision Matrix: When to Deploy Each Grader
+          </h3>
+          <div className="table-container">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Strategy</th>
+                  <th>Model / Mechanism</th>
+                  <th>Pareto Strength</th>
+                  <th>Primary Bottleneck</th>
+                  <th>Recommended Deployment Scenario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ fontWeight: 600 }}>Strategy A: LLM Judge</td>
+                  <td className="mono-num">Ollama qwen2.5:3b</td>
+                  <td>Highest zero-shot adaptability & strict distractor rejection</td>
+                  <td>~1.8s–4.5s per chunk on CPU; 4+ LLM calls/query</td>
+                  <td>Offline batch auditing or high-stakes legal/medical compliance</td>
+                </tr>
+                <tr>
+                  <td style={{ fontWeight: 600 }}>Strategy B: Cross-Encoder</td>
+                  <td className="mono-num">ms-marco-MiniLM-L-6-v2</td>
+                  <td>Best Pareto balance: ~85%+ F1 at ~15ms/chunk, 0 LLM grading calls</td>
+                  <td>Fixed 512-token context window</td>
+                  <td>Production real-time Corrective RAG systems across general & specialised domains</td>
+                </tr>
+                <tr>
+                  <td style={{ fontWeight: 600 }}>Strategy C: Similarity</td>
+                  <td className="mono-num">all-MiniLM-L6-v2 (τ=0.45)</td>
+                  <td>Sub-millisecond overhead (already computed during retrieval)</td>
+                  <td>High false-positive rate on dense domain boilerplate (Legal)</td>
+                  <td>Ultra-low-latency keyword/FAQ lookup with well-separated topics</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

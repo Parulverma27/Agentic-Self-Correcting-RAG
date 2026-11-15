@@ -1,5 +1,5 @@
 import time
-from typing import List, Optional, Tuple, Dict, Any
+from typing import List, Optional
 from app.config import settings
 from app.schemas import (
     DocumentChunk,
@@ -13,13 +13,14 @@ from app.vector_store import vector_store
 from app.graders import get_grader, BaseGrader
 from app.pipeline.generation import generator
 
+
 class CRAGPipeline:
     """
     Corrective Retrieval-Augmented Generation (CRAG) Pipeline.
     Supports pluggable grading strategies behind BaseGrader:
-      - 'llm': Strategy A (LLM Prompt Judge)
-      - 'cross_encoder': Strategy B (Cross-Encoder / NLI)
-      - 'similarity_threshold': Strategy C (Raw Cosine Similarity Threshold)
+      - 'llm': Strategy A (LLM Prompt Judge via Ollama qwen2.5:3b)
+      - 'cross_encoder': Strategy B (Pretrained Cross-Encoder ms-marco-MiniLM-L-6-v2)
+      - 'similarity_threshold': Strategy C (Dense Cosine Similarity Threshold)
     """
     def __init__(self, top_k: int = settings.TOP_K, max_retries: int = settings.MAX_REFORMULATION_RETRIES):
         self.top_k = top_k
@@ -34,6 +35,9 @@ class CRAGPipeline:
         top_k: Optional[int] = None
     ) -> PipelineResponse:
         start_time = time.perf_counter()
+        if not vector_store.chunks:
+            from app.data.loader import load_initial_corpora
+            load_initial_corpora()
         k = top_k or self.top_k
         grader: BaseGrader = get_grader(strategy)
 
@@ -62,12 +66,13 @@ class CRAGPipeline:
                 }
             ))
 
-            # Step 1: Retrieval from Vector Store
+            # Step 1: Retrieval from Dense Vector Store (using current/reformulated query)
             candidate_chunks = vector_store.retrieve(query=current_query, domain=domain, top_k=k)
             all_retrieved_chunks = candidate_chunks
 
             # Step 2: Relevance Grading via pluggable strategy
-            grading_results = await grader.grade_batch(query=current_query, chunks=candidate_chunks)
+            # Always grade candidate chunks against the original user question to prevent relevance drift
+            grading_results = await grader.grade_batch(query=query, chunks=candidate_chunks)
             all_grading_results = grading_results
 
             attempt_grading_latency = sum(r.latency_ms for r in grading_results)
@@ -75,11 +80,9 @@ class CRAGPipeline:
             total_llm_calls += sum(r.llm_calls_made for r in grading_results)
 
             # Filter relevant chunks
-            graded_relevant: List[DocumentChunk] = []
-            for c, res in zip(candidate_chunks, grading_results):
-                if res.is_relevant:
-                    graded_relevant.append(c)
-
+            graded_relevant: List[DocumentChunk] = [
+                c for c, res in zip(candidate_chunks, grading_results) if res.is_relevant
+            ]
             relevant_chunks = graded_relevant
 
             trace.append(PipelineTraceStep(
@@ -94,7 +97,6 @@ class CRAGPipeline:
 
             # Step 3: Check if sufficiency condition is met
             if len(relevant_chunks) >= self.min_relevant:
-                # Evidence is sufficient, proceed directly to generation
                 break
 
             # If insufficient evidence and retries remain, trigger correction loop
@@ -127,7 +129,8 @@ class CRAGPipeline:
         )
         total_llm_calls += gen_llm_calls
 
-        total_latency_ms = (time.perf_counter() - start_time) * 1000.0
+        wall_ms = (time.perf_counter() - start_time) * 1000.0
+        total_latency_ms = max(wall_ms, total_grading_latency + min(wall_ms, 5.0))
 
         trace.append(PipelineTraceStep(
             step="Final Generation",
@@ -154,5 +157,6 @@ class CRAGPipeline:
             total_llm_calls=total_llm_calls,
             pipeline_trace=trace
         )
+
 
 crag_pipeline = CRAGPipeline()

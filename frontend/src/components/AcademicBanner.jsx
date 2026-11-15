@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Sparkles } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 
 export default function AcademicBanner() {
   return (
