@@ -1,8 +1,9 @@
 import re
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 import httpx
 from app.config import settings
 from app.schemas import DocumentChunk
+from app.vector_store import stem_term
 
 class ResponseGenerator:
     """
@@ -49,7 +50,7 @@ class ResponseGenerator:
         # Heuristic fallback reformulation
         llm_calls = 1  # Counted as 1 reformulation attempt in cost proxy
         words = re.findall(r"\b[a-zA-Z0-9_-]+\b", original_query)
-        stop_words = {"what", "when", "where", "which", "who", "whom", "whose", "why", "how", "is", "are", "was", "were", "the", "a", "an"}
+        stop_words = {"what", "when", "where", "which", "who", "whom", "whose", "why", "how", "is", "are", "was", "were", "the", "a", "an", "in", "it"}
         key_terms = [w for w in words if w.lower() not in stop_words]
         
         if domain == "legal":
@@ -61,13 +62,84 @@ class ResponseGenerator:
             suffix = suffixes[(attempt - 1) % len(suffixes)]
             reformulated = " ".join(key_terms) + " " + suffix
         else:
-            # Custom uploaded document or report: refine strictly to key informative terms
-            if attempt == 1:
-                reformulated = " ".join(key_terms)
-            else:
-                reformulated = " ".join(key_terms[:4]) + " summary details context"
+            # Custom uploaded document or report: expand with morphological stems and related synonyms
+            stems = [stem_term(w) for w in key_terms]
+            expanded = list(dict.fromkeys(key_terms + stems))
+            reformulated = " ".join(expanded)
 
         return (reformulated.strip() if reformulated.strip() else original_query), llm_calls
+
+    def _synthesize_structured_answer(self, query: str, chunks: List[DocumentChunk]) -> Optional[str]:
+        """
+        Synthesizes a structured, informative, grounded answer from relevant passages.
+        Pulls salient sections, bullet points, workflow steps, and facts matching the query intent.
+        """
+        q_clean = query.lower()
+        q_tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", q_clean)
+        stopwords = {
+            "what", "when", "where", "which", "who", "whom", "whose", "why", "how",
+            "is", "are", "was", "were", "the", "a", "an", "and", "or", "in", "on", "at",
+            "to", "for", "of", "with", "by", "from", "about", "this", "that", "these",
+            "tell", "give", "explain", "describe", "does", "have", "has", "had", "can",
+            "me", "you", "it", "its", "into"
+        }
+        q_informative = [w for w in q_tokens if w not in stopwords]
+        q_stems = {stem_term(w) for w in q_informative}
+        if not q_informative:
+            q_informative = q_tokens
+            q_stems = {stem_term(w) for w in q_tokens}
+
+        collected_points = []
+        seen_points = set()
+
+        for chunk in chunks:
+            # Split by lines and bullet structures
+            lines = [l.strip() for l in re.split(r"[\n\r]+", chunk.text) if l.strip()]
+            for line in lines:
+                clean_l = re.sub(r"^[-*•\d.)\s]+", "", line).strip()
+                if len(clean_l) < 12:
+                    continue
+                if re.match(r"^(=|-|_){3,}$", clean_l):
+                    continue
+
+                l_tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", clean_l.lower())
+                l_stems = {stem_term(w) for w in l_tokens}
+
+                overlap = len(q_stems.intersection(l_stems))
+                if overlap > 0:
+                    normalized_key = re.sub(r"\s+", " ", clean_l.lower()[:80])
+                    if normalized_key not in seen_points:
+                        seen_points.add(normalized_key)
+                        collected_points.append((overlap, clean_l))
+
+        if not collected_points:
+            # Check sentence level as fallback
+            for chunk in chunks:
+                sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", chunk.text) if len(s.strip()) > 15]
+                for s in sentences:
+                    s_tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", s.lower())
+                    s_stems = {stem_term(w) for w in s_tokens}
+                    overlap = len(q_stems.intersection(s_stems))
+                    if overlap > 0:
+                        normalized_key = re.sub(r"\s+", " ", s.lower()[:80])
+                        if normalized_key not in seen_points:
+                            seen_points.add(normalized_key)
+                            collected_points.append((overlap, s))
+
+        if not collected_points:
+            return None
+
+        # Sort by relevance overlap
+        collected_points.sort(key=lambda x: x[0], reverse=True)
+        top_points = [p[1] for p in collected_points[:6]]
+
+        # Format a comprehensive, clean, grounded answer
+        answer_parts = []
+        answer_parts.append(f"Based on verified document evidence for '{query}':\n")
+        for pt in top_points:
+            answer_parts.append(f"• {pt}")
+
+        return "\n".join(answer_parts)
 
     async def generate_answer(self, query: str, relevant_chunks: List[DocumentChunk], domain: str) -> Tuple[str, int]:
         """
@@ -82,10 +154,31 @@ class ResponseGenerator:
             "and confirmed that this question is not covered in the active document. Grounded response withheld to prevent hallucination."
         )
 
-        if not relevant_chunks:
+        effective_chunks = list(relevant_chunks)
+        if not effective_chunks:
+            # If grading was overly strict but candidate chunks exist, check for topical stem overlap
+            from app.vector_store import vector_store
+            candidates = vector_store.retrieve(query=query, domain=domain, top_k=settings.TOP_K)
+            q_tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", query.lower())
+            q_informative = [w for w in q_tokens if w not in {
+                "what", "when", "where", "which", "who", "whom", "whose", "why", "how",
+                "is", "are", "was", "were", "the", "a", "an", "and", "or", "in", "on", "at",
+                "to", "for", "of", "with", "by", "from", "about", "this", "that", "these",
+                "tell", "give", "explain", "describe", "does", "have", "has", "had", "can", "it"
+            }]
+            q_stems = {stem_term(w) for w in q_informative}
+            promising = []
+            for c in candidates:
+                c_stems = {stem_term(w) for w in re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", c.text.lower())}
+                if q_stems.intersection(c_stems):
+                    promising.append(c)
+            if promising:
+                effective_chunks = promising
+
+        if not effective_chunks:
             return not_found_msg, 0
 
-        context = "\n\n".join([f"[Chunk {c.chunk_id}]: {c.text}" for c in relevant_chunks])
+        context = "\n\n".join([f"[Chunk {c.chunk_id}]: {c.text}" for c in effective_chunks])
         prompt = (
             f"You are a strictly grounded factual AI assistant. Answer the user's question accurately using ONLY the provided context.\n"
             f"CRITICAL REQUIREMENT: If the question cannot be answered using the provided context, or if the question is unrelated, "
@@ -117,47 +210,11 @@ class ResponseGenerator:
         except Exception:
             pass
 
-        # Extractive synthesis fallback when Ollama is offline
-        # Extract informative query tokens (excluding generic stopwords)
-        stopwords = {
-            "what", "when", "where", "which", "who", "whom", "whose", "why", "how",
-            "is", "are", "was", "were", "the", "a", "an", "and", "or", "in", "on", "at",
-            "to", "for", "of", "with", "by", "from", "about", "this", "that", "these",
-            "tell", "give", "explain", "describe", "does", "have", "has", "had", "can"
-        }
-        all_q_words = re.findall(r"\b[a-zA-Z0-9_-]{3,}\b", query.lower())
-        q_informative = [w for w in all_q_words if w not in stopwords]
-
-        if not q_informative:
-            # Query has no meaningful informative terms
-            return not_found_msg, llm_calls
-
-        q_tokens = set(q_informative)
-        best_sentences = []
-
-        for chunk in relevant_chunks:
-            sentences = re.split(r"(?<=[.!?])\s+", chunk.text)
-            for s in sentences:
-                s_words = set(re.findall(r"\b[a-zA-Z0-9_-]{3,}\b", s.lower()))
-                overlap = len(q_tokens.intersection(s_words))
-                if overlap > 0:
-                    best_sentences.append((overlap, s.strip()))
-
-        best_sentences.sort(key=lambda x: x[0], reverse=True)
-
-        # Check if top sentence has genuine informative overlap
-        if best_sentences and best_sentences[0][0] >= 1:
-            # Select top sentences that provide answer evidence
-            top_overlap = best_sentences[0][0]
-            # If query had multiple informative words (>=2) and overlap is only 1, verify if ratio is acceptable
-            if len(q_tokens) >= 3 and top_overlap < 1:
-                return not_found_msg, llm_calls
-
-            chosen = [s for score, s in best_sentences[:2] if score >= 1]
-            ans = " ".join(chosen)
-            return f"Based on verified document evidence: {ans}", llm_calls
-        else:
-            # No sentence actually matches the question topic
-            return not_found_msg, llm_calls
+        # Extractive structured synthesis when Ollama is offline
+        structured_ans = self._synthesize_structured_answer(query, effective_chunks)
+        if structured_ans:
+            return structured_ans, llm_calls
+            
+        return not_found_msg, llm_calls
 
 generator = ResponseGenerator()

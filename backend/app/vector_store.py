@@ -4,11 +4,22 @@ from typing import List, Dict, Optional, Tuple
 import numpy as np
 from app.schemas import DocumentChunk
 
+def stem_term(word: str) -> str:
+    """Lightweight morphological stemmer for robust query-document alignment."""
+    w = word.lower()
+    for sfx in ("memberships", "membership"):
+        if w.endswith(sfx):
+            return "member"
+    for sfx in ("ies", "es", "s", "ing", "ed", "tion", "tions", "ment", "ments", "ity", "ities", "able"):
+        if len(w) > len(sfx) + 3 and w.endswith(sfx):
+            return w[:-len(sfx)]
+    return w
+
 class VectorStore:
     """
     In-memory Vector Store for Multi-Domain Document Chunks.
     Supports TF-IDF & dense semantic centroid embeddings with cosine similarity.
-    Indexed separately by domain (e.g. 'hotpotqa', 'legal').
+    Indexed separately by domain (e.g. 'hotpotqa', 'legal', 'custom_doc').
     """
     def __init__(self):
         # domain -> list of DocumentChunk
@@ -21,15 +32,22 @@ class VectorStore:
         self.chunk_vectors: Dict[str, np.ndarray] = {}
 
     def _tokenize(self, text: str) -> List[str]:
-        """Simple, robust tokenizer extracting alphanumeric terms in lowercase."""
+        """Robust tokenizer extracting terms with stem normalization and stopword filtering."""
         tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", text.lower())
-        # Filter common non-informative stop words
         stopwords = {
             "the", "is", "at", "which", "on", "a", "an", "and", "or", "to", "in",
             "for", "of", "with", "as", "by", "that", "this", "it", "from", "be",
-            "are", "was", "were", "been", "has", "have", "had", "do", "does", "did"
+            "are", "was", "were", "been", "has", "have", "had", "do", "does", "did",
+            "how", "what", "where", "when", "why", "who", "whom"
         }
-        return [t for t in tokens if t not in stopwords]
+        res = []
+        for t in tokens:
+            if t not in stopwords:
+                res.append(t)
+                st = stem_term(t)
+                if st != t:
+                    res.append(st)
+        return res
 
     def add_chunks(self, domain: str, chunks: List[DocumentChunk]):
         """Index a list of chunks into the domain's vector space."""
@@ -147,7 +165,16 @@ class VectorStore:
             ]
 
         # Cosine similarity via dot product (both vectors are L2-normalized)
-        sim_scores = np.dot(self.chunk_vectors[domain], q_vec)
+        sim_scores = np.dot(self.chunk_vectors[domain], q_vec).copy()
+
+        # Keyword match bonus for key informative terms
+        q_clean_words = set(self._tokenize(query))
+        if q_clean_words:
+            for i, c in enumerate(domain_chunks):
+                c_words = set(self._tokenize(c.text))
+                match_count = len(q_clean_words.intersection(c_words))
+                if match_count > 0:
+                    sim_scores[i] += min(0.35, match_count * 0.08)
 
         # Clip scores to [0.0, 1.0]
         sim_scores = np.clip(sim_scores, 0.0, 1.0)

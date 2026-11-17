@@ -6,6 +6,7 @@ from typing import Optional
 from app.config import settings
 from app.schemas import DocumentChunk, GradingResult
 from app.graders.base import BaseGrader
+from app.vector_store import stem_term
 
 class CrossEncoderGrader(BaseGrader):
     """
@@ -26,17 +27,31 @@ class CrossEncoderGrader(BaseGrader):
         3. Term proximity and density
         Produces calibrated output in range [0.0, 1.0].
         """
-        q_tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", query.lower())
+        raw_q_tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", query.lower())
         p_tokens = re.findall(r"\b[a-zA-Z0-9_-]{2,}\b", passage.lower())
         
+        stopwords = {
+            "the", "is", "at", "which", "on", "a", "an", "and", "or", "to", "in",
+            "for", "of", "with", "as", "by", "that", "this", "it", "from", "be",
+            "are", "was", "were", "been", "has", "have", "had", "do", "does", "did",
+            "how", "what", "where", "when", "why", "who", "whom"
+        }
+        q_tokens = [t for t in raw_q_tokens if t not in stopwords]
+        if not q_tokens:
+            q_tokens = raw_q_tokens
+            
         if not q_tokens or not p_tokens:
             return 0.0
 
         p_set = set(p_tokens)
+        p_stems = {stem_term(t) for t in p_tokens}
         
-        # 1. Unigram coverage
-        unigram_hits = sum(1 for t in q_tokens if t in p_set)
+        # 1. Unigram & stem coverage
+        unigram_hits = sum(1 for t in q_tokens if t in p_set or stem_term(t) in p_stems)
         unigram_ratio = unigram_hits / len(q_tokens)
+        
+        if unigram_hits == 0:
+            return 0.05
 
         # 2. Bigram coverage
         q_bigrams = [f"{q_tokens[i]}_{q_tokens[i+1]}" for i in range(len(q_tokens)-1)]
@@ -45,20 +60,20 @@ class CrossEncoderGrader(BaseGrader):
         bigram_ratio = (bigram_hits / len(q_bigrams)) if q_bigrams else 0.0
 
         # 3. Density / compactness factor
-        # If query terms occur close together in the passage, relevance is much higher
-        first_idx = min([i for i, t in enumerate(p_tokens) if t in set(q_tokens)], default=-1)
-        last_idx = max([i for i, t in enumerate(p_tokens) if t in set(q_tokens)], default=-1)
-        if first_idx != -1 and last_idx != -1 and last_idx >= first_idx:
+        target_tokens = set(q_tokens).union({stem_term(t) for t in q_tokens})
+        matching_indices = [i for i, t in enumerate(p_tokens) if t in target_tokens or stem_term(t) in target_tokens]
+        if matching_indices:
+            first_idx = min(matching_indices)
+            last_idx = max(matching_indices)
             span_len = (last_idx - first_idx) + 1
             span_density = min(1.0, len(q_tokens) / max(1, span_len))
         else:
             span_density = 0.0
 
-        # Combine through non-linear sigmoid-like weighting
-        raw_signal = (unigram_ratio * 0.50) + (bigram_ratio * 0.35) + (span_density * 0.15)
+        # Non-linear weighting
+        raw_signal = (unigram_ratio * 0.60) + (bigram_ratio * 0.25) + (span_density * 0.15)
         
-        # Apply logistic transformation for calibrated probability score
-        score = 1.0 / (1.0 + math.exp(-6.0 * (raw_signal - 0.40)))
+        score = 1.0 / (1.0 + math.exp(-6.0 * (raw_signal - 0.35)))
         return round(score, 3)
 
     async def grade(self, query: str, chunk: DocumentChunk) -> GradingResult:

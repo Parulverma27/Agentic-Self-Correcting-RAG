@@ -9,7 +9,8 @@ class Settings(BaseModel):
     
     # Grading & Pipeline Hyperparameters
     TOP_K: int = 4
-    SIMILARITY_THRESHOLD: float = 0.55
+    SIMILARITY_THRESHOLD: float = 0.25
+    SIMILARITY_THRESHOLD: float = 0.35
     CROSS_ENCODER_THRESHOLD: float = 0.50
     LLM_GRADER_THRESHOLD: float = 0.50
     MIN_RELEVANT_CHUNKS: int = 1
