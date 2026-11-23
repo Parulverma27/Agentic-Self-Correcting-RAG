@@ -21,6 +21,7 @@ class CRAGPipeline:
       - 'llm': Strategy A (LLM Prompt Judge via Ollama qwen2.5:3b)
       - 'cross_encoder': Strategy B (Pretrained Cross-Encoder ms-marco-MiniLM-L-6-v2)
       - 'similarity_threshold': Strategy C (Dense Cosine Similarity Threshold)
+      - 'hybrid_cascade': Strategy D (Uncertainty-Gated Hybrid Cascade Grader)
     """
     def __init__(self, top_k: int = settings.TOP_K, max_retries: int = settings.MAX_REFORMULATION_RETRIES):
         self.top_k = top_k
@@ -44,6 +45,7 @@ class CRAGPipeline:
         trace: List[PipelineTraceStep] = []
         total_llm_calls = 0
         total_grading_latency = 0.0
+        total_retrieval_latency = 0.0
         reformulated_queries: List[str] = []
         retries_count = 0
 
@@ -67,7 +69,10 @@ class CRAGPipeline:
             ))
 
             # Step 1: Retrieval from Dense Vector Store (using current/reformulated query)
+            t_ret0 = time.perf_counter()
             candidate_chunks = vector_store.retrieve(query=current_query, domain=domain, top_k=k)
+            ret_ms = (time.perf_counter() - t_ret0) * 1000.0
+            total_retrieval_latency += ret_ms
             all_retrieved_chunks = candidate_chunks
 
             # Step 2: Relevance Grading via pluggable strategy
@@ -122,7 +127,7 @@ class CRAGPipeline:
         # -----------------------------------------------------------------
         # Step 4: Downstream Generation
         # -----------------------------------------------------------------
-        final_answer, gen_llm_calls = await generator.generate_answer(
+        final_answer, gen_llm_calls, gen_latency_ms = await generator.generate_answer_timed(
             query=query,
             relevant_chunks=relevant_chunks,
             domain=domain
@@ -130,14 +135,15 @@ class CRAGPipeline:
         total_llm_calls += gen_llm_calls
 
         wall_ms = (time.perf_counter() - start_time) * 1000.0
-        total_latency_ms = max(wall_ms, total_grading_latency + min(wall_ms, 5.0))
+        total_latency_ms = max(wall_ms, total_retrieval_latency + total_grading_latency + gen_latency_ms)
 
         trace.append(PipelineTraceStep(
             step="Final Generation",
             details={
                 "relevant_chunks_used": [c.chunk_id for c in relevant_chunks],
                 "final_answer": final_answer,
-                "generation_llm_calls": gen_llm_calls
+                "generation_llm_calls": gen_llm_calls,
+                "generation_latency_ms": round(gen_latency_ms, 3)
             }
         ))
 
@@ -154,6 +160,8 @@ class CRAGPipeline:
             grading_results=all_grading_results,
             total_latency_ms=round(total_latency_ms, 2),
             grading_latency_ms=round(total_grading_latency, 2),
+            retrieval_latency_ms=round(total_retrieval_latency, 3),
+            generation_latency_ms=round(gen_latency_ms, 3),
             total_llm_calls=total_llm_calls,
             pipeline_trace=trace
         )

@@ -8,13 +8,18 @@ from app.schemas import (
     StatisticalComparison,
     EvaluationReport,
     DocumentChunk,
-    GoldBenchmarkItem
+    GoldBenchmarkItem,
+    ThresholdSweepPoint
 )
 from app.graders import get_grader, BaseGrader
 from app.pipeline.crag_pipeline import crag_pipeline
 from app.data.loader import load_gold_benchmark
 from app.vector_store import vector_store
-from app.evaluation.metrics import aggregate_strategy_metrics, compute_token_f1
+from app.evaluation.metrics import (
+    aggregate_strategy_metrics,
+    compute_token_f1,
+    compute_threshold_sweep
+)
 from app.evaluation.statistical_test import perform_paired_ttest, apply_holm_bonferroni
 
 _LATEST_REPORT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "latest_evaluation.json")
@@ -23,8 +28,8 @@ _LATEST_REPORT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "
 class EvaluationEngine:
     """
     Orchestrates the controlled comparative evaluation of relevance-grading strategies
-    across document domains with paired Student's t-test, paired bootstrap resampling,
-    and Holm-Bonferroni multiple-comparison correction.
+    across document domains with ROC-AUC/PR-AUC threshold sweeps, paired Student's t-test,
+    paired bootstrap resampling, and Holm-Bonferroni multiple-comparison correction.
     """
     def __init__(self):
         self.benchmark_items = load_gold_benchmark()
@@ -36,11 +41,11 @@ class EvaluationEngine:
         self,
         strategy: StrategyType,
         domain: str
-    ) -> Tuple[StrategyMetrics, Dict[str, List[float]]]:
+    ) -> Tuple[StrategyMetrics, Dict[str, List[float]], List[ThresholdSweepPoint]]:
         """
         Runs evaluation for a specific strategy on a specific domain.
-        1. Evaluates direct grading accuracy on all hand-labelled gold query-chunk pairs
-           using REAL dense embedding cosine similarity (zero label leakage).
+        1. Evaluates direct grading accuracy and threshold-independent ROC-AUC / PR-AUC
+           on all hand-labelled gold query-chunk pairs using REAL dense embedding cosine similarity.
         2. Evaluates end-to-end Corrective RAG pipeline across all unique domain queries.
         """
         self.reload_benchmark()
@@ -52,6 +57,7 @@ class EvaluationEngine:
 
         y_true: List[bool] = []
         y_pred: List[bool] = []
+        y_scores: List[float] = []
         grading_latencies: List[float] = []
 
         # 1. Direct Grading Accuracy on Gold Query-Chunk Pairs (NO label leakage)
@@ -66,7 +72,10 @@ class EvaluationEngine:
             res = await grader.grade(query=item.query, chunk=chunk)
             y_true.append(item.ground_truth_relevance)
             y_pred.append(res.is_relevant)
+            y_scores.append(res.score)
             grading_latencies.append(res.latency_ms)
+
+        sweep_points = compute_threshold_sweep(y_true, y_scores)
 
         # 2. Downstream End-to-End Pipeline on Unique Queries
         unique_queries: Dict[str, GoldBenchmarkItem] = {}
@@ -77,7 +86,10 @@ class EvaluationEngine:
         predictions: List[str] = []
         ground_truth_answers: List[str] = []
         retries_list: List[int] = []
+        rescued_list: List[bool] = []
         total_latencies: List[float] = []
+        retrieval_latencies: List[float] = []
+        generation_latencies: List[float] = []
         llm_calls_list: List[int] = []
         per_query_f1: List[float] = []
 
@@ -93,7 +105,11 @@ class EvaluationEngine:
             predictions.append(ans)
             ground_truth_answers.append(gt)
             retries_list.append(pipeline_resp.reformulation_retries)
+            rescued = (pipeline_resp.reformulation_retries > 0 and pipeline_resp.graded_relevant_count > 0)
+            rescued_list.append(rescued)
             total_latencies.append(pipeline_resp.total_latency_ms)
+            retrieval_latencies.append(pipeline_resp.retrieval_latency_ms)
+            generation_latencies.append(pipeline_resp.generation_latency_ms)
             llm_calls_list.append(pipeline_resp.total_llm_calls)
 
             f1 = compute_token_f1(ans, gt)
@@ -109,7 +125,11 @@ class EvaluationEngine:
             retries_list=retries_list,
             grading_latencies=grading_latencies,
             total_latencies=total_latencies,
-            llm_calls_list=llm_calls_list
+            llm_calls_list=llm_calls_list,
+            y_scores=y_scores,
+            retrieval_latencies=retrieval_latencies,
+            generation_latencies=generation_latencies,
+            rescued_list=rescued_list
         )
 
         raw_vectors = {
@@ -118,7 +138,7 @@ class EvaluationEngine:
             "llm_calls": [float(x) for x in llm_calls_list]
         }
 
-        return metrics, raw_vectors
+        return metrics, raw_vectors, sweep_points
 
     def _build_dynamic_summary(
         self,
@@ -136,17 +156,20 @@ class EvaluationEngine:
         for s_name, label in [
             ("llm", "Strategy A (LLM Judge - qwen2.5:3b)"),
             ("cross_encoder", "Strategy B (Cross-Encoder - ms-marco-MiniLM-L-6-v2)"),
-            ("similarity_threshold", "Strategy C (Similarity Threshold - all-MiniLM-L6-v2)")
+            ("similarity_threshold", "Strategy C (Similarity Threshold - all-MiniLM-L6-v2)"),
+            ("hybrid_cascade", "Strategy D (Uncertainty-Gated Hybrid Cascade)")
         ]:
             rows = by_strat.get(s_name, [])
             if rows:
                 avg_g_f1 = sum(r.f1_score for r in rows) / len(rows)
+                avg_roc = sum((r.roc_auc or 0.0) for r in rows) / len(rows)
                 avg_ans_f1 = sum(r.token_f1 for r in rows) / len(rows)
                 avg_lat = sum(r.avg_grading_latency_ms for r in rows) / len(rows)
                 avg_llm = sum(r.avg_llm_calls_per_query for r in rows) / len(rows)
                 parts.append(
-                    f"{label}: grading F1={avg_g_f1*100:.1f}%, answer F1={avg_ans_f1*100:.1f}%, "
-                    f"grading latency={avg_lat:.1f} ms/chunk, {avg_llm:.1f} LLM calls/query"
+                    f"{label}: grading F1={avg_g_f1*100:.1f}% (ROC-AUC={avg_roc:.3f}), "
+                    f"answer F1={avg_ans_f1*100:.1f}%, grading latency={avg_lat:.1f} ms/chunk, "
+                    f"{avg_llm:.2f} LLM calls/query"
                 )
 
         sig_count = sum(1 for s in significance_results if s.statistically_significant)
@@ -162,24 +185,30 @@ class EvaluationEngine:
     async def run_full_study(
         self,
         domains: List[str] = ["hotpotqa", "legal"],
-        strategies: List[StrategyType] = ["llm", "cross_encoder", "similarity_threshold"]
+        strategies: List[StrategyType] = ["llm", "cross_encoder", "similarity_threshold", "hybrid_cascade"]
     ) -> EvaluationReport:
         matrix: List[StrategyMetrics] = []
         significance_results: List[StatisticalComparison] = []
+        threshold_sweeps: Dict[str, List[ThresholdSweepPoint]] = {}
 
         all_raw_data: Dict[Tuple[str, StrategyType], Dict[str, List[float]]] = {}
 
         for domain in domains:
             for strat in strategies:
-                strat_metrics, raw_vecs = await self.evaluate_strategy_on_domain(strat, domain)
+                strat_metrics, raw_vecs, sweep = await self.evaluate_strategy_on_domain(strat, domain)
                 matrix.append(strat_metrics)
                 all_raw_data[(domain, strat)] = raw_vecs
+                threshold_sweeps[f"{strat}_{domain}"] = sweep
 
-        pairs_to_test = [
+        candidate_pairs = [
             ("llm", "cross_encoder"),
             ("llm", "similarity_threshold"),
-            ("cross_encoder", "similarity_threshold")
+            ("cross_encoder", "similarity_threshold"),
+            ("hybrid_cascade", "llm"),
+            ("hybrid_cascade", "cross_encoder"),
+            ("hybrid_cascade", "similarity_threshold"),
         ]
+        pairs_to_test = [(a, b) for (a, b) in candidate_pairs if a in strategies and b in strategies]
 
         f1_tests: List[StatisticalComparison] = []
         lat_tests: List[StatisticalComparison] = []
@@ -220,13 +249,13 @@ class EvaluationEngine:
             strategies_evaluated=strategies,
             matrix=matrix,
             statistical_significance=significance_results,
+            threshold_sweeps=threshold_sweeps,
             summary_findings=summary,
             timestamp=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
             total_gold_pairs=len(self.benchmark_items)
         )
 
-        # Persist full study if both domains and all 3 strategies were evaluated
-        if set(domains) >= {"hotpotqa", "legal"} and len(strategies) == 3:
+        if set(domains) >= {"hotpotqa", "legal"} and len(strategies) >= 3:
             self.save_report(report)
 
         return report

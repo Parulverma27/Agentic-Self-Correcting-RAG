@@ -3,22 +3,24 @@
 
 export const initialStats = {
   domains: 2,
-  domainsText: "HotpotQA & Legal",
-  strategies: 3,
-  strategiesText: "LLM (qwen2.5:3b) | Cross-Encoder | Cosine",
+  domainsText: "HotpotQA & Legal (200 Chunks)",
+  strategies: 4,
+  strategiesText: "LLM | Cross-Encoder | Cosine | Hybrid Cascade",
   queries: "60",
   queriesText: "30 per domain (120 gold pairs)",
   completed: "100%",
-  completedText: "Empirically validated"
+  completedText: "ROC-AUC & Paired Stats Validated"
 };
 
 export const recentResultsData = [
-  { strategy: "LLM-prompt judge (qwen2.5:3b)", domain: "HotpotQA", gradingF1: 91.8, em: 83.3, f1: 79.4, latency: "2.84s" },
-  { strategy: "Cross-encoder (ms-marco-MiniLM)", domain: "HotpotQA", gradingF1: 87.0, em: 76.7, f1: 72.1, latency: "0.06s" },
-  { strategy: "Similarity threshold (MiniLM-L6)", domain: "HotpotQA", gradingF1: 80.0, em: 63.3, f1: 58.6, latency: "0.01s" },
-  { strategy: "LLM-prompt judge (qwen2.5:3b)", domain: "Legal", gradingF1: 90.3, em: 80.0, f1: 76.8, latency: "2.91s" },
-  { strategy: "Cross-encoder (ms-marco-MiniLM)", domain: "Legal", gradingF1: 84.5, em: 73.3, f1: 69.5, latency: "0.06s" },
-  { strategy: "Similarity threshold (MiniLM-L6)", domain: "Legal", gradingF1: 76.9, em: 53.3, f1: 49.2, latency: "0.01s" }
+  { strategy: "Hybrid Cascade (Proposed Strategy D)", domain: "HotpotQA", gradingF1: 88.2, em: 96.7, f1: 48.4, latency: "0.75s" },
+  { strategy: "Cross-encoder (ms-marco-MiniLM)", domain: "HotpotQA", gradingF1: 87.0, em: 96.7, f1: 47.5, latency: "0.10s" },
+  { strategy: "Similarity threshold (MiniLM-L6)", domain: "HotpotQA", gradingF1: 80.0, em: 93.3, f1: 39.0, latency: "0.01s" },
+  { strategy: "LLM-prompt judge (qwen2.5:3b)", domain: "HotpotQA", gradingF1: 78.6, em: 73.3, f1: 44.5, latency: "14.60s" },
+  { strategy: "Hybrid Cascade (Proposed Strategy D)", domain: "Legal", gradingF1: 84.5, em: 96.7, f1: 35.8, latency: "1.26s" },
+  { strategy: "Cross-encoder (ms-marco-MiniLM)", domain: "Legal", gradingF1: 84.5, em: 96.7, f1: 34.2, latency: "0.12s" },
+  { strategy: "Similarity threshold (MiniLM-L6)", domain: "Legal", gradingF1: 76.9, em: 96.7, f1: 26.1, latency: "0.01s" },
+  { strategy: "LLM-prompt judge (qwen2.5:3b)", domain: "Legal", gradingF1: 63.6, em: 46.7, f1: 30.2, latency: "18.99s" }
 ];
 
 export const uploadedDocuments = [
@@ -107,6 +109,24 @@ export const gradingStrategies = [
     threshold: 0.45,
     model: "SentenceTransformer (all-MiniLM-L6-v2) + FAISS",
     latencyDesc: "Negligible (< 0.1 ms)"
+  },
+  {
+    id: "hybrid_cascade",
+    code: "Strategy D (Proposed)",
+    name: "Uncertainty-Gated Hybrid Cascade",
+    theme: "purple",
+    badgeBg: "#fef3c7",
+    badgeBorder: "#fde68a",
+    badgeColor: "#d97706",
+    btnColor: "#d97706",
+    features: [
+      { text: "Stage 1 Cosine Gate (<0.30) + Stage 2 Cross-Encoder (>=0.65 / <=0.35)", positive: true },
+      { text: "Escalates ONLY ambiguous chunks (0.35 < s_B < 0.65) to LLM Judge", positive: true },
+      { text: "Highest Grading F1 (88.2% HP) & Answer F1 at 5.7x lower LLM cost", positive: true }
+    ],
+    threshold: 0.50,
+    model: "Cosine Gate + ms-marco-MiniLM-L-6-v2 + Selective qwen2.5:3b",
+    latencyDesc: "Adaptive (~90–120 ms/chunk avg; 80%+ resolved in 0 LLM calls)"
   }
 ];
 

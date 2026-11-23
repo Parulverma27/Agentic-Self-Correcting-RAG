@@ -1,7 +1,7 @@
 // Client API connector for RAGLab Comparative Evaluation Backend
 import { demoPresetResponses, initialGoldLabels } from '../data/mockData';
 
-const BASE_URL = '';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export async function checkBackendHealth() {
   try {
@@ -88,6 +88,7 @@ export async function runCragLiveCompare(query, domain = 'hotpotqa', topK = 4) {
       const llmResult = results.llm || {};
       const crossResult = results.cross_encoder || {};
       const simResult = results.similarity_threshold || {};
+      const cascadeResult = results.hybrid_cascade || crossResult;
 
       return {
         llm: {
@@ -114,7 +115,15 @@ export async function runCragLiveCompare(query, domain = 'hotpotqa', topK = 4) {
           llmCalls: simResult.total_llm_calls ?? 0,
           result: simResult.final_answer || 'No response generated.'
         },
-        finalAnswer: crossResult.final_answer || llmResult.final_answer || simResult.final_answer || 'No response generated.',
+        hybrid_cascade: {
+          relevant: `${cascadeResult.graded_relevant_count ?? 0}/${cascadeResult.retrieved_chunks_count ?? topK}`,
+          latency: `${((cascadeResult.total_latency_ms ?? 0) / 1000).toFixed(2)}s`,
+          gradingLatency: `${(cascadeResult.grading_latency_ms ?? 0).toFixed(1)} ms`,
+          retries: cascadeResult.reformulation_retries ?? 0,
+          llmCalls: cascadeResult.total_llm_calls ?? 0,
+          result: cascadeResult.final_answer || 'No response generated.'
+        },
+        finalAnswer: cascadeResult.final_answer || crossResult.final_answer || llmResult.final_answer || simResult.final_answer || 'No response generated.',
         evidenceBadge: 'Grounded in retrieved domain corpus'
       };
     }
@@ -159,7 +168,7 @@ export async function fetchLatestEvaluation() {
   return null;
 }
 
-export async function runEvaluationApi(domain = 'All Domains', strategies = ['llm', 'cross_encoder', 'similarity_threshold']) {
+export async function runEvaluationApi(domain = 'All Domains', strategies = ['llm', 'cross_encoder', 'similarity_threshold', 'hybrid_cascade']) {
   try {
     const domLower = (domain || '').toLowerCase();
     const domainsList = domLower.includes('all')

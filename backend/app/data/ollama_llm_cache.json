@@ -1774,5 +1774,875 @@
     "score": 0.1,
     "latency_ms": 2292.33,
     "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2292 ms)."
+  },
+  "1bd9bba522d29248b17acd82": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 13715.31,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (13715 ms)."
+  },
+  "89beca7bff906b49dccdb3bf": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2879.08,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2879 ms)."
+  },
+  "fdd4eff3dc614a52a99725ac": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2898.81,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2899 ms)."
+  },
+  "d0a95b0c2eae6a4a4d52b43d": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2632.67,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2633 ms)."
+  },
+  "19b41c8e38e904bdb5dc9da8": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2784.22,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2784 ms)."
+  },
+  "7c973bdaa6415dfd7ee49d2b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2599.19,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2599 ms)."
+  },
+  "47c3f4ca91c23cc810d9a583": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2417.14,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2417 ms)."
+  },
+  "17eb0594421bd8f04309323d": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3084.94,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3085 ms)."
+  },
+  "f8e72cbd6a2026329c23d2b1": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3037.24,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3037 ms)."
+  },
+  "915b5d288f4c32dfc667696a": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2234.97,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2235 ms)."
+  },
+  "1af31cc2716cd61c9ba2f826": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2741.23,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2741 ms)."
+  },
+  "8fd59b5c857a4b0f677dda3b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2671.56,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2672 ms)."
+  },
+  "ce34a0c4a967b3bba73388a7": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2638.99,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2639 ms)."
+  },
+  "0e2261f239ca4ead74d3ae4f": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2431.05,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2431 ms)."
+  },
+  "d6ba911bdfc5b3f62aaf80a5": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2740.97,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2741 ms)."
+  },
+  "612a6f48629c788343ee5c32": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2472.56,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2473 ms)."
+  },
+  "70f87f8d00fedbc686095ae7": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2869.82,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2870 ms)."
+  },
+  "979d6ade2ba95725369edea2": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2453.8,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2454 ms)."
+  },
+  "942106d83a0108edba00b3f0": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2873.32,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2873 ms)."
+  },
+  "11bceb7788d04dff864fe5f0": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2870.83,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2871 ms)."
+  },
+  "e1cd7d84f11cafbf7f1453e0": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2371.83,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2372 ms)."
+  },
+  "64ec9feed35b2b232ec468d9": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3052.45,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3052 ms)."
+  },
+  "7e85b407c03bf713f4aa453f": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2618.63,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2619 ms)."
+  },
+  "4615998df57518c376d0f3f4": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2883.33,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2883 ms)."
+  },
+  "e1481624c4a5e5562d795bae": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2331.77,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2332 ms)."
+  },
+  "22b27bac8b481d536f38b7a1": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2688.63,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2689 ms)."
+  },
+  "dec808e84e2be8e06bdd630c": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 4008.32,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (4008 ms)."
+  },
+  "26eafc78459f89a09a1c32bb": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2923.96,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2924 ms)."
+  },
+  "b1b7129bd6328ed946cadb23": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3064.98,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3065 ms)."
+  },
+  "c7cfde38077d101bd620ab93": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2764.69,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2765 ms)."
+  },
+  "a6e0f8cc2ff2616255d76c78": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3107.92,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3108 ms)."
+  },
+  "7f5474855cb06d512aa65aac": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2742.46,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2742 ms)."
+  },
+  "7f3c762fa48b20ed58c51085": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2946.63,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2947 ms)."
+  },
+  "8fa50b31de2fffd15d224dc7": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2790.84,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2791 ms)."
+  },
+  "27697b4d9f1c8779d29c4e58": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2451.59,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2452 ms)."
+  },
+  "39334ca5bf6380d111bd716b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2253.71,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2254 ms)."
+  },
+  "d99eb7cdf32ea8e828c317f2": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 1382.99,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (1383 ms)."
+  },
+  "3cb2ee6051e1ab001ac9f98b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 1901.95,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (1902 ms)."
+  },
+  "93bc8089a499abd01c5eefc5": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3034.54,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3035 ms)."
+  },
+  "94b382da31cdcc3f14441fe7": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2454.64,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2455 ms)."
+  },
+  "dbdd92c277a84687deef8a43": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3212.35,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3212 ms)."
+  },
+  "f85687e297ea11a6e29bd957": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3010.16,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3010 ms)."
+  },
+  "50c01093144092ca6f66975e": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2946.57,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2947 ms)."
+  },
+  "f0eef11fc91e3f6bfbf260a7": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2782.29,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2782 ms)."
+  },
+  "cb0995fe959e0194e9c67a1c": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3062.12,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3062 ms)."
+  },
+  "f6a8b4e198581a50edf6a17b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2833.53,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2834 ms)."
+  },
+  "8f65de12ec1aab8fe0bad536": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3165.34,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3165 ms)."
+  },
+  "fa038b29369d6d3cee66f577": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2584.32,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2584 ms)."
+  },
+  "3b4494196b2f905d6fb6a7d4": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2819.17,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2819 ms)."
+  },
+  "d20cedea3bddc93183692666": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2503.51,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2504 ms)."
+  },
+  "a2471cbe1ec94f8560252fe1": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2458.99,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2459 ms)."
+  },
+  "ebdf50eb1c4ce65c9f0bb3a4": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2872.12,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2872 ms)."
+  },
+  "196e7569e497d83798c9175a": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2556.65,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2557 ms)."
+  },
+  "3329f00dda2d639fd3bf8f32": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2818.86,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2819 ms)."
+  },
+  "97918ec2b096a8b4da04e9a6": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2549.07,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2549 ms)."
+  },
+  "0d50ba260f1c1f7dee758219": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2954.32,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2954 ms)."
+  },
+  "5bae2e38148e36c02bf804fd": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2394.51,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2395 ms)."
+  },
+  "da9ccad0c3c3dbd5ad248739": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2503.69,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2504 ms)."
+  },
+  "45e1038fa22b91457ca373ee": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2891.97,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2892 ms)."
+  },
+  "0c284ec801c9f6c9190dc096": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2511.09,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2511 ms)."
+  },
+  "e023abc7bec60567a6d0457d": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2870.17,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2870 ms)."
+  },
+  "fcfd30d1d16ff17ee451659d": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2428.19,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2428 ms)."
+  },
+  "0f1315c368e23fa3a9b017f4": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2495.23,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2495 ms)."
+  },
+  "2b82d4a7d6bcd91907db5518": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2911.78,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2912 ms)."
+  },
+  "1452af21850647d9b26fb3d2": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2920.82,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2921 ms)."
+  },
+  "b6965e8c2f12b601f7bdacf2": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3205.7,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3206 ms)."
+  },
+  "c1a72acf372cda23f0dea08d": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3200.39,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3200 ms)."
+  },
+  "b39e840174f50a50d2fc62a5": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3070.68,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3071 ms)."
+  },
+  "949abac37caaf22a704db61d": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2666.65,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2667 ms)."
+  },
+  "5b42ef5c3ec14029c27953a9": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2887.66,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2888 ms)."
+  },
+  "40f7b2d8a30f71d976cc07d2": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3277.95,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3278 ms)."
+  },
+  "ba53c82a6fbd1c27a87380f2": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3609.51,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3610 ms)."
+  },
+  "17e89e2d4b5d9acc59ccd842": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2646.37,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2646 ms)."
+  },
+  "76df1a07b3c4df44a2ab5e12": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3250.92,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3251 ms)."
+  },
+  "f55c5ca883836195a2c97c76": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2620.51,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2621 ms)."
+  },
+  "cde20a9dd748b5cf4620e63d": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2480.3,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2480 ms)."
+  },
+  "54b435339bed94317d8ef884": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3124.29,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3124 ms)."
+  },
+  "918d928455736de378c9ecb8": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2606.37,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2606 ms)."
+  },
+  "067a3e5cdb7792b1c8079b1c": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2831.72,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2832 ms)."
+  },
+  "c7b245cfdc0850d50e5a9168": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3185.6,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3186 ms)."
+  },
+  "8fb39100dc4a84ba2093ff8c": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3032.6,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3033 ms)."
+  },
+  "2f8d75e5691d4701ee90b86e": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2548.47,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2548 ms)."
+  },
+  "5ffa311dd2e60fcc8583e748": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2737.91,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2738 ms)."
+  },
+  "bda7083b8be7f0eab1a3ff52": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2799.07,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2799 ms)."
+  },
+  "8e6b5f639c52d9a090e33a7a": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2692.0,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2692 ms)."
+  },
+  "5136dd6e365e9119a3012e3b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2596.95,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2597 ms)."
+  },
+  "9121c9187114f5432a76bf59": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3274.04,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3274 ms)."
+  },
+  "e0ea701a962c0e65a97a0439": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2666.16,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2666 ms)."
+  },
+  "b4fd100b60c275bb06cbb298": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2838.74,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2839 ms)."
+  },
+  "6e4f628d8969d9c312290460": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2730.08,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2730 ms)."
+  },
+  "50b7d6d9078616ea5137bddc": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2982.15,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2982 ms)."
+  },
+  "353da343c6727563dd0df64f": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2744.95,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2745 ms)."
+  },
+  "88f3932341c14c52a3017339": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2713.54,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2714 ms)."
+  },
+  "30e1a847866da38eab04afc3": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3749.39,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3749 ms)."
+  },
+  "07394043ee059e34e487f950": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3055.65,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3056 ms)."
+  },
+  "837818194618d5ad77d87b01": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 1753.34,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (1753 ms)."
+  },
+  "ac3f2555033f929e48a61882": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2985.66,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2986 ms)."
+  },
+  "d7b87e2e26eae67641b3a1f6": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2773.13,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2773 ms)."
+  },
+  "9a4b53c079bee34c843a1af7": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2917.22,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2917 ms)."
+  },
+  "a02a180d875b9061968bc691": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3138.56,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3139 ms)."
+  },
+  "12063443f9bc05d0c2397b77": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3001.0,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3001 ms)."
+  },
+  "b3c3405157a3d5fd2007039f": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2932.71,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2933 ms)."
+  },
+  "f408184bf0b1ab46e05dfea3": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2666.52,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2667 ms)."
+  },
+  "1189d549b78caeb856f3fc15": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2650.87,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2651 ms)."
+  },
+  "ba85691319e8f1760ed68e27": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2977.75,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2978 ms)."
+  },
+  "17b886d1fdd3ddc85b70f826": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2670.88,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2671 ms)."
+  },
+  "564146c7e5dba16d7d5e3295": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2610.27,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2610 ms)."
+  },
+  "d2b31e527e6a14d2a7cfc201": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2805.01,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2805 ms)."
+  },
+  "c24eec02cdcec01a31d89e97": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2725.81,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2726 ms)."
+  },
+  "5ca9f131a316c41d40fa12e5": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3196.89,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3197 ms)."
+  },
+  "10924c2b6e6b279b4282109f": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3341.91,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3342 ms)."
+  },
+  "94b0183f390d33615058f5b2": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2818.88,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2819 ms)."
+  },
+  "8aec267c4bcc95bcb8e05010": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3062.2,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3062 ms)."
+  },
+  "a5bfc7ef35eee299e3147a0b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2698.23,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2698 ms)."
+  },
+  "2423b1c068c733adae88ebfe": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3154.06,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3154 ms)."
+  },
+  "2fc68c4bee6428a16adaffc8": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2903.95,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2904 ms)."
+  },
+  "9a0dcabdeca94d54af3834e4": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2759.76,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2760 ms)."
+  },
+  "98eaa987e37286d3150133fc": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3153.8,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3154 ms)."
+  },
+  "05b1f785ad0f6a35b3615db9": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3226.8,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3227 ms)."
+  },
+  "7744406591eb479d9636df6c": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2657.07,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2657 ms)."
+  },
+  "c62db21ad47519a9bf83a867": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2592.45,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2592 ms)."
+  },
+  "a86a472df91dd5fc829cf365": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3032.67,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3033 ms)."
+  },
+  "312f5874ce204087deaf60d1": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2603.96,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2604 ms)."
+  },
+  "8d93aeeddaad91898e012060": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3241.59,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3242 ms)."
+  },
+  "385d9bbc9ce7ce66a0c23d9b": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3035.79,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3036 ms)."
+  },
+  "117dd7ce5c5820c65563a29f": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2735.92,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2736 ms)."
+  },
+  "beee1134e762d7756b9cb610": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3109.47,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3109 ms)."
+  },
+  "613534c2c0424d5bafd2dc7f": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2660.87,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2661 ms)."
+  },
+  "aa377badcab476400f5bdff5": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3242.41,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3242 ms)."
+  },
+  "778ccd0b84dd75fb39783ead": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2677.87,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2678 ms)."
+  },
+  "e16df987f7db02d85ebc6c2a": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2805.23,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2805 ms)."
+  },
+  "2a1a25c6bcf8138e09d5e6ee": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3061.77,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3062 ms)."
+  },
+  "5647165ee85557ba96d70542": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3191.62,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3192 ms)."
+  },
+  "52e4270d8f32e2915e446219": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2709.81,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2710 ms)."
+  },
+  "2a272f24db1c384fab77668e": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3286.39,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3286 ms)."
+  },
+  "7acd8cbc92c849cbf2338558": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 3192.93,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (3193 ms)."
+  },
+  "e33bc199fbb4535cee0876fe": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2934.68,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2935 ms)."
+  },
+  "baee185df8abf27addb07cd0": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2672.95,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2673 ms)."
+  },
+  "e7b8aa6aec44e3407f9e7a10": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2647.45,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2647 ms)."
+  },
+  "c0cb14441ec9e4f355267778": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2657.16,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2657 ms)."
+  },
+  "87a3ee2987ea8c3be212fd7e": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2826.71,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2827 ms)."
+  },
+  "d2c26b151171a3e925f8ac98": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2692.59,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2693 ms)."
+  },
+  "b9317c65dc4f127fc91bdac6": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2703.7,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2704 ms)."
+  },
+  "55f6cacc88c48bb636b736ee": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2612.89,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2613 ms)."
+  },
+  "56fd2eaaca3e8ae8dfb232af": {
+    "is_relevant": false,
+    "score": 0.1,
+    "latency_ms": 2590.2,
+    "reasoning": "Ollama (qwen2.5:3b) judged 'no' (2590 ms)."
   }
 }

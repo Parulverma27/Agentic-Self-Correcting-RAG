@@ -30,6 +30,7 @@ async def test_graders_endpoint():
         assert "llm" in strategies
         assert "cross_encoder" in strategies
         assert "similarity_threshold" in strategies
+        assert "hybrid_cascade" in strategies
 
 @pytest.mark.asyncio
 async def test_crag_query_endpoint():
@@ -67,6 +68,7 @@ async def test_compare_live_endpoint():
         assert "llm" in data["results"]
         assert "cross_encoder" in data["results"]
         assert "similarity_threshold" in data["results"]
+        assert "hybrid_cascade" in data["results"]
 
 @pytest.mark.asyncio
 async def test_domains_endpoint():

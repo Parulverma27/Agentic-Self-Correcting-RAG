@@ -12,6 +12,9 @@ class Settings(BaseModel):
     SIMILARITY_THRESHOLD: float = 0.45
     CROSS_ENCODER_THRESHOLD: float = 0.50
     LLM_GRADER_THRESHOLD: float = 0.50
+    CASCADE_COSINE_MIN: float = 0.30
+    CASCADE_CE_LOW: float = 0.35
+    CASCADE_CE_HIGH: float = 0.65
     MIN_RELEVANT_CHUNKS: int = 1
     MAX_REFORMULATION_RETRIES: int = 2
     BOOTSTRAP_ITERATIONS: int = 2000

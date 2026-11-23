@@ -3,7 +3,8 @@ from pydantic import BaseModel, Field
 
 # Domain type definition
 DomainType = Literal["hotpotqa", "legal"]
-StrategyType = Literal["llm", "cross_encoder", "similarity_threshold"]
+StrategyType = Literal["llm", "cross_encoder", "similarity_threshold", "hybrid_cascade"]
+
 
 class DocumentChunk(BaseModel):
     chunk_id: str
@@ -11,6 +12,7 @@ class DocumentChunk(BaseModel):
     domain: str
     metadata: Dict[str, Any] = Field(default_factory=dict)
     similarity_score: Optional[float] = None
+
 
 class GradingResult(BaseModel):
     chunk_id: str
@@ -22,9 +24,11 @@ class GradingResult(BaseModel):
     used_fallback: bool = False
     reasoning: Optional[str] = None
 
+
 class PipelineTraceStep(BaseModel):
     step: str
     details: Dict[str, Any]
+
 
 class PipelineResponse(BaseModel):
     query: str
@@ -39,13 +43,17 @@ class PipelineResponse(BaseModel):
     grading_results: List[GradingResult]
     total_latency_ms: float
     grading_latency_ms: float
+    retrieval_latency_ms: float = 0.0
+    generation_latency_ms: float = 0.0
     total_llm_calls: int
     pipeline_trace: List[PipelineTraceStep]
+
 
 class SideBySideComparisonResponse(BaseModel):
     query: str
     domain: str
     results: Dict[StrategyType, PipelineResponse]
+
 
 class QueryRequest(BaseModel):
     query: str
@@ -53,10 +61,12 @@ class QueryRequest(BaseModel):
     strategy: StrategyType = "llm"
     top_k: Optional[int] = 4
 
+
 class CompareQueryRequest(BaseModel):
     query: str
     domain: DomainType = "hotpotqa"
     top_k: Optional[int] = 4
+
 
 class DocQARequest(BaseModel):
     query: str
@@ -64,10 +74,12 @@ class DocQARequest(BaseModel):
     strategy: StrategyType = "llm"
     top_k: Optional[int] = 4
 
+
 class DocUploadRequest(BaseModel):
     doc_name: str
     doc_text: str
     domain: str = "custom_doc"
+
 
 class GoldBenchmarkItem(BaseModel):
     pair_id: str
@@ -78,6 +90,16 @@ class GoldBenchmarkItem(BaseModel):
     domain: str
     ground_truth_relevance: bool
     ground_truth_answer: str
+
+
+class ThresholdSweepPoint(BaseModel):
+    threshold: float
+    precision: float
+    recall: float
+    f1_score: float
+    accuracy: float
+    specificity: float
+
 
 class StrategyMetrics(BaseModel):
     strategy: StrategyType
@@ -91,13 +113,25 @@ class StrategyMetrics(BaseModel):
     accuracy: float
     specificity: float
 
+    # Threshold-Independent Curves (ROC-AUC, PR-AUC & Optimal Threshold Calibration)
+    roc_auc: Optional[float] = None
+    pr_auc: Optional[float] = None
+    optimal_threshold: Optional[float] = None
+    optimal_f1: Optional[float] = None
+
     # Downstream End-to-End Metrics
     exact_match: float
+    strict_exact_match: Optional[float] = None
+    answer_containment: Optional[float] = None
     token_f1: float
     retry_rate: float
+    retry_rescue_rate: Optional[float] = None
     avg_grading_latency_ms: float
+    avg_retrieval_latency_ms: Optional[float] = None
+    avg_generation_latency_ms: Optional[float] = None
     avg_total_latency_ms: float
     avg_llm_calls_per_query: float
+
 
 class StatisticalComparison(BaseModel):
     strategy_a: StrategyType
@@ -116,11 +150,13 @@ class StatisticalComparison(BaseModel):
     confidence_interval_95: List[float]
     interpretation: str
 
+
 class EvaluationReport(BaseModel):
     domains_evaluated: List[str]
     strategies_evaluated: List[StrategyType]
     matrix: List[StrategyMetrics]
     statistical_significance: List[StatisticalComparison]
+    threshold_sweeps: Optional[Dict[str, List[ThresholdSweepPoint]]] = None
     summary_findings: str
     timestamp: Optional[str] = None
     total_gold_pairs: Optional[int] = None

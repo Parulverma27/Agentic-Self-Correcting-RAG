@@ -59,7 +59,7 @@ async def health_check():
         "project": settings.PROJECT_NAME,
         "version": settings.VERSION,
         "domains_indexed": list(vector_store.chunks.keys()),
-        "strategies_available": ["llm", "cross_encoder", "similarity_threshold"],
+        "strategies_available": ["llm", "cross_encoder", "similarity_threshold", "hybrid_cascade"],
         "models": {
             "llm": settings.OLLAMA_LLM_MODEL,
             "cross_encoder": settings.CROSS_ENCODER_MODEL,
@@ -118,6 +118,15 @@ async def get_graders():
                 "cost_profile": "Zero LLM calls, Zero auxiliary grading inference",
                 "latency_profile": "Negligible (< 0.1 ms)",
                 "threshold": settings.SIMILARITY_THRESHOLD
+            },
+            {
+                "id": "hybrid_cascade",
+                "name": "Strategy D: Uncertainty-Gated Hybrid Cascade (Proposed)",
+                "model": f"Cosine Gate + {settings.CROSS_ENCODER_MODEL} + Selective {settings.OLLAMA_LLM_MODEL}",
+                "description": "3-stage adaptive cascade: rejects obvious noise via cosine (<0.30), accepts/rejects high-confidence chunks via Cross-Encoder (>=0.65 / <=0.35), and escalates only ambiguous boundary chunks to the LLM Judge.",
+                "cost_profile": "Low (~0.15–0.35 grading LLM calls/query; 80%+ resolved in 0 LLM calls)",
+                "latency_profile": "Adaptive (~35–250 ms/chunk depending on uncertainty escalation)",
+                "threshold": 0.50
             }
         ]
     }
@@ -146,7 +155,7 @@ async def compare_query_live(request: CompareQueryRequest):
     if domain not in vector_store.chunks:
         raise HTTPException(status_code=400, detail=f"Domain '{domain}' is not indexed.")
 
-    strategies: List[StrategyType] = ["llm", "cross_encoder", "similarity_threshold"]
+    strategies: List[StrategyType] = ["llm", "cross_encoder", "similarity_threshold", "hybrid_cascade"]
     results: Dict[StrategyType, PipelineResponse] = {}
 
     for strat in strategies:
@@ -173,14 +182,14 @@ async def get_latest_evaluation():
         return report
     return await evaluation_engine.run_full_study(
         domains=["hotpotqa", "legal"],
-        strategies=["llm", "cross_encoder", "similarity_threshold"]
+        strategies=["llm", "cross_encoder", "similarity_threshold", "hybrid_cascade"]
     )
 
 
 @app.post("/api/eval/run", response_model=EvaluationReport)
 async def run_evaluation(
     domains: List[str] = Body(default=["hotpotqa", "legal"]),
-    strategies: List[StrategyType] = Body(default=["llm", "cross_encoder", "similarity_threshold"])
+    strategies: List[StrategyType] = Body(default=["llm", "cross_encoder", "similarity_threshold", "hybrid_cascade"])
 ):
     """
     Runs the controlled comparative evaluation study across specified domains and grading strategies.

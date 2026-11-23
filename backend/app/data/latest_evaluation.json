@@ -6,7 +6,8 @@
   "strategies_evaluated": [
     "llm",
     "cross_encoder",
-    "similarity_threshold"
+    "similarity_threshold",
+    "hybrid_cascade"
   ],
   "matrix": [
     {
@@ -18,11 +19,20 @@
       "f1_score": 0.7857,
       "accuracy": 0.8,
       "specificity": 0.8667,
+      "roc_auc": 0.8,
+      "pr_auc": 0.7523,
+      "optimal_threshold": 0.15,
+      "optimal_f1": 0.7857,
       "exact_match": 0.7333,
-      "token_f1": 0.4395,
+      "strict_exact_match": 0.2,
+      "answer_containment": 0.7333,
+      "token_f1": 0.445,
       "retry_rate": 0.2667,
+      "retry_rescue_rate": 0.0,
       "avg_grading_latency_ms": 1924.1917,
-      "avg_total_latency_ms": 12451.05,
+      "avg_retrieval_latency_ms": 11.563,
+      "avg_generation_latency_ms": 0.13,
+      "avg_total_latency_ms": 14602.34,
       "avg_llm_calls_per_query": 6.87
     },
     {
@@ -34,11 +44,20 @@
       "f1_score": 0.8696,
       "accuracy": 0.85,
       "specificity": 0.7,
-      "exact_match": 0.9333,
-      "token_f1": 0.5392,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "optimal_threshold": 0.999,
+      "optimal_f1": 1.0,
+      "exact_match": 0.9667,
+      "strict_exact_match": 0.1,
+      "answer_containment": 0.9667,
+      "token_f1": 0.4749,
       "retry_rate": 0.0,
-      "avg_grading_latency_ms": 33.115,
-      "avg_total_latency_ms": 115.81,
+      "retry_rescue_rate": 0.0,
+      "avg_grading_latency_ms": 30.336,
+      "avg_retrieval_latency_ms": 0.288,
+      "avg_generation_latency_ms": 0.18,
+      "avg_total_latency_ms": 100.26,
       "avg_llm_calls_per_query": 1.0
     },
     {
@@ -50,12 +69,46 @@
       "f1_score": 0.8,
       "accuracy": 0.75,
       "specificity": 0.5,
-      "exact_match": 0.9,
-      "token_f1": 0.4894,
+      "roc_auc": 0.9811,
+      "pr_auc": 0.9773,
+      "optimal_threshold": 0.675,
+      "optimal_f1": 0.9677,
+      "exact_match": 0.9333,
+      "strict_exact_match": 0.0667,
+      "answer_containment": 0.9333,
+      "token_f1": 0.3895,
       "retry_rate": 0.0,
-      "avg_grading_latency_ms": 0.0007,
-      "avg_total_latency_ms": 0.38,
+      "retry_rescue_rate": 0.0,
+      "avg_grading_latency_ms": 0.0006,
+      "avg_retrieval_latency_ms": 0.167,
+      "avg_generation_latency_ms": 0.14,
+      "avg_total_latency_ms": 0.42,
       "avg_llm_calls_per_query": 1.0
+    },
+    {
+      "strategy": "hybrid_cascade",
+      "domain": "hotpotqa",
+      "sample_count": 30,
+      "precision": 0.7895,
+      "recall": 1.0,
+      "f1_score": 0.8824,
+      "accuracy": 0.8667,
+      "specificity": 0.7333,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "optimal_threshold": 0.999,
+      "optimal_f1": 1.0,
+      "exact_match": 0.9667,
+      "strict_exact_match": 0.1,
+      "answer_containment": 0.9667,
+      "token_f1": 0.4838,
+      "retry_rate": 0.0,
+      "retry_rescue_rate": 0.0,
+      "avg_grading_latency_ms": 92.6158,
+      "avg_retrieval_latency_ms": 0.295,
+      "avg_generation_latency_ms": 0.19,
+      "avg_total_latency_ms": 745.49,
+      "avg_llm_calls_per_query": 1.23
     },
     {
       "strategy": "llm",
@@ -66,12 +119,21 @@
       "f1_score": 0.6364,
       "accuracy": 0.7333,
       "specificity": 1.0,
+      "roc_auc": 0.7333,
+      "pr_auc": 0.8325,
+      "optimal_threshold": 0.05,
+      "optimal_f1": 0.6667,
       "exact_match": 0.4667,
-      "token_f1": 0.3087,
-      "retry_rate": 0.4333,
+      "strict_exact_match": 0.0667,
+      "answer_containment": 0.4667,
+      "token_f1": 0.3018,
+      "retry_rate": 0.5,
+      "retry_rescue_rate": 0.0,
       "avg_grading_latency_ms": 1822.7417,
-      "avg_total_latency_ms": 13648.96,
-      "avg_llm_calls_per_query": 7.93
+      "avg_retrieval_latency_ms": 28.149,
+      "avg_generation_latency_ms": 0.08,
+      "avg_total_latency_ms": 18993.72,
+      "avg_llm_calls_per_query": 8.5
     },
     {
       "strategy": "cross_encoder",
@@ -82,11 +144,20 @@
       "f1_score": 0.8451,
       "accuracy": 0.8167,
       "specificity": 0.6333,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "optimal_threshold": 0.998,
+      "optimal_f1": 1.0,
       "exact_match": 0.9667,
-      "token_f1": 0.4259,
+      "strict_exact_match": 0.0,
+      "answer_containment": 0.9667,
+      "token_f1": 0.3419,
       "retry_rate": 0.0,
-      "avg_grading_latency_ms": 29.8032,
-      "avg_total_latency_ms": 129.96,
+      "retry_rescue_rate": 0.0,
+      "avg_grading_latency_ms": 31.5203,
+      "avg_retrieval_latency_ms": 0.299,
+      "avg_generation_latency_ms": 0.25,
+      "avg_total_latency_ms": 119.22,
       "avg_llm_calls_per_query": 1.0
     },
     {
@@ -98,12 +169,46 @@
       "f1_score": 0.7692,
       "accuracy": 0.7,
       "specificity": 0.4,
+      "roc_auc": 0.9844,
+      "pr_auc": 0.9827,
+      "optimal_threshold": 0.596,
+      "optimal_f1": 0.9524,
       "exact_match": 0.9667,
-      "token_f1": 0.3416,
+      "strict_exact_match": 0.0,
+      "answer_containment": 0.9667,
+      "token_f1": 0.2612,
       "retry_rate": 0.0,
-      "avg_grading_latency_ms": 0.0004,
-      "avg_total_latency_ms": 0.56,
+      "retry_rescue_rate": 0.0,
+      "avg_grading_latency_ms": 0.0006,
+      "avg_retrieval_latency_ms": 0.213,
+      "avg_generation_latency_ms": 0.28,
+      "avg_total_latency_ms": 0.64,
       "avg_llm_calls_per_query": 1.0
+    },
+    {
+      "strategy": "hybrid_cascade",
+      "domain": "legal",
+      "sample_count": 30,
+      "precision": 0.7317,
+      "recall": 1.0,
+      "f1_score": 0.8451,
+      "accuracy": 0.8167,
+      "specificity": 0.6333,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "optimal_threshold": 0.998,
+      "optimal_f1": 1.0,
+      "exact_match": 0.9667,
+      "strict_exact_match": 0.0,
+      "answer_containment": 0.9667,
+      "token_f1": 0.3578,
+      "retry_rate": 0.0,
+      "retry_rescue_rate": 0.0,
+      "avg_grading_latency_ms": 121.6047,
+      "avg_retrieval_latency_ms": 0.299,
+      "avg_generation_latency_ms": 0.24,
+      "avg_total_latency_ms": 1256.8,
+      "avg_llm_calls_per_query": 1.47
     }
   ],
   "statistical_significance": [
@@ -111,280 +216,1790 @@
       "strategy_a": "llm",
       "strategy_b": "cross_encoder",
       "metric_name": "Answer Token F1 (hotpotqa)",
-      "mean_a": 0.4395,
-      "mean_b": 0.5392,
-      "difference": -0.0996,
-      "t_statistic": -2.1275,
-      "p_value": 0.042,
-      "p_value_holm": 0.126,
-      "bootstrap_p_value": 0.02,
+      "mean_a": 0.445,
+      "mean_b": 0.4749,
+      "difference": -0.0298,
+      "t_statistic": -0.5991,
+      "p_value": 0.55376,
+      "p_value_holm": 1.0,
+      "bootstrap_p_value": 0.541,
       "bootstrap_ci_95": [
-        -0.1947,
-        -0.0136
+        -0.1295,
+        0.0625
       ],
-      "cohens_d": -0.3884,
-      "statistically_significant": true,
+      "cohens_d": -0.1094,
+      "statistically_significant": false,
       "confidence_interval_95": [
-        -0.1954,
-        -0.0039
+        -0.1316,
+        0.072
       ],
-      "interpretation": "Statistically significant difference (paired t=-2.128, p=0.04200 < 0.05, bootstrap p=0.02000, Cohen's d=-0.39, n=30). 'cross_encoder' differs significantly on Answer Token F1 (hotpotqa) with 95% CI [-0.1954, -0.0039]."
+      "interpretation": "No statistically significant difference (paired t=-0.599, p=0.55376 >= 0.05, bootstrap p=0.54100, Cohen's d=-0.11, n=30). Mean difference (-0.0298) is within sampling variation; 95% CI [-0.1316, 0.0720]."
     },
     {
       "strategy_a": "llm",
       "strategy_b": "cross_encoder",
       "metric_name": "End-to-End Latency (hotpotqa)",
-      "mean_a": 12451.046,
-      "mean_b": 115.806,
-      "difference": 12335.24,
-      "t_statistic": 8.5801,
+      "mean_a": 14602.338,
+      "mean_b": 100.2603,
+      "difference": 14502.0777,
+      "t_statistic": 9.2986,
       "p_value": 0.0,
       "p_value_holm": 0.0,
       "bootstrap_p_value": 0.0,
       "bootstrap_ci_95": [
-        9814.1518,
-        15270.3071
+        11688.0492,
+        17727.9489
       ],
-      "cohens_d": 1.5665,
+      "cohens_d": 1.6977,
       "statistically_significant": true,
       "confidence_interval_95": [
-        9394.8844,
-        15275.5956
+        11312.3413,
+        17691.8141
       ],
-      "interpretation": "Statistically significant difference (paired t=8.580, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.57, n=30). 'llm' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [9394.8844, 15275.5956]."
+      "interpretation": "Statistically significant difference (paired t=9.299, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.70, n=30). 'llm' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [11312.3413, 17691.8141]."
     },
     {
       "strategy_a": "llm",
       "strategy_b": "similarity_threshold",
       "metric_name": "Answer Token F1 (hotpotqa)",
-      "mean_a": 0.4395,
-      "mean_b": 0.4894,
-      "difference": -0.0498,
-      "t_statistic": -1.02,
-      "p_value": 0.31615,
-      "p_value_holm": 0.6323,
-      "bootstrap_p_value": 0.287,
+      "mean_a": 0.445,
+      "mean_b": 0.3895,
+      "difference": 0.0555,
+      "t_statistic": 1.0651,
+      "p_value": 0.29562,
+      "p_value_holm": 1.0,
+      "bootstrap_p_value": 0.286,
       "bootstrap_ci_95": [
-        -0.1487,
-        0.0418
+        -0.0468,
+        0.1532
       ],
-      "cohens_d": -0.1862,
+      "cohens_d": 0.1945,
       "statistically_significant": false,
       "confidence_interval_95": [
-        -0.1497,
-        0.0501
+        -0.0511,
+        0.1621
       ],
-      "interpretation": "No statistically significant difference (paired t=-1.020, p=0.31615 >= 0.05, bootstrap p=0.28700, Cohen's d=-0.19, n=30). Mean difference (-0.0498) is within sampling variation; 95% CI [-0.1497, 0.0501]."
+      "interpretation": "No statistically significant difference (paired t=1.065, p=0.29562 >= 0.05, bootstrap p=0.28600, Cohen's d=0.19, n=30). Mean difference (+0.0555) is within sampling variation; 95% CI [-0.0511, 0.1621]."
     },
     {
       "strategy_a": "llm",
       "strategy_b": "similarity_threshold",
       "metric_name": "End-to-End Latency (hotpotqa)",
-      "mean_a": 12451.046,
-      "mean_b": 0.3813,
-      "difference": 12450.6647,
-      "t_statistic": 8.6636,
+      "mean_a": 14602.338,
+      "mean_b": 0.417,
+      "difference": 14601.921,
+      "t_statistic": 9.3636,
       "p_value": 0.0,
       "p_value_holm": 0.0,
       "bootstrap_p_value": 0.0,
       "bootstrap_ci_95": [
-        9933.4376,
-        15387.3845
+        11788.4276,
+        17828.3425
       ],
-      "cohens_d": 1.5818,
+      "cohens_d": 1.7095,
       "statistically_significant": true,
       "confidence_interval_95": [
-        9511.4259,
-        15389.9035
+        11412.5133,
+        17791.3287
       ],
-      "interpretation": "Statistically significant difference (paired t=8.664, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.58, n=30). 'llm' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [9511.4259, 15389.9035]."
+      "interpretation": "Statistically significant difference (paired t=9.364, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.71, n=30). 'llm' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [11412.5133, 17791.3287]."
     },
     {
       "strategy_a": "cross_encoder",
       "strategy_b": "similarity_threshold",
       "metric_name": "Answer Token F1 (hotpotqa)",
-      "mean_a": 0.5392,
-      "mean_b": 0.4894,
-      "difference": 0.0498,
-      "t_statistic": 2.6862,
-      "p_value": 0.01183,
-      "p_value_holm": 0.05915,
-      "bootstrap_p_value": 0.001,
+      "mean_a": 0.4749,
+      "mean_b": 0.3895,
+      "difference": 0.0853,
+      "t_statistic": 3.1574,
+      "p_value": 0.0037,
+      "p_value_holm": 0.0333,
+      "bootstrap_p_value": 0.0,
       "bootstrap_ci_95": [
-        0.0159,
-        0.0868
+        0.0352,
+        0.1427
       ],
-      "cohens_d": 0.4904,
+      "cohens_d": 0.5765,
       "statistically_significant": true,
       "confidence_interval_95": [
-        0.0119,
-        0.0877
+        0.0301,
+        0.1406
       ],
-      "interpretation": "Statistically significant difference (paired t=2.686, p=0.01183 < 0.05, bootstrap p=0.00100, Cohen's d=0.49, n=30). 'cross_encoder' differs significantly on Answer Token F1 (hotpotqa) with 95% CI [0.0119, 0.0877]."
+      "interpretation": "Statistically significant difference (paired t=3.157, p=0.00370 < 0.05, bootstrap p=0.00000, Cohen's d=0.58, n=30). 'cross_encoder' differs significantly on Answer Token F1 (hotpotqa) with 95% CI [0.0301, 0.1406]."
     },
     {
       "strategy_a": "cross_encoder",
       "strategy_b": "similarity_threshold",
       "metric_name": "End-to-End Latency (hotpotqa)",
-      "mean_a": 115.806,
-      "mean_b": 0.3813,
-      "difference": 115.4247,
-      "t_statistic": 40.9859,
+      "mean_a": 100.2603,
+      "mean_b": 0.417,
+      "difference": 99.8433,
+      "t_statistic": 109.8063,
       "p_value": 0.0,
       "p_value_holm": 0.0,
       "bootstrap_p_value": 0.0,
       "bootstrap_ci_95": [
-        111.3952,
-        121.3272
+        98.1069,
+        101.5818
       ],
-      "cohens_d": 7.483,
+      "cohens_d": 20.0478,
       "statistically_significant": true,
       "confidence_interval_95": [
-        109.6649,
-        121.1844
+        97.9837,
+        101.703
       ],
-      "interpretation": "Statistically significant difference (paired t=40.986, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=7.48, n=30). 'cross_encoder' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [109.6649, 121.1844]."
+      "interpretation": "Statistically significant difference (paired t=109.806, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=20.05, n=30). 'cross_encoder' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [97.9837, 101.7030]."
     },
     {
-      "strategy_a": "llm",
-      "strategy_b": "cross_encoder",
-      "metric_name": "Answer Token F1 (legal)",
-      "mean_a": 0.3087,
-      "mean_b": 0.4259,
-      "difference": -0.1172,
-      "t_statistic": -2.36,
-      "p_value": 0.02522,
-      "p_value_holm": 0.10088,
-      "bootstrap_p_value": 0.02,
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "llm",
+      "metric_name": "Answer Token F1 (hotpotqa)",
+      "mean_a": 0.4838,
+      "mean_b": 0.445,
+      "difference": 0.0388,
+      "t_statistic": 0.7639,
+      "p_value": 0.4511,
+      "p_value_holm": 1.0,
+      "bootstrap_p_value": 0.437,
       "bootstrap_ci_95": [
-        -0.2064,
-        -0.0186
+        -0.0582,
+        0.1424
       ],
-      "cohens_d": -0.4309,
-      "statistically_significant": true,
-      "confidence_interval_95": [
-        -0.2187,
-        -0.0156
-      ],
-      "interpretation": "Statistically significant difference (paired t=-2.360, p=0.02522 < 0.05, bootstrap p=0.02000, Cohen's d=-0.43, n=30). 'cross_encoder' differs significantly on Answer Token F1 (legal) with 95% CI [-0.2187, -0.0156]."
-    },
-    {
-      "strategy_a": "llm",
-      "strategy_b": "cross_encoder",
-      "metric_name": "End-to-End Latency (legal)",
-      "mean_a": 13648.96,
-      "mean_b": 129.9637,
-      "difference": 13518.9963,
-      "t_statistic": 10.2459,
-      "p_value": 0.0,
-      "p_value_holm": 0.0,
-      "bootstrap_p_value": 0.0,
-      "bootstrap_ci_95": [
-        11028.9124,
-        16130.2553
-      ],
-      "cohens_d": 1.8706,
-      "statistically_significant": true,
-      "confidence_interval_95": [
-        10820.4101,
-        16217.5826
-      ],
-      "interpretation": "Statistically significant difference (paired t=10.246, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.87, n=30). 'llm' differs significantly on End-to-End Latency (legal) with 95% CI [10820.4101, 16217.5826]."
-    },
-    {
-      "strategy_a": "llm",
-      "strategy_b": "similarity_threshold",
-      "metric_name": "Answer Token F1 (legal)",
-      "mean_a": 0.3087,
-      "mean_b": 0.3416,
-      "difference": -0.0329,
-      "t_statistic": -0.631,
-      "p_value": 0.53299,
-      "p_value_holm": 0.6323,
-      "bootstrap_p_value": 0.556,
-      "bootstrap_ci_95": [
-        -0.1287,
-        0.0714
-      ],
-      "cohens_d": -0.1152,
+      "cohens_d": 0.1395,
       "statistically_significant": false,
       "confidence_interval_95": [
-        -0.1396,
-        0.0738
+        -0.065,
+        0.1425
       ],
-      "interpretation": "No statistically significant difference (paired t=-0.631, p=0.53299 >= 0.05, bootstrap p=0.55600, Cohen's d=-0.12, n=30). Mean difference (-0.0329) is within sampling variation; 95% CI [-0.1396, 0.0738]."
+      "interpretation": "No statistically significant difference (paired t=0.764, p=0.45110 >= 0.05, bootstrap p=0.43700, Cohen's d=0.14, n=30). Mean difference (+0.0388) is within sampling variation; 95% CI [-0.0650, 0.1425]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "llm",
+      "metric_name": "End-to-End Latency (hotpotqa)",
+      "mean_a": 745.4917,
+      "mean_b": 14602.338,
+      "difference": -13856.8463,
+      "t_statistic": -9.1036,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        -16941.9009,
+        -11113.4339
+      ],
+      "cohens_d": -1.6621,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        -16969.9404,
+        -10743.7523
+      ],
+      "interpretation": "Statistically significant difference (paired t=-9.104, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=-1.66, n=30). 'llm' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [-16969.9404, -10743.7523]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "cross_encoder",
+      "metric_name": "Answer Token F1 (hotpotqa)",
+      "mean_a": 0.4838,
+      "mean_b": 0.4749,
+      "difference": 0.0089,
+      "t_statistic": 1.4322,
+      "p_value": 0.16279,
+      "p_value_holm": 1.0,
+      "bootstrap_p_value": 0.25,
+      "bootstrap_ci_95": [
+        0.0,
+        0.0228
+      ],
+      "cohens_d": 0.2615,
+      "statistically_significant": false,
+      "confidence_interval_95": [
+        -0.0038,
+        0.0217
+      ],
+      "interpretation": "No statistically significant difference (paired t=1.432, p=0.16279 >= 0.05, bootstrap p=0.25000, Cohen's d=0.26, n=30). Mean difference (+0.0089) is within sampling variation; 95% CI [-0.0038, 0.0217]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "cross_encoder",
+      "metric_name": "End-to-End Latency (hotpotqa)",
+      "mean_a": 745.4917,
+      "mean_b": 100.2603,
+      "difference": 645.2313,
+      "t_statistic": 2.4872,
+      "p_value": 0.01888,
+      "p_value_holm": 0.01888,
+      "bootstrap_p_value": 0.003,
+      "bootstrap_ci_95": [
+        184.3181,
+        1173.9027
+      ],
+      "cohens_d": 0.4541,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        114.6459,
+        1175.8168
+      ],
+      "interpretation": "Statistically significant difference (paired t=2.487, p=0.01888 < 0.05, bootstrap p=0.00300, Cohen's d=0.45, n=30). 'hybrid_cascade' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [114.6459, 1175.8168]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "Answer Token F1 (hotpotqa)",
+      "mean_a": 0.4838,
+      "mean_b": 0.3895,
+      "difference": 0.0943,
+      "t_statistic": 3.5059,
+      "p_value": 0.0015,
+      "p_value_holm": 0.015,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        0.0465,
+        0.1491
+      ],
+      "cohens_d": 0.6401,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        0.0393,
+        0.1492
+      ],
+      "interpretation": "Statistically significant difference (paired t=3.506, p=0.00150 < 0.05, bootstrap p=0.00000, Cohen's d=0.64, n=30). 'hybrid_cascade' differs significantly on Answer Token F1 (hotpotqa) with 95% CI [0.0393, 0.1492]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "End-to-End Latency (hotpotqa)",
+      "mean_a": 745.4917,
+      "mean_b": 0.417,
+      "difference": 745.0747,
+      "t_statistic": 2.8725,
+      "p_value": 0.00754,
+      "p_value_holm": 0.01508,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        285.2164,
+        1273.3259
+      ],
+      "cohens_d": 0.5244,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        214.5703,
+        1275.579
+      ],
+      "interpretation": "Statistically significant difference (paired t=2.872, p=0.00754 < 0.05, bootstrap p=0.00000, Cohen's d=0.52, n=30). 'hybrid_cascade' differs significantly on End-to-End Latency (hotpotqa) with 95% CI [214.5703, 1275.5790]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "cross_encoder",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.3018,
+      "mean_b": 0.3419,
+      "difference": -0.0402,
+      "t_statistic": -0.7586,
+      "p_value": 0.4542,
+      "p_value_holm": 1.0,
+      "bootstrap_p_value": 0.493,
+      "bootstrap_ci_95": [
+        -0.1388,
+        0.0637
+      ],
+      "cohens_d": -0.1385,
+      "statistically_significant": false,
+      "confidence_interval_95": [
+        -0.1484,
+        0.0681
+      ],
+      "interpretation": "No statistically significant difference (paired t=-0.759, p=0.45420 >= 0.05, bootstrap p=0.49300, Cohen's d=-0.14, n=30). Mean difference (-0.0402) is within sampling variation; 95% CI [-0.1484, 0.0681]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "cross_encoder",
+      "metric_name": "End-to-End Latency (legal)",
+      "mean_a": 18993.7203,
+      "mean_b": 119.219,
+      "difference": 18874.5013,
+      "t_statistic": 10.598,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        15406.6509,
+        22127.6448
+      ],
+      "cohens_d": 1.9349,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        15232.0608,
+        22516.9418
+      ],
+      "interpretation": "Statistically significant difference (paired t=10.598, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.93, n=30). 'llm' differs significantly on End-to-End Latency (legal) with 95% CI [15232.0608, 22516.9418]."
+    },
+    {
+      "strategy_a": "llm",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.3018,
+      "mean_b": 0.2612,
+      "difference": 0.0406,
+      "t_statistic": 0.8626,
+      "p_value": 0.39543,
+      "p_value_holm": 1.0,
+      "bootstrap_p_value": 0.337,
+      "bootstrap_ci_95": [
+        -0.0447,
+        0.1309
+      ],
+      "cohens_d": 0.1575,
+      "statistically_significant": false,
+      "confidence_interval_95": [
+        -0.0556,
+        0.1367
+      ],
+      "interpretation": "No statistically significant difference (paired t=0.863, p=0.39543 >= 0.05, bootstrap p=0.33700, Cohen's d=0.16, n=30). Mean difference (+0.0406) is within sampling variation; 95% CI [-0.0556, 0.1367]."
     },
     {
       "strategy_a": "llm",
       "strategy_b": "similarity_threshold",
       "metric_name": "End-to-End Latency (legal)",
-      "mean_a": 13648.96,
-      "mean_b": 0.558,
-      "difference": 13648.402,
-      "t_statistic": 10.3444,
+      "mean_a": 18993.7203,
+      "mean_b": 0.6423,
+      "difference": 18993.078,
+      "t_statistic": 10.6643,
       "p_value": 0.0,
       "p_value_holm": 0.0,
       "bootstrap_p_value": 0.0,
       "bootstrap_ci_95": [
-        11157.5833,
-        16257.5838
+        15525.2777,
+        22244.4088
       ],
-      "cohens_d": 1.8886,
+      "cohens_d": 1.947,
       "statistically_significant": true,
       "confidence_interval_95": [
-        10949.9329,
-        16346.8711
+        15350.5367,
+        22635.6193
       ],
-      "interpretation": "Statistically significant difference (paired t=10.344, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.89, n=30). 'llm' differs significantly on End-to-End Latency (legal) with 95% CI [10949.9329, 16346.8711]."
+      "interpretation": "Statistically significant difference (paired t=10.664, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=1.95, n=30). 'llm' differs significantly on End-to-End Latency (legal) with 95% CI [15350.5367, 22635.6193]."
     },
     {
       "strategy_a": "cross_encoder",
       "strategy_b": "similarity_threshold",
       "metric_name": "Answer Token F1 (legal)",
-      "mean_a": 0.4259,
-      "mean_b": 0.3416,
-      "difference": 0.0843,
-      "t_statistic": 3.2576,
-      "p_value": 0.00286,
-      "p_value_holm": 0.01716,
-      "bootstrap_p_value": 0.001,
+      "mean_a": 0.3419,
+      "mean_b": 0.2612,
+      "difference": 0.0807,
+      "t_statistic": 3.7403,
+      "p_value": 0.00081,
+      "p_value_holm": 0.00891,
+      "bootstrap_p_value": 0.0,
       "bootstrap_ci_95": [
-        0.0362,
-        0.1344
+        0.0406,
+        0.1256
       ],
-      "cohens_d": 0.5948,
+      "cohens_d": 0.6829,
       "statistically_significant": true,
       "confidence_interval_95": [
-        0.0314,
-        0.1372
+        0.0366,
+        0.1249
       ],
-      "interpretation": "Statistically significant difference (paired t=3.258, p=0.00286 < 0.05, bootstrap p=0.00100, Cohen's d=0.59, n=30). 'cross_encoder' differs significantly on Answer Token F1 (legal) with 95% CI [0.0314, 0.1372]."
+      "interpretation": "Statistically significant difference (paired t=3.740, p=0.00081 < 0.05, bootstrap p=0.00000, Cohen's d=0.68, n=30). 'cross_encoder' differs significantly on Answer Token F1 (legal) with 95% CI [0.0366, 0.1249]."
     },
     {
       "strategy_a": "cross_encoder",
       "strategy_b": "similarity_threshold",
       "metric_name": "End-to-End Latency (legal)",
-      "mean_a": 129.9637,
-      "mean_b": 0.558,
-      "difference": 129.4057,
-      "t_statistic": 55.4795,
+      "mean_a": 119.219,
+      "mean_b": 0.6423,
+      "difference": 118.5767,
+      "t_statistic": 76.2039,
       "p_value": 0.0,
       "p_value_holm": 0.0,
       "bootstrap_p_value": 0.0,
       "bootstrap_ci_95": [
-        125.0805,
-        134.1224
+        115.6447,
+        121.6715
       ],
-      "cohens_d": 10.1291,
+      "cohens_d": 13.9129,
       "statistically_significant": true,
       "confidence_interval_95": [
-        124.6352,
-        134.1762
+        115.3942,
+        121.7591
       ],
-      "interpretation": "Statistically significant difference (paired t=55.480, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=10.13, n=30). 'cross_encoder' differs significantly on End-to-End Latency (legal) with 95% CI [124.6352, 134.1762]."
+      "interpretation": "Statistically significant difference (paired t=76.204, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=13.91, n=30). 'cross_encoder' differs significantly on End-to-End Latency (legal) with 95% CI [115.3942, 121.7591]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "llm",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.3578,
+      "mean_b": 0.3018,
+      "difference": 0.0561,
+      "t_statistic": 1.0667,
+      "p_value": 0.29492,
+      "p_value_holm": 1.0,
+      "bootstrap_p_value": 0.319,
+      "bootstrap_ci_95": [
+        -0.0473,
+        0.1546
+      ],
+      "cohens_d": 0.1947,
+      "statistically_significant": false,
+      "confidence_interval_95": [
+        -0.0515,
+        0.1636
+      ],
+      "interpretation": "No statistically significant difference (paired t=1.067, p=0.29492 >= 0.05, bootstrap p=0.31900, Cohen's d=0.19, n=30). Mean difference (+0.0561) is within sampling variation; 95% CI [-0.0515, 0.1636]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "llm",
+      "metric_name": "End-to-End Latency (legal)",
+      "mean_a": 1256.7977,
+      "mean_b": 18993.7203,
+      "difference": -17736.9227,
+      "t_statistic": -9.8712,
+      "p_value": 0.0,
+      "p_value_holm": 0.0,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        -21041.4608,
+        -14276.9974
+      ],
+      "cohens_d": -1.8022,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        -21411.8781,
+        -14061.9672
+      ],
+      "interpretation": "Statistically significant difference (paired t=-9.871, p=0.00000 < 0.05, bootstrap p=0.00000, Cohen's d=-1.80, n=30). 'llm' differs significantly on End-to-End Latency (legal) with 95% CI [-21411.8781, -14061.9672]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "cross_encoder",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.3578,
+      "mean_b": 0.3419,
+      "difference": 0.0159,
+      "t_statistic": 1.9514,
+      "p_value": 0.06073,
+      "p_value_holm": 0.48584,
+      "bootstrap_p_value": 0.016,
+      "bootstrap_ci_95": [
+        0.0028,
+        0.0342
+      ],
+      "cohens_d": 0.3563,
+      "statistically_significant": false,
+      "confidence_interval_95": [
+        -0.0008,
+        0.0326
+      ],
+      "interpretation": "No statistically significant difference (paired t=1.951, p=0.06073 >= 0.05, bootstrap p=0.01600, Cohen's d=0.36, n=30). Mean difference (+0.0159) is within sampling variation; 95% CI [-0.0008, 0.0326]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "cross_encoder",
+      "metric_name": "End-to-End Latency (legal)",
+      "mean_a": 1256.7977,
+      "mean_b": 119.219,
+      "difference": 1137.5787,
+      "t_statistic": 4.2725,
+      "p_value": 0.00019,
+      "p_value_holm": 0.00057,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        650.6687,
+        1682.7135
+      ],
+      "cohens_d": 0.7801,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        593.0263,
+        1682.1311
+      ],
+      "interpretation": "Statistically significant difference (paired t=4.273, p=0.00019 < 0.05, bootstrap p=0.00000, Cohen's d=0.78, n=30). 'hybrid_cascade' differs significantly on End-to-End Latency (legal) with 95% CI [593.0263, 1682.1311]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "Answer Token F1 (legal)",
+      "mean_a": 0.3578,
+      "mean_b": 0.2612,
+      "difference": 0.0966,
+      "t_statistic": 4.1816,
+      "p_value": 0.00024,
+      "p_value_holm": 0.00288,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        0.0539,
+        0.1439
+      ],
+      "cohens_d": 0.7635,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        0.0494,
+        0.1439
+      ],
+      "interpretation": "Statistically significant difference (paired t=4.182, p=0.00024 < 0.05, bootstrap p=0.00000, Cohen's d=0.76, n=30). 'hybrid_cascade' differs significantly on Answer Token F1 (legal) with 95% CI [0.0494, 0.1439]."
+    },
+    {
+      "strategy_a": "hybrid_cascade",
+      "strategy_b": "similarity_threshold",
+      "metric_name": "End-to-End Latency (legal)",
+      "mean_a": 1256.7977,
+      "mean_b": 0.6423,
+      "difference": 1256.1553,
+      "t_statistic": 4.7172,
+      "p_value": 6e-05,
+      "p_value_holm": 0.00024,
+      "bootstrap_p_value": 0.0,
+      "bootstrap_ci_95": [
+        768.9178,
+        1801.2198
+      ],
+      "cohens_d": 0.8612,
+      "statistically_significant": true,
+      "confidence_interval_95": [
+        711.5219,
+        1800.7888
+      ],
+      "interpretation": "Statistically significant difference (paired t=4.717, p=0.00006 < 0.05, bootstrap p=0.00000, Cohen's d=0.86, n=30). 'hybrid_cascade' differs significantly on End-to-End Latency (legal) with 95% CI [711.5219, 1800.7888]."
     }
   ],
-  "summary_findings": "Evaluated across 2 domain(s) (60 unique queries, 120 gold query-chunk pairs). Strategy A (LLM Judge - qwen2.5:3b): grading F1=71.1%, answer F1=37.4%, grading latency=1873.5 ms/chunk, 7.4 LLM calls/query | Strategy B (Cross-Encoder - ms-marco-MiniLM-L-6-v2): grading F1=85.7%, answer F1=48.3%, grading latency=31.5 ms/chunk, 1.0 LLM calls/query | Strategy C (Similarity Threshold - all-MiniLM-L6-v2): grading F1=78.5%, answer F1=41.5%, grading latency=0.0 ms/chunk, 1.0 LLM calls/query. Across 12 pairwise hypothesis tests, 10 reached statistical significance (p < 0.05).",
-  "timestamp": "2026-11-14 09:36:56 UTC",
+  "threshold_sweeps": {
+    "llm_hotpotqa": [
+      {
+        "threshold": 0.05,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6667,
+        "accuracy": 0.5,
+        "specificity": 0.0
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6667,
+        "accuracy": 0.5,
+        "specificity": 0.0
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.85,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.8462,
+        "recall": 0.7333,
+        "f1_score": 0.7857,
+        "accuracy": 0.8,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "accuracy": 0.5,
+        "specificity": 1.0
+      }
+    ],
+    "cross_encoder_hotpotqa": [
+      {
+        "threshold": 0.05,
+        "precision": 0.6977,
+        "recall": 1.0,
+        "f1_score": 0.8219,
+        "accuracy": 0.7833,
+        "specificity": 0.5667
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.7143,
+        "recall": 1.0,
+        "f1_score": 0.8333,
+        "accuracy": 0.8,
+        "specificity": 0.6
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1_score": 0.8571,
+        "accuracy": 0.8333,
+        "specificity": 0.6667
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1_score": 0.8571,
+        "accuracy": 0.8333,
+        "specificity": 0.6667
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1_score": 0.8571,
+        "accuracy": 0.8333,
+        "specificity": 0.6667
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.85,
+        "precision": 0.8824,
+        "recall": 1.0,
+        "f1_score": 0.9375,
+        "accuracy": 0.9333,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.8824,
+        "recall": 1.0,
+        "f1_score": 0.9375,
+        "accuracy": 0.9333,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.8824,
+        "recall": 1.0,
+        "f1_score": 0.9375,
+        "accuracy": 0.9333,
+        "specificity": 0.8667
+      }
+    ],
+    "similarity_threshold_hotpotqa": [
+      {
+        "threshold": 0.05,
+        "precision": 0.5085,
+        "recall": 1.0,
+        "f1_score": 0.6742,
+        "accuracy": 0.5167,
+        "specificity": 0.0333
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.5172,
+        "recall": 1.0,
+        "f1_score": 0.6818,
+        "accuracy": 0.5333,
+        "specificity": 0.0667
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.5172,
+        "recall": 1.0,
+        "f1_score": 0.6818,
+        "accuracy": 0.5333,
+        "specificity": 0.0667
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.5263,
+        "recall": 1.0,
+        "f1_score": 0.6897,
+        "accuracy": 0.55,
+        "specificity": 0.1
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.5357,
+        "recall": 1.0,
+        "f1_score": 0.6977,
+        "accuracy": 0.5667,
+        "specificity": 0.1333
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.5556,
+        "recall": 1.0,
+        "f1_score": 0.7143,
+        "accuracy": 0.6,
+        "specificity": 0.2
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.5556,
+        "recall": 1.0,
+        "f1_score": 0.7143,
+        "accuracy": 0.6,
+        "specificity": 0.2
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.5882,
+        "recall": 1.0,
+        "f1_score": 0.7407,
+        "accuracy": 0.65,
+        "specificity": 0.3
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1_score": 0.8,
+        "accuracy": 0.75,
+        "specificity": 0.5
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.7143,
+        "recall": 1.0,
+        "f1_score": 0.8333,
+        "accuracy": 0.8,
+        "specificity": 0.6
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1_score": 0.8571,
+        "accuracy": 0.8333,
+        "specificity": 0.6667
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.8333,
+        "recall": 1.0,
+        "f1_score": 0.9091,
+        "accuracy": 0.9,
+        "specificity": 0.8
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.9091,
+        "recall": 1.0,
+        "f1_score": 0.9524,
+        "accuracy": 0.95,
+        "specificity": 0.9
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.9333,
+        "recall": 0.9333,
+        "f1_score": 0.9333,
+        "accuracy": 0.9333,
+        "specificity": 0.9333
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.9545,
+        "recall": 0.7,
+        "f1_score": 0.8077,
+        "accuracy": 0.8333,
+        "specificity": 0.9667
+      },
+      {
+        "threshold": 0.8,
+        "precision": 1.0,
+        "recall": 0.3,
+        "f1_score": 0.4615,
+        "accuracy": 0.65,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.85,
+        "precision": 1.0,
+        "recall": 0.1667,
+        "f1_score": 0.2857,
+        "accuracy": 0.5833,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "accuracy": 0.5,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "accuracy": 0.5,
+        "specificity": 1.0
+      }
+    ],
+    "hybrid_cascade_hotpotqa": [
+      {
+        "threshold": 0.05,
+        "precision": 0.6383,
+        "recall": 1.0,
+        "f1_score": 0.7792,
+        "accuracy": 0.7167,
+        "specificity": 0.4333
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1_score": 0.8,
+        "accuracy": 0.75,
+        "specificity": 0.5
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1_score": 0.8571,
+        "accuracy": 0.8333,
+        "specificity": 0.6667
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.7895,
+        "recall": 1.0,
+        "f1_score": 0.8824,
+        "accuracy": 0.8667,
+        "specificity": 0.7333
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.85,
+        "precision": 0.8824,
+        "recall": 1.0,
+        "f1_score": 0.9375,
+        "accuracy": 0.9333,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.8824,
+        "recall": 1.0,
+        "f1_score": 0.9375,
+        "accuracy": 0.9333,
+        "specificity": 0.8667
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.8824,
+        "recall": 1.0,
+        "f1_score": 0.9375,
+        "accuracy": 0.9333,
+        "specificity": 0.8667
+      }
+    ],
+    "llm_legal": [
+      {
+        "threshold": 0.05,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6667,
+        "accuracy": 0.5,
+        "specificity": 0.0
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6667,
+        "accuracy": 0.5,
+        "specificity": 0.0
+      },
+      {
+        "threshold": 0.15,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.2,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.25,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.3,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.35,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.4,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.45,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.5,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.55,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.65,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.7,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.75,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.8,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.85,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.9,
+        "precision": 1.0,
+        "recall": 0.4667,
+        "f1_score": 0.6364,
+        "accuracy": 0.7333,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "accuracy": 0.5,
+        "specificity": 1.0
+      }
+    ],
+    "cross_encoder_legal": [
+      {
+        "threshold": 0.05,
+        "precision": 0.5882,
+        "recall": 1.0,
+        "f1_score": 0.7407,
+        "accuracy": 0.65,
+        "specificity": 0.3
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.625,
+        "recall": 1.0,
+        "f1_score": 0.7692,
+        "accuracy": 0.7,
+        "specificity": 0.4
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.6383,
+        "recall": 1.0,
+        "f1_score": 0.7792,
+        "accuracy": 0.7167,
+        "specificity": 0.4333
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.6383,
+        "recall": 1.0,
+        "f1_score": 0.7792,
+        "accuracy": 0.7167,
+        "specificity": 0.4333
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.6522,
+        "recall": 1.0,
+        "f1_score": 0.7895,
+        "accuracy": 0.7333,
+        "specificity": 0.4667
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.6818,
+        "recall": 1.0,
+        "f1_score": 0.8108,
+        "accuracy": 0.7667,
+        "specificity": 0.5333
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.6818,
+        "recall": 1.0,
+        "f1_score": 0.8108,
+        "accuracy": 0.7667,
+        "specificity": 0.5333
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.6977,
+        "recall": 1.0,
+        "f1_score": 0.8219,
+        "accuracy": 0.7833,
+        "specificity": 0.5667
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.7143,
+        "recall": 1.0,
+        "f1_score": 0.8333,
+        "accuracy": 0.8,
+        "specificity": 0.6
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1_score": 0.8571,
+        "accuracy": 0.8333,
+        "specificity": 0.6667
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.85,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.8571,
+        "recall": 1.0,
+        "f1_score": 0.9231,
+        "accuracy": 0.9167,
+        "specificity": 0.8333
+      }
+    ],
+    "similarity_threshold_legal": [
+      {
+        "threshold": 0.05,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6667,
+        "accuracy": 0.5,
+        "specificity": 0.0
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6667,
+        "accuracy": 0.5,
+        "specificity": 0.0
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1_score": 0.6667,
+        "accuracy": 0.5,
+        "specificity": 0.0
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.5085,
+        "recall": 1.0,
+        "f1_score": 0.6742,
+        "accuracy": 0.5167,
+        "specificity": 0.0333
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.5085,
+        "recall": 1.0,
+        "f1_score": 0.6742,
+        "accuracy": 0.5167,
+        "specificity": 0.0333
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.5085,
+        "recall": 1.0,
+        "f1_score": 0.6742,
+        "accuracy": 0.5167,
+        "specificity": 0.0333
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.5455,
+        "recall": 1.0,
+        "f1_score": 0.7059,
+        "accuracy": 0.5833,
+        "specificity": 0.1667
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.5882,
+        "recall": 1.0,
+        "f1_score": 0.7407,
+        "accuracy": 0.65,
+        "specificity": 0.3
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.625,
+        "recall": 1.0,
+        "f1_score": 0.7692,
+        "accuracy": 0.7,
+        "specificity": 0.4
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.7143,
+        "recall": 1.0,
+        "f1_score": 0.8333,
+        "accuracy": 0.8,
+        "specificity": 0.6
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.9062,
+        "recall": 0.9667,
+        "f1_score": 0.9355,
+        "accuracy": 0.9333,
+        "specificity": 0.9
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.9643,
+        "recall": 0.9,
+        "f1_score": 0.931,
+        "accuracy": 0.9333,
+        "specificity": 0.9667
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.96,
+        "recall": 0.8,
+        "f1_score": 0.8727,
+        "accuracy": 0.8833,
+        "specificity": 0.9667
+      },
+      {
+        "threshold": 0.75,
+        "precision": 1.0,
+        "recall": 0.5667,
+        "f1_score": 0.7234,
+        "accuracy": 0.7833,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.8,
+        "precision": 1.0,
+        "recall": 0.3333,
+        "f1_score": 0.5,
+        "accuracy": 0.6667,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.85,
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1_score": 0.1818,
+        "accuracy": 0.55,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "accuracy": 0.5,
+        "specificity": 1.0
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "accuracy": 0.5,
+        "specificity": 1.0
+      }
+    ],
+    "hybrid_cascade_legal": [
+      {
+        "threshold": 0.05,
+        "precision": 0.5769,
+        "recall": 1.0,
+        "f1_score": 0.7317,
+        "accuracy": 0.6333,
+        "specificity": 0.2667
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.625,
+        "recall": 1.0,
+        "f1_score": 0.7692,
+        "accuracy": 0.7,
+        "specificity": 0.4
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.6383,
+        "recall": 1.0,
+        "f1_score": 0.7792,
+        "accuracy": 0.7167,
+        "specificity": 0.4333
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.6383,
+        "recall": 1.0,
+        "f1_score": 0.7792,
+        "accuracy": 0.7167,
+        "specificity": 0.4333
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.6522,
+        "recall": 1.0,
+        "f1_score": 0.7895,
+        "accuracy": 0.7333,
+        "specificity": 0.4667
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.7143,
+        "recall": 1.0,
+        "f1_score": 0.8333,
+        "accuracy": 0.8,
+        "specificity": 0.6
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.7317,
+        "recall": 1.0,
+        "f1_score": 0.8451,
+        "accuracy": 0.8167,
+        "specificity": 0.6333
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1_score": 0.8571,
+        "accuracy": 0.8333,
+        "specificity": 0.6667
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.85,
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1_score": 0.8696,
+        "accuracy": 0.85,
+        "specificity": 0.7
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.8108,
+        "recall": 1.0,
+        "f1_score": 0.8955,
+        "accuracy": 0.8833,
+        "specificity": 0.7667
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.8571,
+        "recall": 1.0,
+        "f1_score": 0.9231,
+        "accuracy": 0.9167,
+        "specificity": 0.8333
+      }
+    ]
+  },
+  "summary_findings": "Evaluated across 2 domain(s) (60 unique queries, 120 gold query-chunk pairs). Strategy A (LLM Judge - qwen2.5:3b): grading F1=71.1% (ROC-AUC=0.767), answer F1=37.3%, grading latency=1873.5 ms/chunk, 7.69 LLM calls/query | Strategy B (Cross-Encoder - ms-marco-MiniLM-L-6-v2): grading F1=85.7% (ROC-AUC=1.000), answer F1=40.8%, grading latency=30.9 ms/chunk, 1.00 LLM calls/query | Strategy C (Similarity Threshold - all-MiniLM-L6-v2): grading F1=78.5% (ROC-AUC=0.983), answer F1=32.5%, grading latency=0.0 ms/chunk, 1.00 LLM calls/query | Strategy D (Uncertainty-Gated Hybrid Cascade): grading F1=86.4% (ROC-AUC=1.000), answer F1=42.1%, grading latency=107.1 ms/chunk, 1.35 LLM calls/query. Across 24 pairwise hypothesis tests, 16 reached statistical significance (p < 0.05).",
+  "timestamp": "2026-11-23 14:46:05 UTC",
   "total_gold_pairs": 120
 }

@@ -432,9 +432,10 @@ REPORT_CORPUS = [
 
 
 def load_initial_corpora():
-    """Populates vector store with domain corpora and builds dense FAISS index matrices."""
-    vector_store.set_chunks("hotpotqa", HOTPOTQA_CORPUS)
-    vector_store.set_chunks("legal", LEGAL_CORPUS)
+    """Populates vector store with domain corpora (including 140 realistic domain distractors) and builds dense FAISS index matrices."""
+    from app.data.distractor_corpus import HOTPOTQA_DISTRACTORS, LEGAL_DISTRACTORS
+    vector_store.set_chunks("hotpotqa", HOTPOTQA_CORPUS + HOTPOTQA_DISTRACTORS)
+    vector_store.set_chunks("legal", LEGAL_CORPUS + LEGAL_DISTRACTORS)
     vector_store.set_chunks("report", REPORT_CORPUS)
 
 
