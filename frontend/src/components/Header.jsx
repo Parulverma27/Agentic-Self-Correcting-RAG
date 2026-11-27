@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Bell } from 'lucide-react';
+import { Search, Bell, User } from 'lucide-react';
 
 export default function Header({ searchQuery, setSearchQuery, onNotificationClick }) {
   return (
@@ -31,17 +31,8 @@ export default function Header({ searchQuery, setSearchQuery, onNotificationClic
 
         {/* User Profile Widget */}
         <div className="user-profile-widget" id="user-profile-trigger">
-          <img
-            src="/assets/researcher-avatar.jpg"
-            alt="Researcher"
-            className="avatar-img"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.nextElementSibling.style.display = 'flex';
-            }}
-          />
-          <div className="avatar-fallback" style={{ display: 'none' }}>
-            R
+          <div className="avatar-fallback">
+            <User size={18} strokeWidth={2.2} />
           </div>
           <div className="profile-info">
             <span className="profile-name">Researcher</span>
