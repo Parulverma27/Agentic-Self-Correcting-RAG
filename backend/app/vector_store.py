@@ -49,6 +49,11 @@ class VectorStore:
                     res.append(st)
         return res
 
+    def set_chunks(self, domain: str, chunks: List[DocumentChunk]):
+        """Replace all chunks for a domain and rebuild the index."""
+        self.chunks[domain] = []
+        self.add_chunks(domain, chunks)
+
     def add_chunks(self, domain: str, chunks: List[DocumentChunk]):
         """Index a list of chunks into the domain's vector space."""
         if domain not in self.chunks:
