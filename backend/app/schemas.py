@@ -57,14 +57,14 @@ class SideBySideComparisonResponse(BaseModel):
 
 class QueryRequest(BaseModel):
     query: str
-    domain: DomainType = "hotpotqa"
+    domain: str = "hotpotqa"
     strategy: StrategyType = "llm"
     top_k: Optional[int] = 4
 
 
 class CompareQueryRequest(BaseModel):
     query: str
-    domain: DomainType = "hotpotqa"
+    domain: str = "hotpotqa"
     top_k: Optional[int] = 4
 
 
